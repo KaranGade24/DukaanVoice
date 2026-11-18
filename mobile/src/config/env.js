@@ -15,8 +15,9 @@ const apiUrl = configuredUrl || fallbackUrl;
 const usesLocalhost = /^(https?:\/\/)(localhost|127\.0\.0\.1)(:|\/|$)/i.test(
   apiUrl,
 );
-const resolvedUrl = usesLocalhost && expoHost
-  ? apiUrl.replace(/^(https?:\/\/)(localhost|127\.0\.0\.1)/i, `$1${expoHost}`)
-  : apiUrl;
+const resolvedUrl =
+  usesLocalhost && expoHost
+    ? apiUrl.replace(/^(https?:\/\/)(localhost|127\.0\.0\.1)/i, `$1${expoHost}`)
+    : apiUrl;
 
 export const API_BASE_URL = resolvedUrl.replace(/\/$/, "");

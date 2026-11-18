@@ -193,7 +193,12 @@ export default function LoginScreen() {
 
 const styles = StyleSheet.create({
   page: { flex: 1, backgroundColor: theme.colors.background },
-  content: { flexGrow: 1, padding: theme.spacing.screenGutter, gap: 20, paddingBottom: 36 },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing.screenGutter,
+    gap: 20,
+    paddingBottom: 36,
+  },
   topRow: {
     flexDirection: "row",
     alignItems: "center",
