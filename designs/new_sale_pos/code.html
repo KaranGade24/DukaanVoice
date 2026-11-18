@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-primary": "#ffffff", "surface-canvas": "#FFFFFF", "on-primary-fixed-variant": "#005228", "secondary-fixed": "#a0f5b4", "inverse-surface": "#28332d", "secondary-container": "#a0f5b4", "outline": "#6f7a6f", "primary-fixed-dim": "#77db94", "surface-bright": "#f0fdf3", "primary-fixed": "#93f8ae", "text-primary": "#202B25", "on-tertiary-fixed-variant": "#3e4943", "error-container": "#ffdad6", "surface-container-high": "#dfebe2", "tertiary-fixed-dim": "#bdcac1", "surface-container-lowest": "#ffffff", "surface": "#f0fdf3", "primary-container": "#168447", "surface-container-highest": "#d9e6dc", "status-info-bg": "#EFF6FF", "on-tertiary-fixed": "#131e19", "outline-variant": "#becabd", "background": "#f0fdf3", "status-warning-bg": "#FFF5E5", "border-primary": "#CDE8D5", "on-surface-variant": "#3f4940", "on-secondary-fixed": "#00210c", "on-secondary-fixed-variant": "#005228", "surface-subtle": "#F7F9F7", "on-tertiary-container": "#f1fef4", "error": "#ba1a1a", "tertiary-fixed": "#d9e6dd", "on-tertiary": "#ffffff", "on-secondary": "#ffffff", "surface-container-low": "#eaf7ed", "surface-tint": "#006d37", "primary": "#006935", "on-error-container": "#93000a", "secondary": "#136c39", "status-info": "#2563EB", "on-secondary-container": "#1c733f", "tertiary": "#515d57", "on-error": "#ffffff", "secondary-fixed-dim": "#85d89a", "status-warning": "#D97706", "tertiary-container": "#6a766f", "surface-variant": "#d9e6dc", "status-danger-bg": "#FEECEC", "on-surface": "#131e18", "control-disabled": "#C9D1CB", "surface-dim": "#d0ddd4", "inverse-primary": "#77db94", "text-secondary": "#66736B", "inverse-on-surface": "#e7f4ea", "on-primary-container": "#edffec", "text-muted": "#96A19A", "on-primary-fixed": "#00210d", "on-background": "#131e18", "surface-container": "#e4f1e7", "border-subtle": "#E5EAE6", "status-danger": "#DC2626", "surface-mint": "#F3FAF5" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-lg": "1rem", "space-xl": "1.5rem", "space-md": "0.75rem", "space-xs": "0.25rem", "margin": "1rem", "gutter": "1rem", "space-sm": "0.5rem" }, fontFamily: { "headline-lg": ["Inter"], "body-md": ["Noto Sans"], "label-md": ["Inter"], "body-sm": ["Noto Sans"], "body-lg": ["Noto Sans"], "label-sm": ["Inter"], "headline-sm": ["Inter"], "title-md": ["Inter"], "display": ["Inter"], "label-nav": ["Inter"] }, fontSize: { "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-md": ["15px", { "lineHeight": "20px", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "body-lg": ["15px", { "lineHeight": "22px", "fontWeight": "500" }], "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "600" }], "display": ["30px", { "lineHeight": "38px", "fontWeight": "700" }], "label-nav": ["11px", { "lineHeight": "14px", "fontWeight": "500" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface-canvas text-text-primary flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface-canvas/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-space-lg flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0 flex-1"><img alt="DukaanVoice Brand Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/ALJJyrBFhjZok_St0s9ndNWJUfhVSnuNph1NkE6Y2cucYkMw82UFMIlhGDh2a2wH_YBKFWRvpW68WYsvAr7X_0D8VepXX4FT05QAdjYrlB1A7Tp7X_IPdlVDJOl7_R6AQFik-cPeYrYAi5xNZgy_L8VJ14cyb9V2DaOA1dBh11OCRq5E0uzSPOjkh56-qwl8ZGUwyZcd9HOMaSYifbBw2KQ3h68vPKsQO1_TPEHN8ubM8YioWw"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-title-md text-title-md text-text-primary truncate">Apna Kirana & General Store</span></div><div class="flex items-center gap-space-xs"><span class="font-label-sm text-label-sm text-text-secondary truncate">Dashboard</span><button class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-surface-mint text-primary font-label-sm text-label-sm" type="button"><span class="material-symbols-outlined text-[12px] mr-0.5">translate</span>मराठी / EN</button></div></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><button aria-label="Notifications" class="w-11 h-11 flex items-center justify-center rounded-full text-text-secondary hover:text-text-primary hover:bg-surface-subtle transition-colors" type="button"><span class="material-symbols-outlined">notifications</span></button><div class="w-11 h-11 flex items-center justify-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYaIDXWuT8fLeKKKdtGCY1FEzcKn5vndNRCoUVaLQyv2MqBIiHyYxsKR_qHVfTCAaAkWzGy6C5s7MIwC_k2i0YLI-afwv5z26288gDBFJTuXlMx_vyaqYIr6gTPDC6xDvcQKyXRlsLf_bTfEn4KYAv_8sM_tLp8GuUb40XS9vNP-u3cZXrBImHJl_QOYG5ceX8DIz6j95YMB_YWQ0qjvqaA1bu3326zLINEs7WmjTH"/></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface-canvas"><div class="flex flex-col w-full pb-8">
+<!-- Fast Search, Barcode Scanner & Voice Header -->
+<div class="px-space-lg pt-space-sm pb-space-xs flex flex-col gap-space-sm">
+<div class="relative flex items-center w-full">
+<div class="absolute left-3.5 flex items-center pointer-events-none text-text-secondary">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full h-12 pl-10 pr-24 rounded-lg bg-surface-container-lowest text-text-primary placeholder:text-text-muted text-body-md font-body-md shadow-sm focus:outline-none focus:bg-surface-mint transition-all" placeholder="Search item, barcode or '2kg Atta'..." type="text"/>
+<div class="absolute right-2 flex items-center gap-1">
+<button aria-label="Scan Barcode" class="w-8 h-8 rounded-lg bg-surface-container-high text-on-surface-variant flex items-center justify-center hover:bg-surface-variant active:scale-95 transition-transform" id="btn-scan-barcode" title="Scan Barcode" type="button">
+<span class="material-symbols-outlined text-[18px]">barcode_scanner</span>
+</button>
+<button aria-label="Voice Search" class="w-8 h-8 rounded-lg bg-primary-container text-on-primary flex items-center justify-center hover:opacity-90 active:scale-95 transition-transform shadow-sm" id="btn-voice-pos" title="Speak Item" type="button">
+<span class="material-symbols-outlined text-[18px]">mic</span>
+</button>
+</div>
+</div>
+<!-- Customer / Udhar Khata Quick Selector -->
+<div class="flex items-center justify-between px-space-xs">
+<button class="inline-flex items-center gap-1.5 py-1 text-left text-secondary text-label-sm font-label-sm active:opacity-75 transition-opacity" id="btn-customer-modal" type="button">
+<span class="w-5 h-5 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[13px]">person_add</span>
+</span>
+<span class="underline decoration-dotted underline-offset-4">Walk-in Customer (रोख गिऱ्हाईक)</span>
+</button>
+<span class="text-label-sm font-label-sm text-text-muted flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Register #01
+      </span>
+</div>
+</div>
+<!-- Category Filter Quick Chips -->
+<div class="w-full overflow-x-auto no-scrollbar py-space-xs px-space-lg flex items-center gap-space-xs mt-1">
+<button class="h-9 px-3.5 rounded-lg bg-primary-container text-on-primary text-label-sm font-label-sm flex-shrink-0 shadow-sm flex items-center gap-1 active:scale-95 transition-transform">
+<span>All Items</span>
+<span class="bg-primary/20 text-on-primary text-[10px] px-1.5 py-0.2 rounded-full font-bold">48</span>
+</button>
+<button class="h-9 px-3.5 rounded-lg bg-surface-subtle text-text-secondary text-label-sm font-label-sm flex-shrink-0 active:scale-95 transition-transform hover:bg-surface-container">
+      Staples & Atta
+    </button>
+<button class="h-9 px-3.5 rounded-lg bg-surface-subtle text-text-secondary text-label-sm font-label-sm flex-shrink-0 active:scale-95 transition-transform hover:bg-surface-container">
+      Oils & Ghee
+    </button>
+<button class="h-9 px-3.5 rounded-lg bg-surface-subtle text-text-secondary text-label-sm font-label-sm flex-shrink-0 active:scale-95 transition-transform hover:bg-surface-container">
+      Beverages & Tea
+    </button>
+<button class="h-9 px-3.5 rounded-lg bg-surface-subtle text-text-secondary text-label-sm font-label-sm flex-shrink-0 active:scale-95 transition-transform hover:bg-surface-container">
+      Biscuits
+    </button>
+<button class="h-9 px-3.5 rounded-lg bg-surface-subtle text-text-secondary text-label-sm font-label-sm flex-shrink-0 active:scale-95 transition-transform hover:bg-surface-container">
+      Spices
+    </button>
+</div>
+<!-- Sticky POS Mini Banner (Touch fast summary) -->
+<div class="px-space-lg my-space-xs sticky top-0 z-30 pt-1">
+<div class="bg-primary-container text-on-primary rounded-xl px-space-md py-space-sm flex items-center justify-between shadow-md">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-on-primary/15 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">shopping_cart</span>
+</div>
+<div class="flex flex-col">
+<div class="text-label-sm font-label-sm text-on-primary/80">Active Sale (4 Items)</div>
+<div class="text-title-md font-title-md tracking-tight">₹485.00</div>
+</div>
+</div>
+<a class="h-9 px-3.5 rounded-lg bg-surface-canvas text-primary-container font-label-sm text-label-sm flex items-center gap-1 shadow-sm active:scale-95 transition-transform font-bold" href="#cart-checkout-drawer">
+<span>Bill Now</span>
+<span class="material-symbols-outlined text-[16px]">arrow_downward</span>
+</a>
+</div>
+</div>
+<!-- Counter Fast Product Grid / Interactive POS Feed -->
+<div class="px-space-lg flex flex-col gap-space-sm mt-space-xs">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-text-secondary uppercase tracking-wider">Fast Pick & Cart Items</span>
+<span class="text-label-sm font-label-sm text-primary font-medium">Tap +/- for instant update</span>
+</div>
+<!-- Product 1 (In Cart) -->
+<div class="bg-surface-canvas rounded-xl p-space-md shadow-sm flex items-center justify-between gap-space-md transition-colors hover:bg-surface-mint/40">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-14 h-14 rounded-lg bg-surface-subtle overflow-hidden flex-shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="Pack of Aashirvaad Superior MP Whole Wheat Sharbati Atta 5kg in neat brown paper bag design, studio soft warm Kirana lighting on clean countertop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA36lGk54zBCsLx9P5GtVoPhG6yB0e_cq0XZngIXdK1O_O8tVAdaXw0V-N_Kl2_Q34_0X_soylL-qujMrqmYZGtCCmXQPSe12XyxSb-obgbjqz5J6P01I4wGaZjqGiD5p3az1Xpk_6RtrHYwze--CcL7ywq74iwcdPz-jDPp56ocCjsxLdyQqJG2WWN6DEkHeTmDu8ND9K-sXBpjP2lEqjhGEyIBLXGR8VA3eBkyMtF"/>
+<span class="absolute bottom-0 right-0 bg-primary-container text-on-primary text-[9px] px-1 rounded-tl font-bold">1 in cart</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-body-lg font-body-lg text-text-primary truncate">Aashirvaad Atta 5kg</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="text-label-sm font-label-sm text-primary font-bold">₹245.00</span>
+<span class="text-[11px] text-text-muted line-through">₹260</span>
+<span class="text-[10px] text-text-secondary bg-surface-subtle px-1 rounded">Staple</span>
+</div>
+</div>
+</div>
+<!-- Tactile Kirana Stepper -->
+<div class="flex items-center bg-surface-subtle rounded-lg p-0.5 flex-shrink-0 shadow-sm">
+<button aria-label="Decrease quantity" class="w-9 h-9 rounded-md bg-surface-canvas text-text-primary flex items-center justify-center font-bold active:bg-error-container active:text-status-danger transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="w-7 text-center font-title-md text-title-md text-text-primary">1</span>
+<button aria-label="Increase quantity" class="w-9 h-9 rounded-md bg-primary-container text-on-primary flex items-center justify-center font-bold active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+<!-- Product 2 (In Cart) -->
+<div class="bg-surface-canvas rounded-xl p-space-md shadow-sm flex items-center justify-between gap-space-md transition-colors hover:bg-surface-mint/40">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-14 h-14 rounded-lg bg-surface-subtle overflow-hidden flex-shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="Tata Salt standard 1 kilogram vacuum evaporated iodized salt packaging against vibrant soft background for grocery store inventory." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYGcxn0DwLn3_TviYBZvaD3-DBA7uVi7dRr6bu5IfohOlSqJYx82kwuZ2TKzfdZbFM5_Oo7cwGzE4DVk7IFvpuNbnCXZ6TJa8ALAyT54RlT-CSybpUMgpMpN2IpgIkZN4lovAJoYk7PIA1fLysOCp4OG5rwXo2DKcYf7CyHQ_EuBUiY_xrUmz3kSG4jwQVLhdaVRSKQV1O6ZuQc7upF2KlToLAWaoE5mN5CZtazQ9R"/>
+<span class="absolute bottom-0 right-0 bg-primary-container text-on-primary text-[9px] px-1 rounded-tl font-bold">2 in cart</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-body-lg font-body-lg text-text-primary truncate">Tata Salt 1kg</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="text-label-sm font-label-sm text-primary font-bold">₹28.00</span>
+<span class="text-label-sm font-label-sm text-text-secondary">(Total: ₹56)</span>
+</div>
+</div>
+</div>
+<div class="flex items-center bg-surface-subtle rounded-lg p-0.5 flex-shrink-0 shadow-sm">
+<button aria-label="Decrease quantity" class="w-9 h-9 rounded-md bg-surface-canvas text-text-primary flex items-center justify-center font-bold active:bg-error-container active:text-status-danger transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="w-7 text-center font-title-md text-title-md text-text-primary">2</span>
+<button aria-label="Increase quantity" class="w-9 h-9 rounded-md bg-primary-container text-on-primary flex items-center justify-center font-bold active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+<!-- Product 3 (In Cart) -->
+<div class="bg-surface-canvas rounded-xl p-space-md shadow-sm flex items-center justify-between gap-space-md transition-colors hover:bg-surface-mint/40">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-14 h-14 rounded-lg bg-surface-subtle overflow-hidden flex-shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="Parle-G iconic yellow glucose biscuit pack 250g front view isolated on soft neutral surface with sharp crisp commercial food photo lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA76TcezWAuB_I4YRHaz5vOPd90cwVHPZzpGbQ6l6r0JUjwKpElERxsuNfiMT9j3ddfnnY09cn3u12vgTbh1olczFHyQGmVOE2xUlAGffZQpcP4t5tdwXyI6ZKZ6xlMz4Qtyp7VbnwJqGSlz5TOXRx0DMaEQhm3n6TAiv3t0XKxEHh_F603dHs-naKSylysu6wcfJuptpFGM4Z9Fp2TqQiFo72FSeGO5gtLtL-xthy"/>
+<span class="absolute bottom-0 right-0 bg-primary-container text-on-primary text-[9px] px-1 rounded-tl font-bold">3 in cart</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-body-lg font-body-lg text-text-primary truncate">Parle-G 250g</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="text-label-sm font-label-sm text-primary font-bold">₹20.00</span>
+<span class="text-label-sm font-label-sm text-text-secondary">(Total: ₹60)</span>
+</div>
+</div>
+</div>
+<div class="flex items-center bg-surface-subtle rounded-lg p-0.5 flex-shrink-0 shadow-sm">
+<button aria-label="Decrease quantity" class="w-9 h-9 rounded-md bg-surface-canvas text-text-primary flex items-center justify-center font-bold active:bg-error-container active:text-status-danger transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="w-7 text-center font-title-md text-title-md text-text-primary">3</span>
+<button aria-label="Increase quantity" class="w-9 h-9 rounded-md bg-primary-container text-on-primary flex items-center justify-center font-bold active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+<!-- Product 4 (In Cart - Low Stock Alert) -->
+<div class="bg-surface-canvas rounded-xl p-space-md shadow-sm flex items-center justify-between gap-space-md transition-colors hover:bg-surface-mint/40">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-14 h-14 rounded-lg bg-surface-subtle overflow-hidden flex-shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="Fortune Sunlite Refined Sunflower Oil 1 Litre pouch packaging with golden sunflower logo in warm shop environment with vivid details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCID3hPW5thyuWIkIANkUpSAO4Qes6qPa3kcfUZqN_kto_ol20gY80Y132WlYYsAg2hOw3fQy_jGE-Q_Vh-nSdgWP-DuEgnG7rtkW-RXe8tHDf8e1sihsXJ0LTQwpq4lp2Q1GbD2fTOKyNUiS2u7I_cP3d_kMU9YOwV92ofQMKvh591NMcm-bq_vYc7KLOVFZsFkeghiDtQJgnmsXW2V5V97PqV3mFBz28bXceJHTpX"/>
+<span class="absolute bottom-0 right-0 bg-primary-container text-on-primary text-[9px] px-1 rounded-tl font-bold">1 in cart</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="text-body-lg font-body-lg text-text-primary truncate">Fortune Oil 1L</span>
+<span class="text-[10px] text-status-warning bg-status-warning-bg px-1.5 py-0.5 rounded font-semibold flex items-center gap-0.5 flex-shrink-0">
+<span class="material-symbols-outlined text-[11px]">warning</span> Only 2 left
+            </span>
+</div>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="text-label-sm font-label-sm text-primary font-bold">₹160.00</span>
+<span class="text-[11px] text-text-muted">MRP: ₹175</span>
+</div>
+</div>
+</div>
+<div class="flex items-center bg-surface-subtle rounded-lg p-0.5 flex-shrink-0 shadow-sm">
+<button aria-label="Decrease quantity" class="w-9 h-9 rounded-md bg-surface-canvas text-text-primary flex items-center justify-center font-bold active:bg-error-container active:text-status-danger transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="w-7 text-center font-title-md text-title-md text-text-primary">1</span>
+<button aria-label="Increase quantity" class="w-9 h-9 rounded-md bg-primary-container text-on-primary flex items-center justify-center font-bold active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+<!-- Product 5 (Not in cart - Fast Add) -->
+<div class="bg-surface-canvas rounded-xl p-space-md shadow-sm flex items-center justify-between gap-space-md opacity-90 hover:opacity-100 transition-opacity">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-14 h-14 rounded-lg bg-surface-subtle overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Madhur Pure and Hygienic Sugar 1 kilogram crystalline bag package under clean bright commercial retail photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdHzS1Ts8M2XULpO4VRuNzIj74o2SnaSY8pvqIugisegkkXjKFYoDnJhFjGNZxCElJsAxQ5jKP87nFBFYZ_YnKmXFO1ghj5VIa6Irs30AHhPLgvxQj_QBrZAsODO24h6p-qkVyhvPBotMbSLHcsqy2w7MaQJfI5RhOEkcrpmP2vIyIogNV_bsfQICnVVhc0J22s5BkWEBabJ7uH72DD6-fNIcRyKfvKXxde8Y7YhDW"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-body-lg font-body-lg text-text-primary truncate">Madhur Sugar 1kg</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="text-label-sm font-label-sm text-text-primary font-bold">₹45.00</span>
+<span class="text-[11px] text-text-secondary">Stock: 24 kg</span>
+</div>
+</div>
+</div>
+<button class="h-9 px-3.5 rounded-lg bg-surface-mint text-primary-container font-label-sm text-label-sm flex items-center gap-1 hover:bg-primary-container hover:text-on-primary transition-colors active:scale-95" type="button">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+<span>Add</span>
+</button>
+</div>
+<!-- Product 6 (Not in cart - Fast Add) -->
+<div class="bg-surface-canvas rounded-xl p-space-md shadow-sm flex items-center justify-between gap-space-md opacity-90 hover:opacity-100 transition-opacity">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-14 h-14 rounded-lg bg-surface-subtle overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Wagh Bakri Premium CTC Tea 250g leaf carton pack set on grocery counter table with warm chai mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfJCXIc1v8tor1QJI8sivQF5HkWeHtzLrsJ9ko4fMZamJz6EfmPwwhW1h0OJqv31yKs8I8ug-RrfDjpx3nPd7EmLpN0A--iPedfj1kw4fdh5p9mnvGy3nTFj5A_e4Ch_H4gvRhy3fcCJq8kSA13H_5sP5aD-Q5Km2TANAXbJmOuZ5CEREEZeKJPiB9MBNmgGA7vC6LpTMBENn_7DkUFBdKnoJXrIvahokn9Tho5inQ"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-body-lg font-body-lg text-text-primary truncate">Wagh Bakri Chai 250g</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="text-label-sm font-label-sm text-text-primary font-bold">₹130.00</span>
+<span class="text-[11px] text-text-secondary">Stock: 12 pcs</span>
+</div>
+</div>
+</div>
+<button class="h-9 px-3.5 rounded-lg bg-surface-mint text-primary-container font-label-sm text-label-sm flex items-center gap-1 hover:bg-primary-container hover:text-on-primary transition-colors active:scale-95" type="button">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+<span>Add</span>
+</button>
+</div>
+<!-- Product 7 (Not in cart - Fast Add) -->
+<div class="bg-surface-canvas rounded-xl p-space-md shadow-sm flex items-center justify-between gap-space-md opacity-90 hover:opacity-100 transition-opacity">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-14 h-14 rounded-lg bg-surface-subtle overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Amul Pasteurized Butter 100g yellow foil carton iconic Indian dairy product chilled display photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSWwIaUGNBhVARyfH7Z-Xn0RN5POelN_TYm_q448aSWEz9Hcu8S0azrK_FGPrm_JwhRgqaqBBiTtIEkeMZ8uqT5v9OjP1VRRE3voHCl9BFgGAS4DK5B4U-qsyZYpe0s_EI55h4a5zTilLWwmvy54kz5bynjEWwjFGE6wzVjuXqNs2GZpu5W6VlcJ6H3ltN1oP96ifOVoMGeRZZcUTzPMAzsAQcDfipclHCysoXWJYj"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-body-lg font-body-lg text-text-primary truncate">Amul Butter 100g</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="text-label-sm font-label-sm text-text-primary font-bold">₹56.00</span>
+<span class="text-[11px] text-text-secondary">Stock: 8 pcs</span>
+</div>
+</div>
+</div>
+<button class="h-9 px-3.5 rounded-lg bg-surface-mint text-primary-container font-label-sm text-label-sm flex items-center gap-1 hover:bg-primary-container hover:text-on-primary transition-colors active:scale-95" type="button">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+<span>Add</span>
+</button>
+</div>
+</div>
+<!-- Bottom POS Cart & Settlement Sheet (Screen 39 Integration) -->
+<div class="mt-space-lg px-space-lg flex flex-col gap-space-sm" id="cart-checkout-drawer">
+<div class="bg-surface-canvas rounded-xl p-space-md shadow-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[20px]">receipt_long</span>
+<span class="text-title-md font-title-md text-text-primary">Bill Breakdown</span>
+</div>
+<button class="text-label-sm font-label-sm text-status-danger hover:underline" type="button">
+          Clear Cart
+        </button>
+</div>
+<!-- Financial Calculation Rows -->
+<div class="flex flex-col gap-1.5 bg-surface-subtle p-space-sm rounded-lg text-body-sm font-body-sm">
+<div class="flex items-center justify-between text-text-secondary">
+<span>Items Subtotal (4 products, 7 units)</span>
+<span class="font-medium text-text-primary">₹521.00</span>
+</div>
+<div class="flex items-center justify-between text-primary">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">local_offer</span>
+            Shopkeeper Discount (कमी केले)
+          </span>
+<span class="font-bold">-₹36.00</span>
+</div>
+<div class="h-px bg-surface-container my-1"></div>
+<div class="flex items-center justify-between pt-0.5">
+<div class="flex flex-col">
+<span class="text-headline-sm font-headline-sm text-text-primary font-bold">Net Total to Pay</span>
+<span class="text-[11px] text-text-secondary">एकूण देय रक्कम (Incl. GST)</span>
+</div>
+<div class="text-right">
+<div class="text-display font-display text-primary-container tracking-tight leading-none">₹485.00</div>
+</div>
+</div>
+</div>
+<!-- Fast Settlement Triggers for Speed POS -->
+<div class="flex flex-col gap-space-xs mt-space-xs">
+<span class="text-label-sm font-label-sm text-text-secondary font-medium">Instant Payment Option:</span>
+<div class="grid grid-cols-3 gap-2">
+<!-- Cash Payment -->
+<button class="h-12 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm flex flex-col items-center justify-center shadow-sm active:scale-95 transition-transform" type="button">
+<div class="flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-[16px]">payments</span>
+<span>Cash</span>
+</div>
+<span class="text-[11px] text-on-primary/90 font-medium">₹485.00</span>
+</button>
+<!-- UPI QR Code -->
+<button class="h-12 rounded-lg bg-surface-mint text-primary font-label-sm text-label-sm flex flex-col items-center justify-center hover:bg-surface-container active:scale-95 transition-transform" type="button">
+<div class="flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-[16px]">qr_code_2</span>
+<span>UPI QR</span>
+</div>
+<span class="text-[11px] text-secondary font-medium">Auto-Generate</span>
+</button>
+<!-- Udhar Khata Book -->
+<button class="h-12 rounded-lg bg-status-warning-bg text-status-warning font-label-sm text-label-sm flex flex-col items-center justify-center hover:opacity-90 active:scale-95 transition-transform" type="button">
+<div class="flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-[16px]">menu_book</span>
+<span>उधार Khata</span>
+</div>
+<span class="text-[11px] text-status-warning font-medium">Add to Ledger</span>
+</button>
+</div>
+</div>
+<!-- Quick Print & WhatsApp Receipt Toggles -->
+<div class="flex items-center justify-between pt-1 px-1 text-label-sm font-label-sm text-text-secondary">
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<input checked="" class="w-4 h-4 rounded text-primary-container focus:ring-0 accent-primary-container" type="checkbox"/>
+<span>Thermal Print Bill</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<input checked="" class="w-4 h-4 rounded text-primary-container focus:ring-0 accent-primary-container" type="checkbox"/>
+<span>WhatsApp Slip</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    // Interactive Quick Quantity Stepper Toast & Vibration feedback simulator
+    const steppers = document.querySelectorAll('.bg-surface-subtle.rounded-lg button');
+    steppers.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        if (window.navigator && window.navigator.vibrate) {
+          window.navigator.vibrate(20);
+        }
+      });
+    });
+
+    const scanBtn = document.getElementById('btn-scan-barcode');
+    if (scanBtn) {
+      scanBtn.addEventListener('click', () => {
+        alert("Barcode Camera activated. Align 1D/2D Kirana product barcode in viewfinder.");
+      });
+    }
+
+    const voiceBtn = document.getElementById('btn-voice-pos');
+    if (voiceBtn) {
+      voiceBtn.addEventListener('click', () => {
+        alert("Listening... Speak: 'Aashirvaad 5kg don packet' (दोन पाकीट आशिर्वाद आटा)");
+      });
+    }
+
+    const customerBtn = document.getElementById('btn-customer-modal');
+    if (customerBtn) {
+      customerBtn.addEventListener('click', () => {
+        const name = prompt("Enter Customer Mobile Number or Name for Udhar/Khata:", "");
+        if (name) {
+          customerBtn.querySelector('span.underline').textContent = name + " (Account Linked)";
+        }
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface-canvas/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.04)]" data-active-classes="text-primary-container font-semibold"><div class="flex items-center justify-around h-16 px-space-sm relative"><a aria-current="page" class="flex flex-col items-center justify-center gap-1 w-14 h-12 transition-all text-primary-container font-semibold" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[24px]">storefront</span><span class="font-label-nav text-label-nav">Home</span></a><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="inventory" href="#"><span class="material-symbols-outlined text-[24px]">inventory_2</span><span class="font-label-nav text-label-nav">Inventory</span></a><div class="relative flex flex-col items-center justify-center w-14 h-12"><button aria-label="Voice Action" class="absolute -top-5 w-14 h-14 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-[0_4px_12px_rgba(22,132,71,0.3)] active:scale-95 transition-transform" type="button"><span class="absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-30 animate-ping"></span><span class="material-symbols-outlined text-[28px] relative z-10">mic</span></button><span class="font-label-nav text-label-nav text-primary-container mt-6 font-semibold">Voice</span></div><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="reports" href="#"><span class="material-symbols-outlined text-[24px]">bar_chart</span><span class="font-label-nav text-label-nav">Reports</span></a><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="settings" href="#"><span class="material-symbols-outlined text-[24px]">grid_view</span><span class="font-label-nav text-label-nav">More</span></a></div></nav></body></html>

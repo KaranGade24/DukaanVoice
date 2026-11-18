@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Noto+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-primary": "#ffffff", "surface-canvas": "#FFFFFF", "on-primary-fixed-variant": "#005228", "secondary-fixed": "#a0f5b4", "inverse-surface": "#28332d", "secondary-container": "#a0f5b4", "outline": "#6f7a6f", "primary-fixed-dim": "#77db94", "surface-bright": "#f0fdf3", "primary-fixed": "#93f8ae", "text-primary": "#202B25", "on-tertiary-fixed-variant": "#3e4943", "error-container": "#ffdad6", "surface-container-high": "#dfebe2", "tertiary-fixed-dim": "#bdcac1", "surface-container-lowest": "#ffffff", "surface": "#f0fdf3", "primary-container": "#168447", "surface-container-highest": "#d9e6dc", "status-info-bg": "#EFF6FF", "on-tertiary-fixed": "#131e19", "outline-variant": "#becabd", "background": "#f0fdf3", "status-warning-bg": "#FFF5E5", "border-primary": "#CDE8D5", "on-surface-variant": "#3f4940", "on-secondary-fixed": "#00210c", "on-secondary-fixed-variant": "#005228", "surface-subtle": "#F7F9F7", "on-tertiary-container": "#f1fef4", "error": "#ba1a1a", "tertiary-fixed": "#d9e6dd", "on-tertiary": "#ffffff", "on-secondary": "#ffffff", "surface-container-low": "#eaf7ed", "surface-tint": "#006d37", "primary": "#006935", "on-error-container": "#93000a", "secondary": "#136c39", "status-info": "#2563EB", "on-secondary-container": "#1c733f", "tertiary": "#515d57", "on-error": "#ffffff", "secondary-fixed-dim": "#85d89a", "status-warning": "#D97706", "tertiary-container": "#6a766f", "surface-variant": "#d9e6dc", "status-danger-bg": "#FEECEC", "on-surface": "#131e18", "control-disabled": "#C9D1CB", "surface-dim": "#d0ddd4", "inverse-primary": "#77db94", "text-secondary": "#66736B", "inverse-on-surface": "#e7f4ea", "on-primary-container": "#edffec", "text-muted": "#96A19A", "on-primary-fixed": "#00210d", "on-background": "#131e18", "surface-container": "#e4f1e7", "border-subtle": "#E5EAE6", "status-danger": "#DC2626", "surface-mint": "#F3FAF5" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-lg": "1rem", "space-xl": "1.5rem", "space-md": "0.75rem", "space-xs": "0.25rem", "margin": "1rem", "gutter": "1rem", "space-sm": "0.5rem" }, fontFamily: { "headline-lg": ["Inter"], "body-md": ["Noto Sans"], "label-md": ["Inter"], "body-sm": ["Noto Sans"], "body-lg": ["Noto Sans"], "label-sm": ["Inter"], "headline-sm": ["Inter"], "title-md": ["Inter"], "display": ["Inter"], "label-nav": ["Inter"] }, fontSize: { "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-md": ["15px", { "lineHeight": "20px", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "body-lg": ["15px", { "lineHeight": "22px", "fontWeight": "500" }], "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "600" }], "display": ["30px", { "lineHeight": "38px", "fontWeight": "700" }], "label-nav": ["11px", { "lineHeight": "14px", "fontWeight": "500" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface-canvas text-text-primary flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface-canvas/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-space-lg flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0 flex-1"><img alt="DukaanVoice Brand Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/ALJJyrBFhjZok_St0s9ndNWJUfhVSnuNph1NkE6Y2cucYkMw82UFMIlhGDh2a2wH_YBKFWRvpW68WYsvAr7X_0D8VepXX4FT05QAdjYrlB1A7Tp7X_IPdlVDJOl7_R6AQFik-cPeYrYAi5xNZgy_L8VJ14cyb9V2DaOA1dBh11OCRq5E0uzSPOjkh56-qwl8ZGUwyZcd9HOMaSYifbBw2KQ3h68vPKsQO1_TPEHN8ubM8YioWw"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-title-md text-title-md text-text-primary truncate">Apna Kirana &amp; General Store</span></div><div class="flex items-center gap-space-xs"><span class="font-label-sm text-label-sm text-text-secondary truncate">Inventory</span><button class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-surface-mint text-primary font-label-sm text-label-sm" type="button"><span class="material-symbols-outlined text-[12px] mr-0.5">translate</span>मराठी / EN</button></div></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><button aria-label="Notifications" class="w-11 h-11 flex items-center justify-center rounded-full text-text-secondary hover:text-text-primary hover:bg-surface-subtle transition-colors" type="button"><span class="material-symbols-outlined">notifications</span></button><div class="w-11 h-11 flex items-center justify-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYaIDXWuT8fLeKKKdtGCY1FEzcKn5vndNRCoUVaLQyv2MqBIiHyYxsKR_qHVfTCAaAkWzGy6C5s7MIwC_k2i0YLI-afwv5z26288gDBFJTuXlMx_vyaqYIr6gTPDC6xDvcQKyXRlsLf_bTfEn4KYAv_8sM_tLp8GuUb40XS9vNP-u3cZXrBImHJl_QOYG5ceX8DIz6j95YMB_YWQ0qjvqaA1bu3326zLINEs7WmjTH"/></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface-canvas"><div class="flex flex-col w-full pb-8">
+<!-- Voice Shortcut Banner with Delightful Pulse -->
+<section class="px-space-lg pt-space-md pb-space-xs">
+<div class="bg-surface-mint rounded-xl p-space-md shadow-sm relative overflow-hidden flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">mic</span>
+</div>
+<div class="flex-1 min-w-0 pr-6">
+<div class="flex items-center gap-1.5 mb-0.5">
+<span class="inline-flex w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span class="font-label-sm text-label-sm text-primary font-semibold tracking-wide uppercase">Voice Shortcut / आवाज शॉर्टकट</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-primary leading-tight font-medium">
+          "श्री गणेश ट्रेडर्सकडून २५ पोती साखर आली"
+        </p>
+<span class="font-label-sm text-label-sm text-text-secondary block mt-0.5">
+          Say it naturally to record instant inwards!
+        </span>
+</div>
+<button aria-label="Dismiss Tip" class="absolute top-2 right-2 p-1.5 text-text-muted hover:text-text-primary transition-colors" onclick="this.closest('section').style.display='none'" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</section>
+<!-- Metric Summary Cards -->
+<section class="px-space-lg py-space-sm">
+<div class="grid grid-cols-2 gap-space-sm">
+<!-- Active Orders Card -->
+<div class="bg-surface-canvas rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-secondary">Active Orders (सक्रिय)</span>
+<span class="material-symbols-outlined text-primary text-[20px]">local_shipping</span>
+</div>
+<div class="mt-2">
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-lg text-headline-lg text-text-primary">3</span>
+<span class="font-label-sm text-label-sm text-status-warning font-semibold">Pending Delivery</span>
+</div>
+<span class="font-body-sm text-body-sm text-text-secondary mt-0.5 block truncate">₹1,18,500 due arrival</span>
+</div>
+</div>
+<!-- Inward Value Received -->
+<div class="bg-surface-canvas rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-secondary">This Month (या महिन्यात)</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">inventory</span>
+</div>
+<div class="mt-2">
+<div class="flex items-baseline gap-1">
+<span class="font-headline-lg text-headline-lg text-text-primary">₹3.38L</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-0.5 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span> 100% Verified
+          </span>
+</div>
+</div>
+</div>
+</section>
+<!-- Primary Inward & PO Actions -->
+<section class="px-space-lg py-space-sm grid grid-cols-2 gap-space-sm">
+<button class="flex flex-col items-center justify-center p-space-md rounded-xl bg-primary-container text-on-primary shadow-md active:scale-98 transition-all gap-1.5 text-center min-h-[56px]" type="button">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+<span class="font-label-md text-label-md text-on-primary">New PO</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-primary/90 text-xs truncate max-w-full">नवीन खरेदी ऑर्डर</span>
+</button>
+<button class="flex flex-col items-center justify-center p-space-md rounded-xl bg-surface-mint text-primary active:scale-98 transition-all gap-1.5 text-center shadow-sm min-h-[56px]" type="button">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[20px]">document_scanner</span>
+<span class="font-label-md text-label-md text-primary font-semibold">Scan Inward</span>
+</div>
+<span class="font-label-sm text-label-sm text-text-secondary text-xs truncate max-w-full">बिल स्कॅन करा</span>
+</button>
+</section>
+<!-- Filter Strip -->
+<section class="pt-space-md pb-space-xs">
+<div class="flex items-center gap-space-sm overflow-x-auto px-space-lg no-scrollbar">
+<button class="flex-shrink-0 px-3.5 py-1.5 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm font-semibold shadow-sm flex items-center gap-1.5" type="button">
+<span>All Orders</span>
+<span class="px-1.5 py-0.2 rounded-full bg-on-primary/20 text-on-primary text-[11px]">12</span>
+</button>
+<button class="flex-shrink-0 px-3.5 py-1.5 rounded-full bg-surface-subtle text-text-secondary hover:text-text-primary font-label-sm text-label-sm font-medium flex items-center gap-1.5 transition-colors" type="button">
+<span>Pending Delivery</span>
+<span class="px-1.5 py-0.2 rounded-full bg-status-warning-bg text-status-warning font-semibold text-[11px]">3</span>
+</button>
+<button class="flex-shrink-0 px-3.5 py-1.5 rounded-full bg-surface-subtle text-text-secondary hover:text-text-primary font-label-sm text-label-sm font-medium flex items-center gap-1.5 transition-colors" type="button">
+<span>Partially Received</span>
+<span class="px-1.5 py-0.2 rounded-full bg-status-info-bg text-status-info font-semibold text-[11px]">1</span>
+</button>
+<button class="flex-shrink-0 px-3.5 py-1.5 rounded-full bg-surface-subtle text-text-secondary hover:text-text-primary font-label-sm text-label-sm font-medium flex items-center gap-1.5 transition-colors" type="button">
+<span>Completed (पूर्ण)</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container text-text-secondary text-[11px]">8</span>
+</button>
+</div>
+</section>
+<!-- Orders Feed List -->
+<section class="px-space-lg py-space-sm flex flex-col gap-space-md">
+<!-- Card 1: Featured In-Transit / Arriving Today (High Delight & Attention) -->
+<div class="bg-surface-canvas rounded-xl shadow-md overflow-hidden relative transition-all">
+<div class="h-1.5 w-full bg-primary-container"></div>
+<div class="p-space-md">
+<!-- Top Metadata & Status -->
+<div class="flex items-start justify-between gap-space-sm">
+<div class="min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-sm text-label-sm font-semibold text-primary">#PO-2024-88</span>
+<span class="font-label-sm text-label-sm text-text-muted">•</span>
+<span class="font-body-sm text-body-sm text-text-secondary">Today, 09:15 AM</span>
+</div>
+<h2 class="font-title-md text-title-md text-text-primary truncate">Shree Ganesh Wholesale Distributors</h2>
+<div class="flex items-center gap-1 text-text-secondary mt-0.5">
+<span class="material-symbols-outlined text-[15px] text-text-muted">location_on</span>
+<span class="font-body-sm text-body-sm truncate">APMC Market Yard, Pune</span>
+</div>
+</div>
+<span class="flex-shrink-0 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-status-warning-bg text-status-warning font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-warning animate-pulse"></span>
+            Out for Delivery
+          </span>
+</div>
+<!-- Supplier & Cargo Snapshot with Image Placeholder -->
+<div class="mt-space-md bg-surface-mint rounded-lg p-space-sm flex items-center gap-space-md">
+<img class="w-16 h-16 rounded-lg object-cover flex-shrink-0 shadow-sm" data-alt="High quality Indian wholesale kirana delivery sacks of pure white sugar and packaged cooking oil boxes stacked ready for logistics transport in daytime daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKNbFoFbQT2gFGrUjcq9XTqanhSf6YGnX3kOc96U1HFWhIZs7t3kw1D1aLoPCZNJLhYNnl5idpLKivHwI0BroWM_nULXMhZSOEUvKGPysPv5Nj5-A1iYjr5SyQyuzQiOwnICHH8aTtejoo7WcWq771bY2CspeBv5IDwvGvWL8pKncztSEnMnbVHNbsFbn9qgqxpw4RUan9Dv_sg-VBlMYHrE1dZGpQT6wvYU82FkKU"/>
+<div class="min-w-0 flex-1">
+<span class="font-body-sm text-body-sm font-medium text-text-primary block truncate">2 Line Items (35 units)</span>
+<p class="font-body-sm text-body-sm text-text-secondary line-clamp-1 mt-0.5">
+              • Sugar M30 (25 bags x 50kg)<br/>
+              • Fortune Sunlite Oil (10 boxes)
+            </p>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-title-md text-title-md text-text-primary font-bold">₹42,500</span>
+<span class="font-label-sm text-label-sm text-status-warning font-medium bg-status-warning-bg px-1.5 py-0.2 rounded">ETA 4:00 PM</span>
+</div>
+</div>
+</div>
+<!-- Marathi Inward Quick Bar -->
+<div class="mt-space-md flex items-center justify-between gap-space-sm">
+<button class="flex-1 h-12 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center justify-center gap-2 shadow-sm active:scale-98 transition-transform" type="button">
+<span class="material-symbols-outlined text-[20px]">how_to_reg</span>
+<span>Receive Stock / माल तपासा</span>
+</button>
+<button aria-label="Call Supplier" class="w-12 h-12 rounded-lg bg-surface-subtle text-text-primary flex items-center justify-center hover:bg-surface-container transition-colors flex-shrink-0" type="button">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2: Pending Supplier Dispatch -->
+<div class="bg-surface-canvas rounded-xl shadow-sm p-space-md transition-all">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-sm text-label-sm font-semibold text-text-secondary">#PO-2024-85</span>
+<span class="font-label-sm text-label-sm text-text-muted">•</span>
+<span class="font-body-sm text-body-sm text-text-secondary">Yesterday, 5:40 PM</span>
+</div>
+<h2 class="font-title-md text-title-md text-text-primary truncate">Mahalaxmi Grains &amp; Pulses</h2>
+<div class="flex items-center gap-1 text-text-secondary mt-0.5">
+<span class="material-symbols-outlined text-[15px] text-text-muted">location_on</span>
+<span class="font-body-sm text-body-sm truncate">Gultekdi Hub, Pune</span>
+</div>
+</div>
+<span class="flex-shrink-0 inline-flex items-center px-2.5 py-1 rounded-full bg-status-info-bg text-status-info font-label-sm text-label-sm font-semibold">
+          Supplier Dispatching
+        </span>
+</div>
+<!-- Item Preview & Totals -->
+<div class="mt-space-md bg-surface-subtle rounded-lg p-space-sm flex items-center gap-space-md">
+<img class="w-14 h-14 rounded-lg object-cover flex-shrink-0 shadow-sm" data-alt="Stacked clean branded gunny bags of pulses and toor dal in an Indian grain mandi merchant warehouse with warm morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDte48z62h0WdCM2t30qUnN559VQRXWMCsMXxGlGATkRa860SAZnB61_Wjx_wAKiU5sSXZfXjUq89YRb0F-kU9gYasK7zC4EL3_-mtSgZ3rrJbCneAQoSTyxSMEwMDWnd_OSGpYXXy7InBtqxJMVucrvrgqciqjKuLZRh3Ym-Idn17wAGjFq9nZKUuCyR-bCesutc-doY8M7fgFbdPSvyOtGrJcOAw3nSfSXXi7_3oT"/>
+<div class="min-w-0 flex-1">
+<span class="font-body-sm text-body-sm font-medium text-text-primary block truncate">Toor Dal Premium &amp; Moong Dal</span>
+<span class="font-body-sm text-body-sm text-text-secondary block">15 Sacks (750 kg)</span>
+<span class="font-title-md text-title-md text-text-primary font-bold block mt-0.5">₹51,000</span>
+</div>
+<div class="text-right flex-shrink-0">
+<span class="font-label-sm text-label-sm text-text-secondary block">Expected</span>
+<span class="font-label-sm text-label-sm text-text-primary font-semibold block">Tomorrow</span>
+</div>
+</div>
+<div class="mt-space-md flex items-center gap-space-sm">
+<button class="flex-1 h-11 rounded-lg bg-surface-subtle text-primary font-label-md text-label-md flex items-center justify-center gap-1.5 hover:bg-surface-mint transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+<span>View Details / तपशील पहा</span>
+</button>
+<button class="h-11 px-4 rounded-lg bg-surface-subtle text-text-secondary font-label-md text-label-md flex items-center justify-center gap-1.5 hover:text-text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>WhatsApp</span>
+</button>
+</div>
+</div>
+<!-- Card 3: Partially Received (Stock Variance / Prompt Attention) -->
+<div class="bg-surface-canvas rounded-xl shadow-sm p-space-md transition-all">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-sm text-label-sm font-semibold text-text-secondary">#PO-2024-81</span>
+<span class="font-label-sm text-label-sm text-text-muted">•</span>
+<span class="font-body-sm text-body-sm text-text-secondary">18 Oct</span>
+</div>
+<h2 class="font-title-md text-title-md text-text-primary truncate">Balaji FMCG Super Depot</h2>
+<div class="flex items-center gap-1 text-text-secondary mt-0.5">
+<span class="material-symbols-outlined text-[15px] text-text-muted">location_on</span>
+<span class="font-body-sm text-body-sm truncate">Hadapsar Industrial Estate</span>
+</div>
+</div>
+<span class="flex-shrink-0 inline-flex items-center px-2.5 py-1 rounded-full bg-status-warning-bg text-status-warning font-label-sm text-label-sm font-semibold">
+          Shortage Reported
+        </span>
+</div>
+<!-- Variance Box -->
+<div class="mt-space-md p-space-sm rounded-lg bg-status-warning-bg/40 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-status-warning text-[20px]">warning</span>
+<span class="font-body-sm text-body-sm text-text-primary">2 cases Lifebuoy Soap pending from invoice</span>
+</div>
+<span class="font-label-sm text-label-sm text-status-warning font-bold flex-shrink-0">-₹2,400</span>
+</div>
+<div class="mt-space-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-secondary">Delivered Value</span>
+<span class="font-title-md text-title-md text-text-primary font-bold">₹25,000 / ₹27,400</span>
+</div>
+<button class="h-10 px-4 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm font-semibold flex items-center gap-1 shadow-sm" type="button">
+<span>Resolve / पूर्ण करा</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Card 4: Recently Received & Verified -->
+<div class="bg-surface-canvas rounded-xl shadow-sm p-space-md opacity-90 transition-all">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-sm text-label-sm font-semibold text-text-secondary">#PO-2024-79</span>
+<span class="font-label-sm text-label-sm text-text-muted">•</span>
+<span class="font-body-sm text-body-sm text-text-secondary">16 Oct</span>
+</div>
+<h2 class="font-title-md text-title-md text-text-primary truncate">Parle Agro Beverages Pune</h2>
+</div>
+<span class="flex-shrink-0 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-mint text-primary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+          Completed
+        </span>
+</div>
+<div class="mt-space-sm flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="font-body-sm text-body-sm text-text-secondary">Frooti &amp; Appy Fizz (40 crates)</span>
+</div>
+<span class="font-title-md text-title-md text-text-primary font-semibold">₹18,200</span>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-center justify-between text-text-secondary">
+<span class="font-label-sm text-label-sm text-text-muted flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">verified</span>
+          Verified by Voice Inward
+        </span>
+<button class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-0.5 hover:underline" type="button">
+<span>View Invoice</span>
+<span class="material-symbols-outlined text-[14px]">download</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Micro-interaction for Voice Simulation & Feedback Floating Banner -->
+<div class="fixed bottom-20 left-4 right-4 z-40 transform translate-y-32 transition-transform duration-300 ease-out bg-inverse-surface text-inverse-on-surface rounded-xl p-space-md shadow-xl flex items-center justify-between" id="voice-toast">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim text-on-primary-fixed flex items-center justify-center flex-shrink-0 animate-spin">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</div>
+<div class="min-w-0">
+<p class="font-label-md text-label-md truncate">आवाज ओळखत आहे... (Processing voice)</p>
+<p class="font-body-sm text-body-sm opacity-80 truncate">25 Bags Sugar matched to #PO-2024-88</p>
+</div>
+</div>
+<button class="text-inverse-on-surface p-1" onclick="document.getElementById('voice-toast').classList.add('translate-y-32')" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<script>
+  // Simple interaction to demonstrate the delightful Voice kirana feedback loop
+  window.addEventListener('DOMContentLoaded', () => {
+    const triggerInward = document.querySelector('button[aria-label="Voice Action"]');
+    if (triggerInward) {
+      triggerInward.addEventListener('click', () => {
+        const toast = document.getElementById('voice-toast');
+        if (toast) {
+          toast.classList.remove('translate-y-32');
+          setTimeout(() => {
+            toast.classList.add('translate-y-32');
+          }, 4500);
+        }
+      });
+    }
+  });
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface-canvas/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.04)]" data-active-classes="text-primary-container font-semibold"><div class="flex items-center justify-around h-16 px-space-sm relative"><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[24px]">storefront</span><span class="font-label-nav text-label-nav">Home</span></a><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="inventory" href="#"><span class="material-symbols-outlined text-[24px]">inventory_2</span><span class="font-label-nav text-label-nav">Inventory</span></a><div class="relative flex flex-col items-center justify-center w-14 h-12"><button aria-label="Voice Action" class="absolute -top-5 w-14 h-14 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-[0_4px_12px_rgba(22,132,71,0.3)] active:scale-95 transition-transform" type="button"><span class="absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-30 animate-ping"></span><span class="material-symbols-outlined text-[28px] relative z-10">mic</span></button><span class="font-label-nav text-label-nav text-primary-container mt-6 font-semibold">Voice</span></div><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="reports" href="#"><span class="material-symbols-outlined text-[24px]">bar_chart</span><span class="font-label-nav text-label-nav">Reports</span></a><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="settings" href="#"><span class="material-symbols-outlined text-[24px]">grid_view</span><span class="font-label-nav text-label-nav">More</span></a></div></nav></body></html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-primary": "#ffffff", "surface-canvas": "#FFFFFF", "on-primary-fixed-variant": "#005228", "secondary-fixed": "#a0f5b4", "inverse-surface": "#28332d", "secondary-container": "#a0f5b4", "outline": "#6f7a6f", "primary-fixed-dim": "#77db94", "surface-bright": "#f0fdf3", "primary-fixed": "#93f8ae", "text-primary": "#202B25", "on-tertiary-fixed-variant": "#3e4943", "error-container": "#ffdad6", "surface-container-high": "#dfebe2", "tertiary-fixed-dim": "#bdcac1", "surface-container-lowest": "#ffffff", "surface": "#f0fdf3", "primary-container": "#168447", "surface-container-highest": "#d9e6dc", "status-info-bg": "#EFF6FF", "on-tertiary-fixed": "#131e19", "outline-variant": "#becabd", "background": "#f0fdf3", "status-warning-bg": "#FFF5E5", "border-primary": "#CDE8D5", "on-surface-variant": "#3f4940", "on-secondary-fixed": "#00210c", "on-secondary-fixed-variant": "#005228", "surface-subtle": "#F7F9F7", "on-tertiary-container": "#f1fef4", "error": "#ba1a1a", "tertiary-fixed": "#d9e6dd", "on-tertiary": "#ffffff", "on-secondary": "#ffffff", "surface-container-low": "#eaf7ed", "surface-tint": "#006d37", "primary": "#006935", "on-error-container": "#93000a", "secondary": "#136c39", "status-info": "#2563EB", "on-secondary-container": "#1c733f", "tertiary": "#515d57", "on-error": "#ffffff", "secondary-fixed-dim": "#85d89a", "status-warning": "#D97706", "tertiary-container": "#6a766f", "surface-variant": "#d9e6dc", "status-danger-bg": "#FEECEC", "on-surface": "#131e18", "control-disabled": "#C9D1CB", "surface-dim": "#d0ddd4", "inverse-primary": "#77db94", "text-secondary": "#66736B", "inverse-on-surface": "#e7f4ea", "on-primary-container": "#edffec", "text-muted": "#96A19A", "on-primary-fixed": "#00210d", "on-background": "#131e18", "surface-container": "#e4f1e7", "border-subtle": "#E5EAE6", "status-danger": "#DC2626", "surface-mint": "#F3FAF5" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-lg": "1rem", "space-xl": "1.5rem", "space-md": "0.75rem", "space-xs": "0.25rem", "margin": "1rem", "gutter": "1rem", "space-sm": "0.5rem" }, fontFamily: { "headline-lg": ["Inter"], "body-md": ["Noto Sans"], "label-md": ["Inter"], "body-sm": ["Noto Sans"], "body-lg": ["Noto Sans"], "label-sm": ["Inter"], "headline-sm": ["Inter"], "title-md": ["Inter"], "display": ["Inter"], "label-nav": ["Inter"] }, fontSize: { "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-md": ["15px", { "lineHeight": "20px", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "body-lg": ["15px", { "lineHeight": "22px", "fontWeight": "500" }], "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "600" }], "display": ["30px", { "lineHeight": "38px", "fontWeight": "700" }], "label-nav": ["11px", { "lineHeight": "14px", "fontWeight": "500" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface-canvas text-text-primary flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface-canvas/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-space-sm flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-xs min-w-0 flex-1"><button aria-label="Go Back" class="w-11 h-11 flex items-center justify-center rounded-full text-text-primary hover:bg-surface-subtle transition-colors flex-shrink-0" onclick="history.back()" type="button"><span class="material-symbols-outlined">arrow_back</span></button><img alt="DukaanVoice Brand Logo" class="h-7 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/ALJJyrBFhjZok_St0s9ndNWJUfhVSnuNph1NkE6Y2cucYkMw82UFMIlhGDh2a2wH_YBKFWRvpW68WYsvAr7X_0D8VepXX4FT05QAdjYrlB1A7Tp7X_IPdlVDJOl7_R6AQFik-cPeYrYAi5xNZgy_L8VJ14cyb9V2DaOA1dBh11OCRq5E0uzSPOjkh56-qwl8ZGUwyZcd9HOMaSYifbBw2KQ3h68vPKsQO1_TPEHN8ubM8YioWw"/><h1 class="font-headline-sm text-headline-sm text-text-primary truncate min-w-0">Add Product</h1></div><div class="flex items-center gap-space-xs flex-shrink-0"><div class="w-11 h-11 flex items-center justify-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYaIDXWuT8fLeKKKdtGCY1FEzcKn5vndNRCoUVaLQyv2MqBIiHyYxsKR_qHVfTCAaAkWzGy6C5s7MIwC_k2i0YLI-afwv5z26288gDBFJTuXlMx_vyaqYIr6gTPDC6xDvcQKyXRlsLf_bTfEn4KYAv_8sM_tLp8GuUb40XS9vNP-u3cZXrBImHJl_QOYG5ceX8DIz6j95YMB_YWQ0qjvqaA1bu3326zLINEs7WmjTH"/></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-safe bg-surface-canvas"><div class="flex flex-col w-full pb-8">
+<!-- Subtle Alert Banner for Kirana Owner -->
+<div class="px-space-md pt-space-sm">
+<div class="bg-status-warning-bg rounded-xl p-space-md flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-9 h-9 rounded-full bg-status-warning/10 flex items-center justify-center flex-shrink-0 text-status-warning">
+<span class="material-symbols-outlined text-headline-sm">warning</span>
+</div>
+<div class="min-w-0">
+<p class="font-label-md text-label-md text-status-warning truncate">Stock Reorder Required</p>
+<p class="font-body-sm text-body-sm text-text-secondary truncate">Only 4 packets left. Target buffer is 25 kg.</p>
+</div>
+</div>
+<button class="px-space-sm py-1.5 bg-status-warning text-on-primary rounded-lg font-label-sm text-label-sm shadow-sm flex-shrink-0 active:scale-95 transition-transform" onclick="document.getElementById('quick-po-modal').classList.remove('hidden')" type="button">
+        Reorder Now
+      </button>
+</div>
+</div>
+<!-- Hero Visual & Identity Card -->
+<div class="p-space-md">
+<div class="bg-surface-canvas rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex gap-space-md items-start">
+<!-- Product Thumbnail with subtle depth -->
+<div class="relative w-28 h-28 rounded-xl overflow-hidden bg-surface-subtle flex-shrink-0 shadow-inner">
+<img class="w-full h-full object-cover" data-alt="A clean, premium studio product photograph of Madhur Pure and Hygienic Sugar 1 kilogram transparent polybag packaging on a neutral soft mint background, crisp retail lighting, displaying authentic Indian grocery essentials packaging with refined typography and natural sheen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBL8yW7NQB4JW6-3FevEKi61EbIDx-3AEB05gqgiSQ_49MclCJZrVNjF8Xt8s5EY8RO8NEzPVGc6zEBhcs92jI_vSmqYaQkWAlrnK1s4sBqgNSVjUofJ8Ue9_x-xYRmFKIgaoTS900EvxSQxnNypmJohBNDgwBpTPsOPTtgKdR0DlUXBKI9fAqbyxIeeA24XFnQ0d5e3VirQ3kqWtXRB-OhaDu0KPhSdt0ZnlatJK2i"/>
+<span class="absolute bottom-1 right-1 bg-surface-canvas/90 backdrop-blur-sm px-1.5 py-0.5 rounded text-[10px] font-label-sm text-text-secondary">1 kg</span>
+</div>
+<!-- Product Identity -->
+<div class="flex-1 min-w-0 flex flex-col justify-between h-28">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="bg-surface-mint text-primary font-label-sm text-label-sm px-2 py-0.5 rounded-full inline-block">Staples & Sugar</span>
+<span class="text-text-muted font-body-sm text-body-sm">•</span>
+<span class="font-label-sm text-label-sm text-text-secondary">Brand: Madhur</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-text-primary leading-tight mt-1 line-clamp-2">
+              Madhur Pure & Hygienic Sugar (1 kg Packet)
+            </h2>
+</div>
+<div class="flex items-center gap-2 text-text-muted font-body-sm text-body-sm">
+<span>SKU: SUG-MAD-101</span>
+</div>
+</div>
+</div>
+<!-- Barcode Visual Segment -->
+<div class="bg-surface-subtle rounded-lg p-space-sm flex items-center justify-between">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="flex flex-col gap-0.5 bg-surface-canvas px-2 py-1.5 rounded shadow-xs">
+<!-- Stylized Barcode Lines -->
+<div class="flex items-center gap-0.5 h-6">
+<span class="w-0.5 h-full bg-text-primary"></span>
+<span class="w-1 h-full bg-text-primary"></span>
+<span class="w-0.5 h-full bg-transparent"></span>
+<span class="w-1.5 h-full bg-text-primary"></span>
+<span class="w-0.5 h-full bg-text-primary"></span>
+<span class="w-1 h-full bg-transparent"></span>
+<span class="w-1 h-full bg-text-primary"></span>
+<span class="w-0.5 h-full bg-text-primary"></span>
+<span class="w-2 h-full bg-text-primary"></span>
+<span class="w-0.5 h-full bg-transparent"></span>
+<span class="w-1 h-full bg-text-primary"></span>
+<span class="w-0.5 h-full bg-text-primary"></span>
+<span class="w-1.5 h-full bg-text-primary"></span>
+</div>
+</div>
+<div class="min-w-0">
+<p class="font-label-sm text-label-sm text-text-muted uppercase">EAN Barcode</p>
+<p class="font-title-md text-title-md text-text-primary tracking-wide">8901234567890</p>
+</div>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-canvas text-primary shadow-xs hover:bg-surface-mint transition-colors" type="button">
+<span class="material-symbols-outlined text-headline-sm">qr_code_scanner</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Live Stock Status Banner Card -->
+<div class="px-space-md">
+<div class="bg-surface-canvas rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-text-secondary">inventory_2</span>
+<span class="font-title-md text-title-md text-text-primary">Inventory Health</span>
+</div>
+<!-- Status Pill -->
+<span class="bg-status-warning-bg text-status-warning font-label-sm text-label-sm px-2.5 py-1 rounded-full flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-status-warning animate-pulse"></span>
+          Low Stock
+        </span>
+</div>
+<!-- Large metric display -->
+<div class="grid grid-cols-3 gap-space-sm bg-surface-mint rounded-xl p-space-md">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-secondary">Current Stock</span>
+<span class="font-display text-display text-text-primary font-bold">4 <span class="font-title-md text-title-md font-normal text-text-secondary">kg</span></span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-secondary">Min Threshold</span>
+<span class="font-headline-sm text-headline-sm text-text-primary mt-1">25 <span class="font-body-sm text-body-sm font-normal text-text-secondary">kg</span></span>
+<span class="font-label-nav text-label-nav text-status-warning font-semibold mt-0.5">Critical (-21 kg)</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-secondary">Stock Valuation</span>
+<span class="font-headline-sm text-headline-sm text-primary mt-1">₹152</span>
+<span class="font-label-nav text-label-nav text-text-muted mt-0.5">At wholesale cost</span>
+</div>
+</div>
+<!-- Visual Level Meter -->
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center font-body-sm text-body-sm">
+<span class="text-text-secondary">Buffer Fulfillment</span>
+<span class="font-label-sm text-label-sm text-status-warning">16% of 25 kg safety target</span>
+</div>
+<div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden flex">
+<div class="h-full bg-status-warning rounded-full transition-all duration-500" style="width: 16%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Pricing, Wholesale & Margins -->
+<div class="p-space-md">
+<div class="bg-surface-canvas rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary">payments</span>
+<h3 class="font-title-md text-title-md text-text-primary">Pricing & Margin Breakdown</h3>
+</div>
+<span class="bg-surface-subtle text-text-secondary font-label-sm text-label-sm px-2 py-0.5 rounded">Per 1 kg Unit</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<!-- Retail Price -->
+<div class="bg-surface-subtle rounded-xl p-space-md flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-text-secondary">Customer Price (MRP/Sale)</span>
+<div class="mt-2">
+<span class="font-headline-lg text-headline-lg text-text-primary">₹45</span>
+<span class="font-body-sm text-body-sm text-text-muted"> / kg</span>
+</div>
+<span class="font-body-sm text-body-sm text-primary mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">sell</span> Fixed Shelf Rate
+          </span>
+</div>
+<!-- Wholesale Cost -->
+<div class="bg-surface-subtle rounded-xl p-space-md flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-text-secondary">Wholesale Purchase Cost</span>
+<div class="mt-2">
+<span class="font-headline-lg text-headline-lg text-text-secondary">₹38</span>
+<span class="font-body-sm text-body-sm text-text-muted"> / kg</span>
+</div>
+<span class="font-body-sm text-body-sm text-text-muted mt-1">From Shree Ganesh Whsl.</span>
+</div>
+</div>
+<!-- Net Profit Callout Card -->
+<div class="bg-primary/5 rounded-xl p-space-md flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-xs">
+<span class="material-symbols-outlined text-headline-sm">trending_up</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-text-secondary">Net Margin Earned</p>
+<p class="font-title-md text-title-md text-primary font-bold">₹7 per kg <span class="font-body-sm text-body-sm font-medium text-text-secondary">(15.5% Margin)</span></p>
+</div>
+</div>
+<div class="text-right">
+<span class="bg-surface-mint text-primary font-label-sm text-label-sm px-2.5 py-1 rounded-full">GST 0% Exempt</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Stock Movement Flow (Auditing / Traceability) -->
+<div class="px-space-md">
+<div class="bg-surface-canvas rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-text-secondary">sync_alt</span>
+<h3 class="font-title-md text-title-md text-text-primary">Stock Flow Breakdown</h3>
+</div>
+<span class="font-label-sm text-label-sm text-text-muted">Current Month</span>
+</div>
+<!-- Ledger Visual Tree -->
+<div class="flex flex-col gap-space-xs">
+<!-- Row 1: Opening Stock -->
+<div class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-surface-subtle transition-colors">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded bg-surface-container flex items-center justify-center text-text-secondary">
+<span class="material-symbols-outlined text-[18px]">warehouse</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-text-primary">Opening Balance</p>
+<p class="font-body-sm text-body-sm text-text-muted">Carried forward Oct 1</p>
+</div>
+</div>
+<span class="font-title-md text-title-md text-text-primary">50 kg</span>
+</div>
+<!-- Row 2: Received Stock -->
+<div class="flex items-center justify-between py-2 px-3 rounded-lg bg-surface-mint/50">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-primary">Received Purchases</p>
+<p class="font-body-sm text-body-sm text-text-secondary">Invoice #SG-4921</p>
+</div>
+</div>
+<span class="font-title-md text-title-md text-primary font-bold">+100 kg</span>
+</div>
+<!-- Row 3: Sales -->
+<div class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-surface-subtle transition-colors">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded bg-surface-subtle flex items-center justify-center text-text-secondary">
+<span class="material-symbols-outlined text-[18px]">shopping_cart_checkout</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-text-primary">Retail Sales Counter</p>
+<p class="font-body-sm text-body-sm text-text-muted">Logged via voice & cash register</p>
+</div>
+</div>
+<span class="font-title-md text-title-md text-text-primary font-semibold">-142 kg</span>
+</div>
+<!-- Row 4: Damage / Loss -->
+<div class="flex items-center justify-between py-2 px-3 rounded-lg bg-status-danger-bg/40">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded bg-status-danger/10 flex items-center justify-center text-status-danger">
+<span class="material-symbols-outlined text-[18px]">remove_shopping_cart</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-status-danger">Damaged / Spillage</p>
+<p class="font-body-sm text-body-sm text-text-secondary">Bag tear logged on Oct 11</p>
+</div>
+</div>
+<span class="font-title-md text-title-md text-status-danger font-semibold">-4 kg</span>
+</div>
+<!-- Divider line using container background -->
+<div class="h-px bg-surface-container my-1"></div>
+<!-- Row 5: Current Final -->
+<div class="flex items-center justify-between py-2 px-3 rounded-lg bg-surface-subtle font-bold">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded bg-text-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[18px]">done_all</span>
+</div>
+<p class="font-label-md text-label-md text-text-primary">Current Available Stock</p>
+</div>
+<span class="font-headline-sm text-headline-sm text-status-warning">4 kg</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Supplier Information -->
+<div class="p-space-md">
+<div class="bg-surface-canvas rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-text-secondary">local_shipping</span>
+<h3 class="font-title-md text-title-md text-text-primary">Primary Supplier Info</h3>
+</div>
+<span class="bg-surface-mint text-primary font-label-sm text-label-sm px-2 py-0.5 rounded">Verified Partner</span>
+</div>
+<div class="bg-surface-subtle rounded-xl p-space-md flex flex-col gap-space-sm">
+<div class="flex items-start justify-between">
+<div class="min-w-0">
+<h4 class="font-label-md text-label-md text-text-primary truncate">Shree Ganesh Wholesale Distributors</h4>
+<p class="font-body-sm text-body-sm text-text-secondary mt-0.5">APMC Market Yard, Pune • +91 98220 11440</p>
+</div>
+<a class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 active:scale-95 transition-transform" href="tel:9822011440">
+<span class="material-symbols-outlined text-headline-sm">call</span>
+</a>
+</div>
+<div class="grid grid-cols-2 gap-space-sm pt-2 bg-surface-canvas rounded-lg p-2.5">
+<div>
+<span class="font-label-sm text-label-sm text-text-muted">Last Delivered</span>
+<p class="font-label-md text-label-md text-text-primary mt-0.5">14 Oct 2024</p>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-text-muted">Purchase Rate</span>
+<p class="font-label-md text-label-md text-primary mt-0.5">₹38 / kg</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons Grid (Designed for rapid Kirana workflows) -->
+<div class="px-space-md flex flex-col gap-space-sm">
+<!-- Primary Pair -->
+<div class="grid grid-cols-2 gap-space-sm">
+<button class="h-12 bg-surface-canvas rounded-lg font-label-md text-label-md text-primary shadow-xs flex items-center justify-center gap-2 active:bg-surface-mint transition-colors" onclick="document.getElementById('adjust-stock-modal').classList.remove('hidden')" type="button">
+<span class="material-symbols-outlined text-title-md">tune</span>
+        Adjust Stock
+      </button>
+<button class="h-12 bg-primary rounded-lg font-label-md text-label-md text-on-primary shadow-md flex items-center justify-center gap-2 active:bg-on-primary-fixed-variant transition-colors" onclick="document.getElementById('quick-po-modal').classList.remove('hidden')" type="button">
+<span class="material-symbols-outlined text-title-md">add_shopping_cart</span>
+        Create PO
+      </button>
+</div>
+<!-- Secondary Utilities -->
+<div class="grid grid-cols-2 gap-space-sm">
+<button class="h-11 bg-surface-subtle hover:bg-surface-container rounded-lg font-label-sm text-label-sm text-text-primary flex items-center justify-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-text-secondary">history</span>
+        Full Log History
+      </button>
+<button class="h-11 bg-surface-subtle hover:bg-surface-container rounded-lg font-label-sm text-label-sm text-text-primary flex items-center justify-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-text-secondary">edit_note</span>
+        Edit Product Details
+      </button>
+</div>
+</div>
+<!-- Quick Voice Action Floating Hint -->
+<div class="mx-space-md mt-space-md p-space-sm bg-surface-mint rounded-xl flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center flex-shrink-0 shadow-xs">
+<span class="material-symbols-outlined text-[18px]">mic</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary">
+      Voice Tip: Say <span class="font-semibold text-text-primary">"माधुर साखर 20 किलो विकली"</span> to instantly log customer sales!
+    </p>
+</div>
+<!-- Interactive Stock Adjustment Modal Sheet (Initially Hidden) -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-xs flex flex-col justify-end hidden" id="adjust-stock-modal">
+<div class="bg-surface-canvas rounded-t-2xl p-space-md max-h-[751px] overflow-y-auto flex flex-col gap-space-md shadow-2xl">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">tune</span>
+<h3 class="font-headline-sm text-headline-sm text-text-primary">Quick Stock Correction</h3>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-subtle flex items-center justify-center text-text-secondary" onclick="document.getElementById('adjust-stock-modal').classList.add('hidden')" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="bg-surface-subtle p-space-sm rounded-lg flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-text-secondary">Current Listed Quantity:</span>
+<span class="font-label-md text-label-md text-text-primary font-bold">4 kg</span>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-text-secondary">Adjustment Type</label>
+<div class="grid grid-cols-3 gap-2">
+<button class="py-2.5 rounded-lg bg-surface-mint font-label-sm text-label-sm text-primary font-semibold text-center" type="button">
+            Stock Found (+)
+          </button>
+<button class="py-2.5 rounded-lg bg-surface-subtle font-label-sm text-label-sm text-text-secondary text-center" type="button">
+            Damage / Lost (-)
+          </button>
+<button class="py-2.5 rounded-lg bg-surface-subtle font-label-sm text-label-sm text-text-secondary text-center" type="button">
+            Exact Reset (=)
+          </button>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-text-secondary">Change Quantity (kg)</label>
+<div class="flex items-center gap-3">
+<button class="w-12 h-12 rounded-lg bg-surface-subtle text-text-primary font-bold text-headline-sm flex items-center justify-center" onclick="let input=document.getElementById('adj-qty'); if(input.value>1) input.value=parseInt(input.value)-1;" type="button">-</button>
+<input class="flex-1 h-12 bg-surface-subtle rounded-lg text-center font-headline-sm text-headline-sm text-text-primary font-bold focus:outline-none focus:ring-0" id="adj-qty" type="number" value="10"/>
+<button class="w-12 h-12 rounded-lg bg-surface-subtle text-text-primary font-bold text-headline-sm flex items-center justify-center" onclick="let input=document.getElementById('adj-qty'); input.value=parseInt(input.value)+1;" type="button">+</button>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-text-secondary">Reason or Note (Optional)</label>
+<input class="w-full h-11 px-3 bg-surface-subtle rounded-lg font-body-md text-body-md text-text-primary focus:outline-none" placeholder="e.g. Found extra bundle in back shelf" type="text"/>
+</div>
+<div class="pt-2 flex flex-col gap-2">
+<button class="w-full h-12 bg-primary text-on-primary font-label-md text-label-md rounded-lg shadow-sm" onclick="alert('Stock updated successfully!'); document.getElementById('adjust-stock-modal').classList.add('hidden')" type="button">
+          Save Correction
+        </button>
+<button class="w-full h-10 bg-transparent text-text-secondary font-label-sm text-label-sm" onclick="document.getElementById('adjust-stock-modal').classList.add('hidden')" type="button">
+          Cancel
+        </button>
+</div>
+</div>
+</div>
+<!-- Interactive Create Purchase Order Modal Sheet (Initially Hidden) -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-xs flex flex-col justify-end hidden" id="quick-po-modal">
+<div class="bg-surface-canvas rounded-t-2xl p-space-md max-h-[751px] overflow-y-auto flex flex-col gap-space-md shadow-2xl">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">add_shopping_cart</span>
+<h3 class="font-headline-sm text-headline-sm text-text-primary">Create Purchase Order</h3>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-subtle flex items-center justify-center text-text-secondary" onclick="document.getElementById('quick-po-modal').classList.add('hidden')" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="bg-surface-mint p-space-md rounded-xl flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-primary">Supplier Selected</span>
+<span class="font-label-md text-label-md text-text-primary font-bold">Shree Ganesh Wholesale Distributors</span>
+<span class="font-body-sm text-body-sm text-text-secondary">Contract Wholesale Rate: ₹38 / kg</span>
+</div>
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center">
+<label class="font-label-sm text-label-sm text-text-secondary">Reorder Amount (Packets of 1 kg)</label>
+<span class="font-label-sm text-label-sm text-primary">Suggested: +50 kg</span>
+</div>
+<div class="grid grid-cols-4 gap-2">
+<button class="py-2 rounded-lg bg-surface-subtle hover:bg-surface-mint font-label-sm text-label-sm text-text-primary" onclick="document.getElementById('po-qty').value='25'" type="button">25 kg</button>
+<button class="py-2 rounded-lg bg-surface-mint font-label-sm text-label-sm text-primary font-bold" onclick="document.getElementById('po-qty').value='50'" type="button">50 kg</button>
+<button class="py-2 rounded-lg bg-surface-subtle hover:bg-surface-mint font-label-sm text-label-sm text-text-primary" onclick="document.getElementById('po-qty').value='100'" type="button">100 kg</button>
+<button class="py-2 rounded-lg bg-surface-subtle hover:bg-surface-mint font-label-sm text-label-sm text-text-primary" onclick="document.getElementById('po-qty').value='200'" type="button">200 kg</button>
+</div>
+<input class="w-full mt-2 h-12 px-3 bg-surface-subtle rounded-lg text-center font-headline-sm text-headline-sm text-text-primary font-bold focus:outline-none" id="po-qty" type="number" value="50"/>
+</div>
+<div class="bg-surface-subtle p-space-sm rounded-lg flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-text-secondary">Estimated Order Value:</span>
+<span class="font-title-md text-title-md text-primary font-bold">₹1,900</span>
+</div>
+<div class="pt-2 flex flex-col gap-2">
+<button class="w-full h-12 bg-primary text-on-primary font-label-md text-label-md rounded-lg shadow-sm flex items-center justify-center gap-2" onclick="alert('Order Sent to Shree Ganesh Wholesale via WhatsApp & SMS!'); document.getElementById('quick-po-modal').classList.add('hidden')" type="button">
+<span class="material-symbols-outlined text-[20px]">send</span>
+          Send Purchase Order
+        </button>
+<button class="w-full h-10 bg-transparent text-text-secondary font-label-sm text-label-sm" onclick="document.getElementById('quick-po-modal').classList.add('hidden')" type="button">
+          Cancel
+        </button>
+</div>
+</div>
+</div>
+</div></main></body></html>

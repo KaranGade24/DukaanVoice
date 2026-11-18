@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-container-highest": "#d9e6dc", "status-info": "#2563EB", "inverse-on-surface": "#e7f4ea", "surface-variant": "#d9e6dc", "on-error-container": "#93000a", "on-tertiary": "#ffffff", "border-primary": "#CDE8D5", "tertiary-fixed": "#d9e6dd", "error": "#ba1a1a", "surface-subtle": "#F7F9F7", "inverse-surface": "#28332d", "on-primary": "#ffffff", "on-surface-variant": "#3f4940", "background": "#f0fdf3", "surface-mint": "#F3FAF5", "outline-variant": "#becabd", "tertiary": "#515d57", "surface-canvas": "#FFFFFF", "secondary-fixed-dim": "#85d89a", "primary-fixed": "#93f8ae", "primary-fixed-dim": "#77db94", "control-disabled": "#C9D1CB", "tertiary-container": "#6a766f", "status-warning": "#D97706", "inverse-primary": "#77db94", "on-tertiary-container": "#f1fef4", "on-secondary-fixed": "#00210c", "on-background": "#131e18", "outline": "#6f7a6f", "text-primary": "#202B25", "on-tertiary-fixed-variant": "#3e4943", "status-info-bg": "#EFF6FF", "text-secondary": "#66736B", "status-danger-bg": "#FEECEC", "on-primary-fixed": "#00210d", "surface": "#f0fdf3", "on-secondary": "#ffffff", "on-secondary-fixed-variant": "#005228", "on-secondary-container": "#1c733f", "on-primary-container": "#edffec", "surface-container-lowest": "#ffffff", "border-subtle": "#E5EAE6", "primary": "#006935", "surface-bright": "#f0fdf3", "surface-container-low": "#eaf7ed", "surface-dim": "#d0ddd4", "on-error": "#ffffff", "status-warning-bg": "#FFF5E5", "on-surface": "#131e18", "primary-container": "#168447", "surface-container": "#e4f1e7", "status-danger": "#DC2626", "error-container": "#ffdad6", "secondary": "#136c39", "surface-tint": "#006d37", "tertiary-fixed-dim": "#bdcac1", "secondary-fixed": "#a0f5b4", "secondary-container": "#a0f5b4", "on-tertiary-fixed": "#131e19", "surface-container-high": "#dfebe2", "text-muted": "#96A19A", "on-primary-fixed-variant": "#005228" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin": "1rem", "space-xl": "1.5rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "gutter": "1rem", "space-md": "0.75rem", "space-lg": "1rem" }, fontFamily: { "headline-lg": ["Inter"], "headline-sm": ["Inter"], "display": ["Inter"], "body-lg": ["Noto Sans"], "body-md": ["Noto Sans"], "label-nav": ["Inter"], "label-md": ["Inter"], "body-sm": ["Noto Sans"], "label-sm": ["Inter"], "title-md": ["Inter"] }, fontSize: { "headline-lg": ["24px", { lineHeight: "32px", fontWeight: "700" }], "headline-sm": ["18px", { lineHeight: "24px", fontWeight: "600" }], "display": ["30px", { lineHeight: "38px", fontWeight: "700" }], "body-lg": ["15px", { lineHeight: "22px", fontWeight: "500" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "label-nav": ["11px", { lineHeight: "14px", fontWeight: "500" }], "label-md": ["15px", { lineHeight: "20px", fontWeight: "600" }], "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }], "label-sm": ["12px", { lineHeight: "16px", fontWeight: "500" }], "title-md": ["16px", { lineHeight: "22px", fontWeight: "600" }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;min-height:100%;background-color:#FFFFFF;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface-canvas text-on-surface font-body-md text-body-md flex flex-col min-h-screen selection:bg-surface-container"><header class="fixed top-0 w-full z-50 pt-safe bg-surface-canvas/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-xs"><button aria-label="Go Back" class="w-11 h-11 -ml-space-xs rounded-xl flex items-center justify-center text-text-primary hover:bg-surface-subtle transition-colors" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><div class="flex items-center gap-space-xs"><div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[20px]">mic</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-text-primary leading-tight tracking-tight">DukaanVoice</span><span class="font-label-sm text-label-sm text-text-secondary">Setup Completion Confirmation</span></div></div></div><div class="flex items-center gap-space-xs"><button class="h-9 px-space-md rounded-full bg-surface-mint text-primary hover:bg-surface-container flex items-center gap-space-xs transition-colors" type="button"><span class="material-symbols-outlined text-[16px]">translate</span><span class="font-label-sm text-label-sm">मराठी / EN</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col flex-1 relative w-full px-margin pt-16 pb-safe bg-surface-canvas"><div class="flex flex-col w-full pb-8">
+<!-- Progress Header Step Indicator -->
+<div class="w-full flex items-center justify-between py-3 mb-2">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm">3</span>
+<span class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider">Step 3 of 3</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span>All Set! / पूर्ण झाले</span>
+</div>
+</div>
+<!-- Celebratory Hero Frame -->
+<section class="relative overflow-hidden w-full bg-surface-container-low rounded-xl p-5 mb-5 shadow-sm text-center flex flex-col items-center">
+<!-- Confetti & Ambient Sparkles Canvas Overlay (Pure SVG) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none opacity-40" fill="none" preserveaspectratio="none" viewbox="0 0 360 160">
+<circle cx="28" cy="24" fill="#168447" opacity="0.6" r="5"></circle>
+<rect fill="#D97706" height="6" rx="2" transform="rotate(25 75 16)" width="6" x="75" y="16"></rect>
+<circle cx="330" cy="30" fill="#168447" r="4"></circle>
+<rect fill="#2563EB" height="4" rx="2" transform="rotate(-18 300 55)" width="8" x="300" y="55"></rect>
+<circle cx="48" cy="115" fill="#D97706" opacity="0.7" r="4"></circle>
+<rect fill="#168447" height="5" rx="1.5" transform="rotate(40 315 125)" width="7" x="315" y="125"></rect>
+<path d="M120 18L124 26L116 26Z" fill="#168447" opacity="0.5"></path>
+<path d="M250 20L253 28L247 28Z" fill="#D97706" opacity="0.6"></path>
+</svg>
+<!-- Celebration Central Badge -->
+<div class="relative mb-3 flex items-center justify-center">
+<div class="absolute w-20 h-20 rounded-full bg-primary-fixed-dim/40 animate-ping opacity-60"></div>
+<div class="relative w-16 h-16 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[34px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-status-warning-bg text-status-warning flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">celebration</span>
+</div>
+</div>
+<!-- Celebration Headlines -->
+<h1 class="font-headline-lg text-headline-lg text-text-primary mb-1 tracking-tight">
+      Shop Setup Complete!
+    </h1>
+<p class="font-title-md text-title-md text-primary mb-2">
+      तुमचे दुकान सज्ज आहे! 🎉
+    </p>
+<p class="font-body-md text-body-md text-text-secondary max-w-xs leading-relaxed">
+      Welcome aboard, <strong class="text-text-primary font-label-md">Ramesh ji</strong>! Your digital DukaanVoice register is fully primed for high-speed voice billing.
+    </p>
+</section>
+<!-- Shop Verified Identity Card -->
+<section class="w-full bg-surface-subtle rounded-xl p-4 mb-6 shadow-sm">
+<div class="flex items-start justify-between gap-space-sm mb-3">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-11 h-11 rounded-lg bg-surface-mint flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]">storefront</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-md text-title-md text-text-primary truncate">Apna Kirana &amp; General Store</span>
+<span class="font-body-sm text-body-sm text-text-secondary">Owner: Ramesh Patil</span>
+</div>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-mint text-primary font-label-sm text-label-sm flex-shrink-0">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span>GSTIN Active</span>
+</span>
+</div>
+<div class="grid grid-cols-2 gap-2 pt-2 bg-surface-canvas rounded-lg p-2.5">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">Primary Language</span>
+<span class="font-label-md text-label-md text-text-primary flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[16px] text-primary">record_voice_over</span>
+          मराठी (Marathi)
+        </span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">Register Format</span>
+<span class="font-label-md text-label-md text-text-primary flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[16px] text-primary">receipt_long</span>
+          Cash &amp; Khata Slip
+        </span>
+</div>
+</div>
+</section>
+<!-- Quickstart Section Header -->
+<div class="flex items-center justify-between mb-3 px-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">bolt</span>
+<h2 class="font-headline-sm text-headline-sm text-text-primary tracking-tight">Quickstart Essentials</h2>
+</div>
+<span class="font-label-sm text-label-sm text-text-secondary">Ready in 1 tap</span>
+</div>
+<!-- 3 Quickstart Action Cards -->
+<div class="flex flex-col gap-3 mb-6">
+<!-- Card 1: Try First Voice Sale -->
+<div class="w-full bg-surface-canvas rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-mint text-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">mic</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h3 class="font-title-md text-title-md text-text-primary">Try Your First Voice Sale</h3>
+<span class="px-2 py-0.5 rounded-full bg-surface-mint text-primary font-label-sm text-label-sm font-semibold">Recommended</span>
+</div>
+<div class="mt-2 p-2.5 rounded-lg bg-surface-container-low text-on-surface">
+<div class="flex items-center gap-1.5 mb-1 text-primary">
+<span class="material-symbols-outlined text-[16px]">spatial_audio_off</span>
+<span class="font-label-sm text-label-sm font-semibold uppercase tracking-wider">Try Speaking This:</span>
+</div>
+<p class="font-body-md text-body-md text-text-primary italic font-medium">
+              “आज 5 किलो साखर विकली, 225 रुपये रोख”
+            </p>
+</div>
+<div class="mt-3 flex items-center justify-between gap-2">
+<span class="font-body-sm text-body-sm text-text-secondary truncate">Instant vernacular parser test</span>
+<button class="h-9 px-3.5 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm flex items-center gap-1.5 active:bg-primary transition-colors flex-shrink-0" type="button">
+<span class="material-symbols-outlined text-[16px]">mic</span>
+<span>Try Mic / बोलून पहा</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: Quick Load 20 Common Kirana Items -->
+<div class="w-full bg-surface-canvas rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-status-info-bg text-status-info flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">inventory_2</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h3 class="font-title-md text-title-md text-text-primary">Pre-load 20 Kirana Items</h3>
+<span class="px-2 py-0.5 rounded-full bg-surface-subtle text-text-secondary font-label-sm text-label-sm">Fast Track</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary mt-1 leading-snug">
+            Instantly add Sugar, Aashirvaad Atta, Tata Salt, and Cooking Oil with pre-configured wholesale and retail MRPs.
+          </p>
+<div class="flex items-center gap-1.5 mt-2 flex-wrap">
+<span class="px-2 py-0.5 rounded bg-surface-subtle text-text-secondary font-label-sm text-label-sm">साखर (Sugar)</span>
+<span class="px-2 py-0.5 rounded bg-surface-subtle text-text-secondary font-label-sm text-label-sm">आटा (Atta)</span>
+<span class="px-2 py-0.5 rounded bg-surface-subtle text-text-secondary font-label-sm text-label-sm">मीठ (Salt)</span>
+<span class="px-2 py-0.5 rounded bg-surface-subtle text-text-secondary font-label-sm text-label-sm">+17 more</span>
+</div>
+<div class="mt-3 flex items-center justify-between gap-2">
+<span class="font-body-sm text-body-sm text-status-info font-medium">Ready-made inventory</span>
+<button class="h-9 px-3.5 rounded-lg bg-surface-mint text-primary font-label-sm text-label-sm flex items-center gap-1.5 hover:bg-surface-container active:scale-95 transition-all flex-shrink-0" type="button">
+<span class="material-symbols-outlined text-[16px]">playlist_add</span>
+<span>Load Products / वस्तू भरा</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3: Connect Printer or WhatsApp -->
+<div class="w-full bg-surface-canvas rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-status-warning-bg text-status-warning flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">print</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h3 class="font-title-md text-title-md text-text-primary">Receipts &amp; WhatsApp Slips</h3>
+<span class="px-2 py-0.5 rounded-full bg-surface-mint text-primary font-label-sm text-label-sm">Paperless</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary mt-1 leading-snug">
+            Pair 58mm Bluetooth thermal printer or dispatch zero-cost WhatsApp bills with payment QR codes.
+          </p>
+<div class="mt-3 flex items-center justify-between gap-2">
+<span class="font-body-sm text-body-sm text-text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">bluetooth</span>
+              Bluetooth ready
+            </span>
+<button class="h-9 px-3.5 rounded-lg bg-surface-subtle text-text-primary font-label-sm text-label-sm flex items-center gap-1.5 hover:bg-surface-container transition-colors flex-shrink-0" type="button">
+<span class="material-symbols-outlined text-[16px]">settings</span>
+<span>Configure / सेटिंग</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Helpful Pro-Tip Ribbon -->
+<div class="w-full bg-surface-mint rounded-xl p-3.5 mb-6 flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[18px]">lightbulb</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-primary leading-tight">
+<strong class="font-label-md">DukaanVoice Hint:</strong> You can switch speaking languages between Hindi, Marathi, and English anytime from the top bar!
+    </p>
+</div>
+<!-- Primary Bottom Action Button (Full Width, Fixed Height 50px) -->
+<div class="w-full mt-auto pt-2">
+<button class="w-full h-[50px] rounded-xl bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-2 shadow-md active:scale-[0.99] transition-all" type="button">
+<span>Go to Home Dashboard / डॅशबोर्डवर जा</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<p class="text-center font-label-sm text-label-sm text-text-secondary mt-2.5">
+      Auto-syncs offline • No credit card required • 100% Free for Kirana
+    </p>
+</div>
+</div></main></body></html>

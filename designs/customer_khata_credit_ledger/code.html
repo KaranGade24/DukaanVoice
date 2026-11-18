@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Noto+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-primary": "#ffffff", "surface-canvas": "#FFFFFF", "on-primary-fixed-variant": "#005228", "secondary-fixed": "#a0f5b4", "inverse-surface": "#28332d", "secondary-container": "#a0f5b4", "outline": "#6f7a6f", "primary-fixed-dim": "#77db94", "surface-bright": "#f0fdf3", "primary-fixed": "#93f8ae", "text-primary": "#202B25", "on-tertiary-fixed-variant": "#3e4943", "error-container": "#ffdad6", "surface-container-high": "#dfebe2", "tertiary-fixed-dim": "#bdcac1", "surface-container-lowest": "#ffffff", "surface": "#f0fdf3", "primary-container": "#168447", "surface-container-highest": "#d9e6dc", "status-info-bg": "#EFF6FF", "on-tertiary-fixed": "#131e19", "outline-variant": "#becabd", "background": "#f0fdf3", "status-warning-bg": "#FFF5E5", "border-primary": "#CDE8D5", "on-surface-variant": "#3f4940", "on-secondary-fixed": "#00210c", "on-secondary-fixed-variant": "#005228", "surface-subtle": "#F7F9F7", "on-tertiary-container": "#f1fef4", "error": "#ba1a1a", "tertiary-fixed": "#d9e6dd", "on-tertiary": "#ffffff", "on-secondary": "#ffffff", "surface-container-low": "#eaf7ed", "surface-tint": "#006d37", "primary": "#006935", "on-error-container": "#93000a", "secondary": "#136c39", "status-info": "#2563EB", "on-secondary-container": "#1c733f", "tertiary": "#515d57", "on-error": "#ffffff", "secondary-fixed-dim": "#85d89a", "status-warning": "#D97706", "tertiary-container": "#6a766f", "surface-variant": "#d9e6dc", "status-danger-bg": "#FEECEC", "on-surface": "#131e18", "control-disabled": "#C9D1CB", "surface-dim": "#d0ddd4", "inverse-primary": "#77db94", "text-secondary": "#66736B", "inverse-on-surface": "#e7f4ea", "on-primary-container": "#edffec", "text-muted": "#96A19A", "on-primary-fixed": "#00210d", "on-background": "#131e18", "surface-container": "#e4f1e7", "border-subtle": "#E5EAE6", "status-danger": "#DC2626", "surface-mint": "#F3FAF5" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-lg": "1rem", "space-xl": "1.5rem", "space-md": "0.75rem", "space-xs": "0.25rem", "margin": "1rem", "gutter": "1rem", "space-sm": "0.5rem" }, fontFamily: { "headline-lg": ["Inter"], "body-md": ["Noto Sans"], "label-md": ["Inter"], "body-sm": ["Noto Sans"], "body-lg": ["Noto Sans"], "label-sm": ["Inter"], "headline-sm": ["Inter"], "title-md": ["Inter"], "display": ["Inter"], "label-nav": ["Inter"] }, fontSize: { "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-md": ["15px", { "lineHeight": "20px", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "body-lg": ["15px", { "lineHeight": "22px", "fontWeight": "500" }], "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "600" }], "display": ["30px", { "lineHeight": "38px", "fontWeight": "700" }], "label-nav": ["11px", { "lineHeight": "14px", "fontWeight": "500" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface-canvas text-text-primary flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface-canvas/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-space-lg flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0 flex-1"><img alt="DukaanVoice Brand Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/ALJJyrBFhjZok_St0s9ndNWJUfhVSnuNph1NkE6Y2cucYkMw82UFMIlhGDh2a2wH_YBKFWRvpW68WYsvAr7X_0D8VepXX4FT05QAdjYrlB1A7Tp7X_IPdlVDJOl7_R6AQFik-cPeYrYAi5xNZgy_L8VJ14cyb9V2DaOA1dBh11OCRq5E0uzSPOjkh56-qwl8ZGUwyZcd9HOMaSYifbBw2KQ3h68vPKsQO1_TPEHN8ubM8YioWw"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-title-md text-title-md text-text-primary truncate">Apna Kirana &amp; General Store</span></div><div class="flex items-center gap-space-xs"><span class="font-label-sm text-label-sm text-text-secondary truncate">Inventory</span><button class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-surface-mint text-primary font-label-sm text-label-sm" type="button"><span class="material-symbols-outlined text-[12px] mr-0.5">translate</span>मराठी / EN</button></div></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><button aria-label="Notifications" class="w-11 h-11 flex items-center justify-center rounded-full text-text-secondary hover:text-text-primary hover:bg-surface-subtle transition-colors" type="button"><span class="material-symbols-outlined">notifications</span></button><div class="w-11 h-11 flex items-center justify-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYaIDXWuT8fLeKKKdtGCY1FEzcKn5vndNRCoUVaLQyv2MqBIiHyYxsKR_qHVfTCAaAkWzGy6C5s7MIwC_k2i0YLI-afwv5z26288gDBFJTuXlMx_vyaqYIr6gTPDC6xDvcQKyXRlsLf_bTfEn4KYAv_8sM_tLp8GuUb40XS9vNP-u3cZXrBImHJl_QOYG5ceX8DIz6j95YMB_YWQ0qjvqaA1bu3326zLINEs7WmjTH"/></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface-canvas"><div class="flex flex-col w-full pb-8">
+<!-- Toast Notification (Hidden by default, triggered by interactions) -->
+<div class="fixed top-20 inset-x-4 z-50 transform -translate-y-24 opacity-0 transition-all duration-300 pointer-events-none flex items-center justify-between p-space-md rounded-xl bg-inverse-surface text-inverse-on-surface shadow-xl" id="toastNotification">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-primary-fixed" id="toastIcon">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-primary" id="toastMessage">व्हाट्सअ‍ॅप तगादा संदेश पाठवला गेला!</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary-fixed cursor-pointer" onclick="hideToast()">पहा</span>
+</div>
+<!-- Header & Summary Section -->
+<div class="px-space-lg pt-space-md pb-space-lg flex flex-col gap-space-md bg-surface-canvas">
+<!-- Title & Metadata -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<h1 class="font-title-md text-title-md text-text-primary tracking-tight">
+          Customer Khata Ledger <span class="font-body-sm text-body-sm text-text-secondary font-normal">/ ग्राहक खाते</span>
+</h1>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-status-info-bg text-status-info font-label-sm text-label-sm font-semibold">
+          48 Active
+        </span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary">
+        Track pending store credit, record vasooli, and send vernacular reminders.
+      </p>
+</div>
+<!-- Dual Metric Snapshot Card -->
+<div class="bg-surface-subtle p-space-md rounded-xl flex flex-col gap-space-md">
+<div class="grid grid-cols-2 gap-space-md">
+<!-- Total Receivable -->
+<div class="bg-surface-canvas p-space-md rounded-lg flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm text-text-secondary">Total Due / येणे बाकी</span>
+<span class="material-symbols-outlined text-[18px] text-status-danger">pending_actions</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-status-danger tracking-tight font-bold">
+            ₹38,450
+          </div>
+<div class="mt-2 inline-flex items-center gap-1 text-[11px] font-medium text-status-danger bg-status-danger-bg px-1.5 py-0.5 rounded-md w-fit">
+<span class="w-1.5 h-1.5 rounded-full bg-status-danger animate-pulse"></span>
+            22 Customers Overdue
+          </div>
+</div>
+<!-- Total Collected -->
+<div class="bg-surface-canvas p-space-md rounded-lg flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm text-text-secondary">Collected / जमा (महिना)</span>
+<span class="material-symbols-outlined text-[18px] text-primary">payments</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-primary tracking-tight font-bold">
+            ₹29,800
+          </div>
+<div class="mt-2 inline-flex items-center gap-1 text-[11px] font-medium text-primary bg-surface-mint px-1.5 py-0.5 rounded-md w-fit">
+<span class="material-symbols-outlined text-[13px]">arrow_upward</span>
+            +14% vs last month
+          </div>
+</div>
+</div>
+<!-- Quick Action Buttons -->
+<div class="grid grid-cols-2 gap-space-sm pt-1">
+<button class="h-12 px-space-md rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center justify-center gap-2 active:scale-98 transition-transform shadow-sm" onclick="showAddCustomerModal()" type="button">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+<span>नवीन ग्राहक जोडा</span>
+</button>
+<button class="h-12 px-space-md rounded-lg bg-surface-mint text-primary font-label-md text-label-md flex items-center justify-center gap-2 active:scale-98 transition-transform" onclick="triggerBulkReminders()" type="button">
+<span class="material-symbols-outlined text-[20px] text-primary">send</span>
+<span class="truncate">सर्व तगादा पाठवा</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Vernacular Voice Action Banner -->
+<div class="px-space-lg mb-space-md">
+<div class="bg-surface-mint rounded-xl p-space-md flex items-start gap-space-sm shadow-sm relative overflow-hidden">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px] animate-pulse">mic</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-primary font-semibold tracking-wide uppercase">Voice Entry / बोलून नोंद</span>
+<span class="text-[11px] bg-surface-canvas text-primary px-1.5 py-0.2 rounded font-medium">Bilingual AI</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-primary mt-1 italic">
+          "सुरेश काका खात्यावर 420 रुपये उधारी जमा झाली"
+        </p>
+<button class="mt-2.5 inline-flex items-center gap-1.5 text-primary text-label-sm font-label-sm font-semibold hover:underline" onclick="simulateVoiceInput()" type="button">
+<span>Speak Khata Entry (बोलून नोंद करा)</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Search & Filter Controls -->
+<div class="px-space-lg flex flex-col gap-space-sm mb-space-md">
+<!-- Search Bar -->
+<div class="relative w-full">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-text-muted">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</span>
+<input class="w-full h-12 pl-10 pr-10 rounded-lg bg-surface-subtle text-text-primary font-body-md text-body-md placeholder:text-text-muted focus:outline-none focus:bg-surface-canvas shadow-inner transition-colors" id="customerSearchInput" oninput="handleSearch(this.value)" placeholder="Search customer (उदा. रमेश, 98220...)" type="text"/>
+<span class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-text-muted hover:text-text-primary" onclick="clearSearch()">
+<span class="material-symbols-outlined text-[18px]">clear</span>
+</span>
+</div>
+<!-- Filter Chips Horizontal Scroll -->
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+<button class="filter-chip active h-9 px-3.5 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm font-medium whitespace-nowrap transition-colors" onclick="setFilter(this, 'all')" type="button">
+        All (48)
+      </button>
+<button class="filter-chip h-9 px-3.5 rounded-lg bg-surface-subtle text-text-secondary font-label-sm text-label-sm font-medium whitespace-nowrap transition-colors" onclick="setFilter(this, 'due')" type="button">
+        Pending Due (22)
+      </button>
+<button class="filter-chip h-9 px-3.5 rounded-lg bg-surface-subtle text-text-secondary font-label-sm text-label-sm font-medium whitespace-nowrap transition-colors" onclick="setFilter(this, 'over30')" type="button">
+        Over 30 Days (8)
+      </button>
+<button class="filter-chip h-9 px-3.5 rounded-lg bg-surface-subtle text-text-secondary font-label-sm text-label-sm font-medium whitespace-nowrap transition-colors" onclick="setFilter(this, 'settled')" type="button">
+        Settled (26)
+      </button>
+</div>
+<!-- Sort & Summary Meta -->
+<div class="flex items-center justify-between pt-1">
+<span class="font-body-sm text-body-sm text-text-secondary" id="activeFilterCount">Showing 5 customers</span>
+<div class="flex items-center gap-1 text-primary cursor-pointer">
+<span class="material-symbols-outlined text-[16px]">swap_vert</span>
+<span class="font-label-sm text-label-sm font-semibold">Highest Due (जास्त बाकी)</span>
+</div>
+</div>
+</div>
+<!-- Customer Cards Ledger List -->
+<div class="px-space-lg flex flex-col gap-space-md" id="customerLedgerList">
+<!-- Customer 1: Critical High Due -->
+<div class="customer-card bg-surface-canvas rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm" data-category="due over30" data-name="suresh kadam suresh kaka">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-12 h-12 rounded-full bg-status-danger-bg text-status-danger font-headline-sm text-headline-sm flex items-center justify-center font-bold flex-shrink-0">
+            SK
+          </div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md text-text-primary font-bold truncate">Suresh Kaka (सुरेश कदम)</span>
+</div>
+<span class="font-body-sm text-body-sm text-text-secondary truncate">+91 98221 44520</span>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="font-label-sm text-label-sm text-text-muted truncate">Shivaji Nagar</span>
+<span class="text-text-muted">•</span>
+<span class="font-label-sm text-label-sm text-status-danger font-medium">Due since 18 days</span>
+</div>
+</div>
+</div>
+<div class="text-right flex-shrink-0">
+<div class="font-headline-sm text-headline-sm text-status-danger font-bold tracking-tight">₹4,250</div>
+<span class="font-label-sm text-label-sm text-status-danger font-semibold bg-status-danger-bg px-1.5 py-0.5 rounded">बाकी (Due)</span>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="grid grid-cols-2 gap-space-sm pt-2">
+<button class="h-11 px-space-sm rounded-lg bg-surface-mint text-primary font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1.5 active:bg-secondary-container transition-colors" onclick="sendWhatsappPrompt('Suresh Kaka', '4250')" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">chat</span>
+<span>तगादा पाठवा</span>
+</button>
+<button class="h-11 px-space-sm rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1.5 active:bg-secondary transition-colors" onclick="openPaymentDrawer('Suresh Kaka', '4250')" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>जमा करा (Receive)</span>
+</button>
+</div>
+</div>
+<!-- Customer 2: Moderate Due -->
+<div class="customer-card bg-surface-canvas rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm" data-category="due" data-name="ramesh patil teacher">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-12 h-12 rounded-full bg-status-warning-bg text-status-warning font-headline-sm text-headline-sm flex items-center justify-center font-bold flex-shrink-0">
+            RP
+          </div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md text-text-primary font-bold truncate">Ramesh Patil (Teacher)</span>
+</div>
+<span class="font-body-sm text-body-sm text-text-secondary truncate">+91 94230 11204</span>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="font-label-sm text-label-sm text-text-muted truncate">Near ZP School</span>
+<span class="text-text-muted">•</span>
+<span class="font-label-sm text-label-sm text-text-secondary">Last bill: Yesterday</span>
+</div>
+</div>
+</div>
+<div class="text-right flex-shrink-0">
+<div class="font-headline-sm text-headline-sm text-status-danger font-bold tracking-tight">₹1,820</div>
+<span class="font-label-sm text-label-sm text-text-secondary">Pending Due</span>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="grid grid-cols-2 gap-space-sm pt-2">
+<button class="h-11 px-space-sm rounded-lg bg-surface-mint text-primary font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1.5 active:bg-secondary-container transition-colors" onclick="sendWhatsappPrompt('Ramesh Patil', '1820')" type="button">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>तगादा (Reminder)</span>
+</button>
+<button class="h-11 px-space-sm rounded-lg bg-surface-subtle text-text-primary font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1.5 active:bg-surface-container transition-colors" onclick="openCustomerLedgerHistory('Ramesh Patil')" type="button">
+<span class="material-symbols-outlined text-[18px] text-text-secondary">menu_book</span>
+<span>खाते पहा (Ledger)</span>
+</button>
+</div>
+</div>
+<!-- Customer 5: Critical Overdue > 35 days -->
+<div class="customer-card bg-surface-canvas rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm" data-category="due over30" data-name="ganesh shinde apmc porter">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-12 h-12 rounded-full bg-status-danger-bg text-status-danger font-headline-sm text-headline-sm flex items-center justify-center font-bold flex-shrink-0">
+            GS
+          </div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md text-text-primary font-bold truncate">Ganesh Shinde</span>
+<span class="text-[11px] bg-status-danger-bg text-status-danger font-bold px-1.5 py-0.2 rounded">35 days ⚠️</span>
+</div>
+<span class="font-body-sm text-body-sm text-text-secondary truncate">+91 99210 55432</span>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="font-label-sm text-label-sm text-text-muted truncate">APMC Market Porter</span>
+</div>
+</div>
+</div>
+<div class="text-right flex-shrink-0">
+<div class="font-headline-sm text-headline-sm text-status-danger font-bold tracking-tight">₹3,400</div>
+<span class="font-label-sm text-label-sm text-status-danger font-semibold">Overdue ⚠️</span>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="grid grid-cols-2 gap-space-sm pt-2">
+<button class="h-11 px-space-sm rounded-lg bg-surface-mint text-primary font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1.5 active:bg-secondary-container transition-colors" onclick="sendWhatsappPrompt('Ganesh Shinde', '3400')" type="button">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>WhatsApp Alert</span>
+</button>
+<button class="h-11 px-space-sm rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1.5 active:bg-secondary transition-colors" onclick="openPaymentDrawer('Ganesh Shinde', '3400')" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>जमा नोंदवा</span>
+</button>
+</div>
+</div>
+<!-- Customer 3: Tailor Weekly Account -->
+<div class="customer-card bg-surface-canvas rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm" data-category="due" data-name="vandana didi tailor">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-12 h-12 rounded-full bg-status-warning-bg text-status-warning font-headline-sm text-headline-sm flex items-center justify-center font-bold flex-shrink-0">
+            VD
+          </div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md text-text-primary font-bold truncate">Vandana Didi (Tailor)</span>
+</div>
+<span class="font-body-sm text-body-sm text-text-secondary truncate">+91 97650 88912</span>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="font-label-sm text-label-sm text-text-muted truncate">Lane No. 3</span>
+<span class="text-text-muted">•</span>
+<span class="font-label-sm text-label-sm text-status-warning font-medium">Weekly Account</span>
+</div>
+</div>
+</div>
+<div class="text-right flex-shrink-0">
+<div class="font-headline-sm text-headline-sm text-status-warning font-bold tracking-tight">₹950</div>
+<span class="font-label-sm text-label-sm text-status-warning font-semibold">Current Week</span>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="grid grid-cols-2 gap-space-sm pt-2">
+<button class="h-11 px-space-sm rounded-lg bg-surface-mint text-primary font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1.5 active:bg-secondary-container transition-colors" onclick="sendWhatsappPrompt('Vandana Didi', '950')" type="button">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>तगादा पाठवा</span>
+</button>
+<button class="h-11 px-space-sm rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1.5 active:bg-secondary transition-colors" onclick="openPaymentDrawer('Vandana Didi', '950')" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>जमा करा (₹)</span>
+</button>
+</div>
+</div>
+<!-- Customer 4: Settled Account -->
+<div class="customer-card bg-surface-canvas rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm" data-category="settled" data-name="anand more auto driver">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-12 h-12 rounded-full bg-surface-mint text-primary font-headline-sm text-headline-sm flex items-center justify-center font-bold flex-shrink-0">
+            AM
+          </div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md text-text-primary font-bold truncate">Anand More (Auto Driver)</span>
+</div>
+<span class="font-body-sm text-body-sm text-text-secondary truncate">+91 88882 34109</span>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-primary">verified</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">हिशोब पूर्ण (Settled)</span>
+</div>
+</div>
+</div>
+<div class="text-right flex-shrink-0">
+<div class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight">₹0</div>
+<span class="font-label-sm text-label-sm text-primary bg-surface-mint px-1.5 py-0.5 rounded font-medium">Clear</span>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="grid grid-cols-2 gap-space-sm pt-2">
+<button class="h-11 px-space-sm rounded-lg bg-surface-subtle text-text-primary font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1.5 active:bg-surface-container transition-colors" onclick="openCustomerLedgerHistory('Anand More')" type="button">
+<span class="material-symbols-outlined text-[18px] text-text-secondary">receipt_long</span>
+<span>पावती पहा</span>
+</button>
+<button class="h-11 px-space-sm rounded-lg bg-surface-mint text-primary font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1.5 active:bg-secondary-container transition-colors" onclick="openCreditIssueDrawer('Anand More')" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>+ Give Credit (उधार द्या)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Micro Interaction Feedback / Modal Drawer Mock -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden items-end justify-center" id="quickActionDrawer">
+<div class="bg-surface-canvas w-full max-w-md rounded-t-2xl p-space-lg flex flex-col gap-space-md shadow-2xl animate-in slide-in-from-bottom duration-200">
+<div class="w-12 h-1.5 rounded-full bg-border-subtle self-center"></div>
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-text-primary font-bold" id="drawerTitle">Record Vasooli / जमा नोंदवा</span>
+<span class="font-body-sm text-body-sm text-text-secondary" id="drawerSubtitle">Customer: Suresh Kaka</span>
+</div>
+<button class="w-9 h-9 rounded-full bg-surface-subtle flex items-center justify-center text-text-secondary" onclick="closeDrawer()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="bg-surface-subtle rounded-xl p-space-md flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-text-secondary font-medium">रक्कम टाका (Amount Received in ₹)</label>
+<div class="relative flex items-center">
+<span class="absolute left-3 text-text-primary font-bold text-headline-sm">₹</span>
+<input class="w-full h-12 pl-8 pr-3 rounded-lg bg-surface-canvas text-headline-sm font-headline-sm font-bold text-primary focus:outline-none focus:bg-surface-canvas shadow-inner" id="drawerAmountInput" type="number" value="500"/>
+</div>
+</div>
+<!-- Quick Amount Presets -->
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-lg bg-surface-mint text-primary text-label-sm font-semibold" onclick="setDrawerAmount('200')" type="button">₹200</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-mint text-primary text-label-sm font-semibold" onclick="setDrawerAmount('500')" type="button">₹500</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-mint text-primary text-label-sm font-semibold" onclick="setDrawerAmount('1000')" type="button">₹1,000</button>
+<button class="px-3 py-1.5 rounded-lg bg-status-danger-bg text-status-danger text-label-sm font-semibold" onclick="setDrawerFullAmount()" type="button">Full Settlement</button>
+</div>
+<!-- Payment Mode -->
+<div class="flex flex-col gap-1.5">
+<span class="font-label-sm text-label-sm text-text-secondary">Payment Method</span>
+<div class="grid grid-cols-2 gap-2">
+<label class="flex items-center gap-2 p-2.5 rounded-lg bg-surface-mint text-primary font-medium text-body-sm cursor-pointer">
+<input checked="" class="accent-primary" name="payMode" type="radio"/>
+<span>रोख रक्कम (Cash)</span>
+</label>
+<label class="flex items-center gap-2 p-2.5 rounded-lg bg-surface-subtle text-text-primary font-medium text-body-sm cursor-pointer">
+<input class="accent-primary" name="payMode" type="radio"/>
+<span>UPI / PhonePe</span>
+</label>
+</div>
+</div>
+<div class="pt-2 flex flex-col gap-2">
+<button class="w-full h-12 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md font-bold flex items-center justify-center gap-2 shadow-md" onclick="confirmPaymentRecord()" type="button">
+<span class="material-symbols-outlined text-[20px]">check</span>
+<span>जमा पुष्टी करा (Save Payment)</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  let activeMaxDue = '4250';
+
+  function showToast(msg, icon = 'check_circle') {
+    const toast = document.getElementById('toastNotification');
+    const msgEl = document.getElementById('toastMessage');
+    const iconEl = document.getElementById('toastIcon');
+    if (toast && msgEl && iconEl) {
+      msgEl.innerText = msg;
+      iconEl.innerText = icon;
+      toast.classList.remove('opacity-0', '-translate-y-24');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      setTimeout(() => {
+        hideToast();
+      }, 3500);
+    }
+  }
+
+  function hideToast() {
+    const toast = document.getElementById('toastNotification');
+    if (toast) {
+      toast.classList.add('opacity-0', '-translate-y-24');
+      toast.classList.remove('opacity-100', 'translate-y-0');
+    }
+  }
+
+  function sendWhatsappPrompt(customerName, amount) {
+    showToast(`${customerName} यांना ₹${amount} चा WhatsApp तगादा पाठवला!`, 'mark_chat_read');
+  }
+
+  function triggerBulkReminders() {
+    showToast('सर्व 22 ग्राहकांना WhatsApp तगादा पाठवला गेला!', 'send_time_extension');
+  }
+
+  function simulateVoiceInput() {
+    showToast('आवाज ऐकला: "सुरेश काका जमा ₹420". नोंद यशस्वी!', 'mic');
+  }
+
+  function setFilter(buttonEl, filterType) {
+    const chips = document.querySelectorAll('.filter-chip');
+    chips.forEach(chip => {
+      chip.classList.remove('active', 'bg-primary', 'text-on-primary');
+      chip.classList.add('bg-surface-subtle', 'text-text-secondary');
+    });
+    buttonEl.classList.remove('bg-surface-subtle', 'text-text-secondary');
+    buttonEl.classList.add('active', 'bg-primary', 'text-on-primary');
+
+    const cards = document.querySelectorAll('.customer-card');
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const category = card.getAttribute('data-category') || '';
+      if (filterType === 'all') {
+        card.style.display = 'flex';
+        visibleCount++;
+      } else if (filterType === 'due' && category.includes('due')) {
+        card.style.display = 'flex';
+        visibleCount++;
+      } else if (filterType === 'over30' && category.includes('over30')) {
+        card.style.display = 'flex';
+        visibleCount++;
+      } else if (filterType === 'settled' && category.includes('settled')) {
+        card.style.display = 'flex';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    const countMeta = document.getElementById('activeFilterCount');
+    if (countMeta) {
+      countMeta.innerText = `Showing ${visibleCount} customers`;
+    }
+  }
+
+  function handleSearch(query) {
+    const filterText = (query || '').toLowerCase().trim();
+    const cards = document.querySelectorAll('.customer-card');
+    let count = 0;
+
+    cards.forEach(card => {
+      const name = (card.getAttribute('data-name') || '').toLowerCase();
+      if (!filterText || name.includes(filterText)) {
+        card.style.display = 'flex';
+        count++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    const countMeta = document.getElementById('activeFilterCount');
+    if (countMeta) {
+      countMeta.innerText = `Found ${count} customers`;
+    }
+  }
+
+  function clearSearch() {
+    const input = document.getElementById('customerSearchInput');
+    if (input) {
+      input.value = '';
+      handleSearch('');
+    }
+  }
+
+  function openPaymentDrawer(customerName, dueAmount) {
+    activeMaxDue = dueAmount;
+    const drawer = document.getElementById('quickActionDrawer');
+    const title = document.getElementById('drawerTitle');
+    const subtitle = document.getElementById('drawerSubtitle');
+    const amountInput = document.getElementById('drawerAmountInput');
+
+    if (drawer && title && subtitle && amountInput) {
+      title.innerText = 'Record Vasooli / जमा नोंदवा';
+      subtitle.innerText = `Customer: ${customerName} (Total Due: ₹${dueAmount})`;
+      amountInput.value = '500';
+      drawer.classList.remove('hidden');
+      drawer.classList.add('flex');
+    }
+  }
+
+  function openCreditIssueDrawer(customerName) {
+    const drawer = document.getElementById('quickActionDrawer');
+    const title = document.getElementById('drawerTitle');
+    const subtitle = document.getElementById('drawerSubtitle');
+    const amountInput = document.getElementById('drawerAmountInput');
+
+    if (drawer && title && subtitle && amountInput) {
+      title.innerText = 'Give New Credit / नवीन उधारी नोंदवा';
+      subtitle.innerText = `Customer: ${customerName} (Previous Due: ₹0)`;
+      amountInput.value = '250';
+      drawer.classList.remove('hidden');
+      drawer.classList.add('flex');
+    }
+  }
+
+  function openCustomerLedgerHistory(customerName) {
+    showToast(`${customerName} यांचे मागील सर्व व्यवहार उघडत आहेत...`, 'receipt');
+  }
+
+  function showAddCustomerModal() {
+    showToast('नवीन ग्राहक नोंदणी फॉर्म उघडत आहे...', 'person_add');
+  }
+
+  function closeDrawer() {
+    const drawer = document.getElementById('quickActionDrawer');
+    if (drawer) {
+      drawer.classList.add('hidden');
+      drawer.classList.remove('flex');
+    }
+  }
+
+  function setDrawerAmount(val) {
+    const input = document.getElementById('drawerAmountInput');
+    if (input) input.value = val;
+  }
+
+  function setDrawerFullAmount() {
+    const input = document.getElementById('drawerAmountInput');
+    if (input) input.value = activeMaxDue;
+  }
+
+  function confirmPaymentRecord() {
+    const input = document.getElementById('drawerAmountInput');
+    const val = input ? input.value : '0';
+    closeDrawer();
+    showToast(`यशस्वी! ₹${val} जमा नोंद झाली आणि पावती तयार झाली.`, 'task_alt');
+  }
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface-canvas/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.04)]" data-active-classes="text-primary-container font-semibold"><div class="flex items-center justify-around h-16 px-space-sm relative"><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[24px]">storefront</span><span class="font-label-nav text-label-nav">Home</span></a><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="inventory" href="#"><span class="material-symbols-outlined text-[24px]">inventory_2</span><span class="font-label-nav text-label-nav">Inventory</span></a><div class="relative flex flex-col items-center justify-center w-14 h-12"><button aria-label="Voice Action" class="absolute -top-5 w-14 h-14 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-[0_4px_12px_rgba(22,132,71,0.3)] active:scale-95 transition-transform" type="button"><span class="absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-30 animate-ping"></span><span class="material-symbols-outlined text-[28px] relative z-10">mic</span></button><span class="font-label-nav text-label-nav text-primary-container mt-6 font-semibold">Voice</span></div><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="reports" href="#"><span class="material-symbols-outlined text-[24px]">bar_chart</span><span class="font-label-nav text-label-nav">Reports</span></a><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="settings" href="#"><span class="material-symbols-outlined text-[24px]">grid_view</span><span class="font-label-nav text-label-nav">More</span></a></div></nav></body></html>

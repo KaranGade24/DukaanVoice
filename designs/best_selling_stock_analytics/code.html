@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Noto+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-primary": "#ffffff", "surface-canvas": "#FFFFFF", "on-primary-fixed-variant": "#005228", "secondary-fixed": "#a0f5b4", "inverse-surface": "#28332d", "secondary-container": "#a0f5b4", "outline": "#6f7a6f", "primary-fixed-dim": "#77db94", "surface-bright": "#f0fdf3", "primary-fixed": "#93f8ae", "text-primary": "#202B25", "on-tertiary-fixed-variant": "#3e4943", "error-container": "#ffdad6", "surface-container-high": "#dfebe2", "tertiary-fixed-dim": "#bdcac1", "surface-container-lowest": "#ffffff", "surface": "#f0fdf3", "primary-container": "#168447", "surface-container-highest": "#d9e6dc", "status-info-bg": "#EFF6FF", "on-tertiary-fixed": "#131e19", "outline-variant": "#becabd", "background": "#f0fdf3", "status-warning-bg": "#FFF5E5", "border-primary": "#CDE8D5", "on-surface-variant": "#3f4940", "on-secondary-fixed": "#00210c", "on-secondary-fixed-variant": "#005228", "surface-subtle": "#F7F9F7", "on-tertiary-container": "#f1fef4", "error": "#ba1a1a", "tertiary-fixed": "#d9e6dd", "on-tertiary": "#ffffff", "on-secondary": "#ffffff", "surface-container-low": "#eaf7ed", "surface-tint": "#006d37", "primary": "#006935", "on-error-container": "#93000a", "secondary": "#136c39", "status-info": "#2563EB", "on-secondary-container": "#1c733f", "tertiary": "#515d57", "on-error": "#ffffff", "secondary-fixed-dim": "#85d89a", "status-warning": "#D97706", "tertiary-container": "#6a766f", "surface-variant": "#d9e6dc", "status-danger-bg": "#FEECEC", "on-surface": "#131e18", "control-disabled": "#C9D1CB", "surface-dim": "#d0ddd4", "inverse-primary": "#77db94", "text-secondary": "#66736B", "inverse-on-surface": "#e7f4ea", "on-primary-container": "#edffec", "text-muted": "#96A19A", "on-primary-fixed": "#00210d", "on-background": "#131e18", "surface-container": "#e4f1e7", "border-subtle": "#E5EAE6", "status-danger": "#DC2626", "surface-mint": "#F3FAF5" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-lg": "1rem", "space-xl": "1.5rem", "space-md": "0.75rem", "space-xs": "0.25rem", "margin": "1rem", "gutter": "1rem", "space-sm": "0.5rem" }, fontFamily: { "headline-lg": ["Inter"], "body-md": ["Noto Sans"], "label-md": ["Inter"], "body-sm": ["Noto Sans"], "body-lg": ["Noto Sans"], "label-sm": ["Inter"], "headline-sm": ["Inter"], "title-md": ["Inter"], "display": ["Inter"], "label-nav": ["Inter"] }, fontSize: { "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-md": ["15px", { "lineHeight": "20px", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "body-lg": ["15px", { "lineHeight": "22px", "fontWeight": "500" }], "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "600" }], "display": ["30px", { "lineHeight": "38px", "fontWeight": "700" }], "label-nav": ["11px", { "lineHeight": "14px", "fontWeight": "500" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface-canvas text-text-primary flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface-canvas/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-space-lg flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0 flex-1"><img alt="DukaanVoice Brand Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/ALJJyrBFhjZok_St0s9ndNWJUfhVSnuNph1NkE6Y2cucYkMw82UFMIlhGDh2a2wH_YBKFWRvpW68WYsvAr7X_0D8VepXX4FT05QAdjYrlB1A7Tp7X_IPdlVDJOl7_R6AQFik-cPeYrYAi5xNZgy_L8VJ14cyb9V2DaOA1dBh11OCRq5E0uzSPOjkh56-qwl8ZGUwyZcd9HOMaSYifbBw2KQ3h68vPKsQO1_TPEHN8ubM8YioWw"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-title-md text-title-md text-text-primary truncate">Apna Kirana &amp; General Store</span></div><div class="flex items-center gap-space-xs"><span class="font-label-sm text-label-sm text-text-secondary truncate">Dashboard</span><button class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-surface-mint text-primary font-label-sm text-label-sm" type="button"><span class="material-symbols-outlined text-[12px] mr-0.5">translate</span>मराठी / EN</button></div></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><button aria-label="Notifications" class="w-11 h-11 flex items-center justify-center rounded-full text-text-secondary hover:text-text-primary hover:bg-surface-subtle transition-colors" type="button"><span class="material-symbols-outlined">notifications</span></button><div class="w-11 h-11 flex items-center justify-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYaIDXWuT8fLeKKKdtGCY1FEzcKn5vndNRCoUVaLQyv2MqBIiHyYxsKR_qHVfTCAaAkWzGy6C5s7MIwC_k2i0YLI-afwv5z26288gDBFJTuXlMx_vyaqYIr6gTPDC6xDvcQKyXRlsLf_bTfEn4KYAv_8sM_tLp8GuUb40XS9vNP-u3cZXrBImHJl_QOYG5ceX8DIz6j95YMB_YWQ0qjvqaA1bu3326zLINEs7WmjTH"/></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface-canvas"><div class="flex flex-col w-full pb-6">
+<!-- Title & Context Area -->
+<section class="px-space-lg pt-4 pb-2">
+<div class="flex items-center justify-between gap-2">
+<div>
+<span class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider">Reports &amp; Intelligence</span>
+<h1 class="font-headline-sm text-headline-sm text-text-primary mt-0.5">Product &amp; Stock Analytics</h1>
+</div>
+<!-- Month Filter Badge -->
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-mint text-primary font-label-sm text-label-sm shadow-sm active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>This Month (Oct 2024)</span>
+<span class="material-symbols-outlined text-[14px]">expand_more</span>
+</button>
+</div>
+<!-- Vernacular Segmented Tabs -->
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar mt-4 py-1">
+<button class="flex-shrink-0 px-3.5 py-2 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm shadow-[0_2px_8px_rgba(22,132,71,0.2)] flex items-center gap-1.5 transition-all">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span>Best-Sellers (सर्वाधिक विक्री)</span>
+</button>
+<button class="flex-shrink-0 px-3.5 py-2 rounded-lg bg-surface-subtle text-text-secondary hover:text-text-primary font-label-sm text-label-sm flex items-center gap-1.5 transition-all">
+<span class="material-symbols-outlined text-[16px]">account_balance_wallet</span>
+<span>Stock Valuation (किंमत)</span>
+</button>
+<button class="flex-shrink-0 px-3.5 py-2 rounded-lg bg-surface-subtle text-text-secondary hover:text-text-primary font-label-sm text-label-sm flex items-center gap-1.5 transition-all">
+<span class="material-symbols-outlined text-[16px]">hourglass_empty</span>
+<span>Slow Moving (कमी खप)</span>
+</button>
+</div>
+</section>
+<!-- Top 3 Star Performers Podium / Spotlight -->
+<section class="px-space-lg mt-3">
+<div class="bg-surface-mint rounded-[14px] p-space-md shadow-sm relative overflow-hidden">
+<!-- Decorative Backdrop Glow -->
+<div class="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-primary-fixed/20 pointer-events-none blur-xl"></div>
+<div class="flex items-center justify-between mb-3 relative z-10">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+<span class="font-title-md text-title-md text-text-primary">Top 3 Star Performers</span>
+</div>
+<span class="font-label-sm text-label-sm text-text-secondary bg-surface-canvas/80 px-2 py-0.5 rounded-full">Top 59.5% Volume</span>
+</div>
+<!-- Podium Cards Grid -->
+<div class="grid grid-cols-3 gap-2 items-end relative z-10 pt-2">
+<!-- Rank #2 - Silver -->
+<div class="bg-surface-canvas rounded-[12px] p-2 flex flex-col items-center text-center shadow-sm relative pt-4">
+<div class="absolute -top-3 w-6 h-6 rounded-full bg-surface-container text-text-primary font-label-sm text-label-sm flex items-center justify-center font-bold shadow-xs">
+            2
+          </div>
+<div class="w-11 h-11 rounded-lg overflow-hidden bg-surface-subtle mb-1.5">
+<img class="w-full h-full object-cover" data-alt="Clear branded bottle of Fortune Sunflower refined edible oil on retail grocery store shelf with vibrant yellow packaging and studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi_bkjsn3opszdXWyDwoWCpRTQgsDd9JkrCPprK4Z_rK_4vNUIaQKQfsaWi1i2R95GxURJd9juSNZ5FEqWykwd-iBOuoXSZGQbtDdeYPNeyYe3WwHuTn8BF8EDMYCpYnTtTs2IrFnxnV4k1YMSOzfbjG_Gpqt-5anGE-quYjR0VImnhVSRpuXqSahd69vJP2pYXC2xZWYn12Pnct1rmX_ZWcjt1rrcmsiYFGmEadD8"/>
+</div>
+<span class="font-label-sm text-label-sm text-text-primary line-clamp-1 font-semibold">Fortune 1L</span>
+<span class="font-body-sm text-body-sm text-text-secondary">480 btls</span>
+<span class="font-label-sm text-label-sm text-primary font-bold mt-1">₹76,800</span>
+<span class="mt-1 font-label-nav text-label-nav text-secondary bg-surface-container-low px-1.5 py-0.5 rounded">11.2% mrg</span>
+</div>
+<!-- Rank #1 - Gold (Tallest / Central) -->
+<div class="bg-surface-canvas rounded-[12px] p-2 flex flex-col items-center text-center shadow-md relative pt-5 bg-gradient-to-b from-surface-mint to-surface-canvas">
+<div class="absolute -top-3.5 w-7 h-7 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm flex items-center justify-center font-bold shadow-md">
+            👑
+          </div>
+<div class="w-13 h-13 rounded-lg overflow-hidden bg-surface-subtle mb-1.5">
+<img class="w-full h-full object-cover" data-alt="Pack of Madhur Pure &amp; Hygienic refined white sugar crystal packet 1kg Indian packaged grocery product with clean bright retail packaging" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL3w-noB7H2gSfywWR2CF1rqi9GI8bs_W_-lxZ3Dl5GQAzauDAqORN0u4AD_py1vYbMAMDkr3FGkkiSAysVP9g-e8f42tymYicTy4oGdvI7o1KW3Qlg4ktxrnwJ84965mmrxvXRUy73oNRLuDgN3Qw18Sisco9ig6TZTg0JsYJlBZoOEgQ4L0yLJ_LtxmBFHVWgT-yqBeQ9f-YaVwxXqOx3AFEOhieFmKXxbAcQERM"/>
+</div>
+<span class="font-label-sm text-label-sm text-text-primary line-clamp-1 font-bold">Madhur 1kg</span>
+<span class="font-body-sm text-body-sm text-text-secondary">1,420 units</span>
+<span class="font-headline-sm text-headline-sm text-primary font-extrabold mt-0.5">₹63,900</span>
+<span class="mt-1 font-label-nav text-label-nav text-on-primary bg-primary-container px-2 py-0.5 rounded-full font-semibold">18.0% mrg</span>
+</div>
+<!-- Rank #3 - Bronze -->
+<div class="bg-surface-canvas rounded-[12px] p-2 flex flex-col items-center text-center shadow-sm relative pt-4">
+<div class="absolute -top-3 w-6 h-6 rounded-full bg-surface-container text-text-primary font-label-sm text-label-sm flex items-center justify-center font-bold shadow-xs">
+            3
+          </div>
+<div class="w-11 h-11 rounded-lg overflow-hidden bg-surface-subtle mb-1.5">
+<img class="w-full h-full object-cover" data-alt="Aashirvaad Shudh Chakki Atta whole wheat flour 5kg bag retail shot front angle against clean green grocery background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGD5QOOGa0tDvnNuLIoUtG3QxWwup5BijfzVSxLYgE6nkxCEKqUUK3EK3mL6VCuT8-pYdBUBT_QosZEAW5NhhCUy4zmcWKklLqAOxZ_5n9oWmUq-BHtEx6Rhkq2g0-EEsrptRekxO8J7mfwkw5cQF5iWnfCbll3ondIzY_j-JjlXcgaWaYECidNITs7DxWa-PehM6gnxGCjrfZsbxHUExykPKN9xmQu36riluQto9s"/>
+</div>
+<span class="font-label-sm text-label-sm text-text-primary line-clamp-1 font-semibold">Atta 5kg</span>
+<span class="font-body-sm text-body-sm text-text-secondary">260 bags</span>
+<span class="font-label-sm text-label-sm text-primary font-bold mt-1">₹63,700</span>
+<span class="mt-1 font-label-nav text-label-nav text-secondary bg-surface-container-low px-1.5 py-0.5 rounded">12.2% mrg</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Category Contribution Doughnut & Progress -->
+<section class="px-space-lg mt-5">
+<div class="bg-surface-canvas rounded-[14px] p-space-md shadow-sm">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">pie_chart</span>
+<h2 class="font-title-md text-title-md text-text-primary">Sales by Category</h2>
+</div>
+<span class="font-label-sm text-label-sm text-text-secondary font-medium">Total: ₹3,43,350</span>
+</div>
+<!-- Segmented Bar Visualization -->
+<div class="w-full h-3 rounded-full bg-surface-subtle overflow-hidden flex gap-0.5 mb-4">
+<div class="h-full bg-primary" style="width: 38%" title="Grains &amp; Sugar 38%"></div>
+<div class="h-full bg-primary-fixed-dim" style="width: 32%" title="Edible Oils &amp; Ghee 32%"></div>
+<div class="h-full bg-secondary" style="width: 14%" title="Dairy &amp; Fresh 14%"></div>
+<div class="h-full bg-status-warning" style="width: 10%" title="Snacks &amp; Biscuits 10%"></div>
+<div class="h-full bg-tertiary-fixed-dim" style="width: 6%" title="Others 6%"></div>
+</div>
+<!-- Category Legend Grid -->
+<div class="grid grid-cols-2 gap-x-3 gap-y-2.5">
+<div class="flex items-start gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-primary mt-1 flex-shrink-0"></div>
+<div class="min-w-0">
+<p class="font-label-sm text-label-sm text-text-primary truncate">Grains, Atta &amp; Sugar</p>
+<p class="font-body-sm text-body-sm text-text-secondary">38% • ₹1,30,280</p>
+</div>
+</div>
+<div class="flex items-start gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-primary-fixed-dim mt-1 flex-shrink-0"></div>
+<div class="min-w-0">
+<p class="font-label-sm text-label-sm text-text-primary truncate">Edible Oils &amp; Ghee</p>
+<p class="font-body-sm text-body-sm text-text-secondary">32% • ₹1,09,700</p>
+</div>
+</div>
+<div class="flex items-start gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-secondary mt-1 flex-shrink-0"></div>
+<div class="min-w-0">
+<p class="font-label-sm text-label-sm text-text-primary truncate">Dairy &amp; Fresh</p>
+<p class="font-body-sm text-body-sm text-text-secondary">14% • ₹48,000</p>
+</div>
+</div>
+<div class="flex items-start gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-status-warning mt-1 flex-shrink-0"></div>
+<div class="min-w-0">
+<p class="font-label-sm text-label-sm text-text-primary truncate">Snacks &amp; Biscuits</p>
+<p class="font-body-sm text-body-sm text-text-secondary">10% • ₹34,280</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Ranked Product Performance List -->
+<section class="px-space-lg mt-5">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">format_list_numbered</span>
+<h2 class="font-title-md text-title-md text-text-primary">Ranked Product Contribution</h2>
+</div>
+<span class="font-label-sm text-label-sm text-text-secondary">By Sales Volume</span>
+</div>
+<div class="flex flex-col gap-2.5">
+<!-- Row 1: Madhur Sugar -->
+<div class="bg-surface-canvas rounded-[14px] p-3 shadow-sm flex items-center gap-3">
+<div class="w-6 text-center font-title-md text-title-md text-primary font-bold">1</div>
+<div class="w-12 h-12 rounded-[10px] bg-surface-subtle overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Madhur pure and hygienic crystal refined white sugar 1kg retail packaging bag photo for FMCG inventory" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtvgQclkmFt71EpXss0tpkiteZ-LVqUaAg_7N7Ra1sqPwRKGhh3SMhVmp1AbfyzUoNWOzZMUxtmbTn1uFfvdD7L4WnAdA3p11fkZSw4Jfu4c0f0-e5nW1357dhz264lGccGhyTL5wMhvn2cQd7a474G0kyo239CPhyuuSV4s9duEP3A6d9y5FABKCoJcYHyPsx5giGDTVOP_ZOPXZEFS2z6XZ0iTPEgpuZK2J82Tdg"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h3 class="font-title-md text-title-md text-text-primary truncate">Madhur Pure Sugar 1kg</h3>
+<span class="font-title-md text-title-md text-text-primary font-bold">₹63,900</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary truncate">Grains &amp; Sugar • 1,420 kg sold</p>
+<div class="flex items-center justify-between gap-2 mt-1">
+<span class="font-label-sm text-label-sm text-primary font-semibold">18.6% of store</span>
+<!-- Low stock alert badge -->
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-status-warning-bg text-status-warning font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-warning"></span>
+              Stock: 4 kg left
+            </span>
+</div>
+</div>
+</div>
+<!-- Row 2: Fortune Sunlite Oil -->
+<div class="bg-surface-canvas rounded-[14px] p-3 shadow-sm flex items-center gap-3">
+<div class="w-6 text-center font-title-md text-title-md text-text-secondary font-bold">2</div>
+<div class="w-12 h-12 rounded-[10px] bg-surface-subtle overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Fortune Sunlite Refined Sunflower oil pouch 1 liter Indian FMCG product grocery display shot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNdTrtvg3WB9yvyqKMhe-X2ExNz4LkKJzo8Vqa26EpVf5LSiR9wElWL0Gu5EHSVGHV472Hjgtco8pxq2oYKv2TG2N9Tl7AWuqOrkQJOphXBIAqCx9dZgu1A96Uo0x_OQJPowZXXo-znRrPguTzTR0DVcRiZEwz8RAQ8-OwUWo10yQDL-ZOrJibokNEX-8wxaHCDbzkaFLmBZFwanLIknLCxcF9sSj74lf0VHl-zYeV"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h3 class="font-title-md text-title-md text-text-primary truncate">Fortune Sunlite Oil 1L</h3>
+<span class="font-title-md text-title-md text-text-primary font-bold">₹76,800</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary truncate">Edible Oils • 480 pkts sold</p>
+<div class="flex items-center justify-between gap-2 mt-1">
+<span class="font-label-sm text-label-sm text-primary font-semibold">22.4% of store</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-mint text-primary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              Stock: 14 pkts
+            </span>
+</div>
+</div>
+</div>
+<!-- Row 3: Aashirvaad Chakki Atta -->
+<div class="bg-surface-canvas rounded-[14px] p-3 shadow-sm flex items-center gap-3">
+<div class="w-6 text-center font-title-md text-title-md text-text-secondary font-bold">3</div>
+<div class="w-12 h-12 rounded-[10px] bg-surface-subtle overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Aashirvaad Whole Wheat Shudh Chakki Atta 5 kg bag packaging display against retail background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrKiSMHSCm9p9fO5WqdYHPR61z_c3oduC5HYgv9dvI5aYTvys-aX59Ja0DKMGlh-90i_fH3Qoe51I134vy19Z9N-NOnQwObegFkpuwSR8PdBEOAMP_VmK8iuVYBTU-tcT9juzOaYD7J6z_C3EUqLRruHNmnWntqUrGsYJnCewiBIUl0sjrIzmSO0-N0XEMPLALUNHj9hXYd8ovvJm0XLAFMq7FS5PRJeVIOZLOMPEx"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h3 class="font-title-md text-title-md text-text-primary truncate">Aashirvaad Atta 5kg</h3>
+<span class="font-title-md text-title-md text-text-primary font-bold">₹63,700</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary truncate">Flour • 260 bags sold</p>
+<div class="flex items-center justify-between gap-2 mt-1">
+<span class="font-label-sm text-label-sm text-primary font-semibold">18.5% of store</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-mint text-primary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              Stock: 38 bags
+            </span>
+</div>
+</div>
+</div>
+<!-- Row 4: Tata Salt Vacuum Evaporated -->
+<div class="bg-surface-canvas rounded-[14px] p-3 shadow-sm flex items-center gap-3">
+<div class="w-6 text-center font-title-md text-title-md text-text-secondary font-bold">4</div>
+<div class="w-12 h-12 rounded-[10px] bg-surface-subtle overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Tata Salt Desh Ka Namak 1kg blue packaging pouch clear grocery product photograph" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQVZo0P0GYL_xyFkkWC1R8Qkdt5osoD946kE84NroGvefcuPY6dkd3dktMDckffU3PnQGFzQUgV1uq4rQBWnmbWnPmlnjhYqzYvV2NwA9XYOworWZvTipElUguLKOZsGqdLlt6wvv00jydAEz8ZXce4vt3U6aqnxkey-5mJJB0-a6N7Lc06to5ykqtW0e4HYv-YXaMkB12DU71erkxXqDLrvfKQfQl4A9tetvv5HlO"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h3 class="font-title-md text-title-md text-text-primary truncate">Tata Salt Iodised 1kg</h3>
+<span class="font-title-md text-title-md text-text-primary font-bold">₹23,520</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary truncate">Spices &amp; Salt • 840 pkts sold</p>
+<div class="flex items-center justify-between gap-2 mt-1">
+<span class="font-label-sm text-label-sm text-text-secondary">6.8% of store</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-mint text-primary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              Stock: 62 pkts
+            </span>
+</div>
+</div>
+</div>
+<!-- Row 5: Parle-G Gold Biscuits -->
+<div class="bg-surface-canvas rounded-[14px] p-3 shadow-sm flex items-center gap-3">
+<div class="w-6 text-center font-title-md text-title-md text-text-secondary font-bold">5</div>
+<div class="w-12 h-12 rounded-[10px] bg-surface-subtle overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Parle-G Gold Glucose biscuits yellow and red commercial retail packet shot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrRmXwnYe9PF7IQ2itgUXNliQawP5QYI3r4qfwhJkubdVT5Q2ov0yh7piaycvIHushpupt9ptXCZG_4M6DDv7OgfuD70YO2s0D97NC5qoAg4_Xg0nOflturtZYZbJwMYeUpvojAhfy-U8vdgfQ3zgEXmA0dd7f6OPKaYpzyRTMjL01kBnGlITIgHLWfpa9LdCezlvOo3k-MAKLDBZeewXPq4I2oFhqwxwgBVEc8RWV"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h3 class="font-title-md text-title-md text-text-primary truncate">Parle-G Gold 250g</h3>
+<span class="font-title-md text-title-md text-text-primary font-bold">₹19,000</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary truncate">Snacks • 950 pkts sold</p>
+<div class="flex items-center justify-between gap-2 mt-1">
+<span class="font-label-sm text-label-sm text-text-secondary">5.5% of store</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-mint text-primary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              Stock: 85 pkts
+            </span>
+</div>
+</div>
+</div>
+<!-- Row 6: Amul Taaza Toned Milk -->
+<div class="bg-surface-canvas rounded-[14px] p-3 shadow-sm flex items-center gap-3">
+<div class="w-6 text-center font-title-md text-title-md text-text-secondary font-bold">6</div>
+<div class="w-12 h-12 rounded-[10px] bg-surface-subtle overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Amul Taaza fresh toned pasteurised milk pouch 500ml green and white packaging on clean surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXNNF5EblfLkz5cK6x75C8B7fgh0xPa4rvbt0SNBGX1NmnXoQGiOToZJKWL1-aF918JyAxqWaj064dcf6Ea22xJ6pk72bpIo5cu8KpR55Unvvodjkw9KBdXXHTXuGHruL8DE5D3MN6vAPaK5YwclD-IJZ9pDz42d8U8_wBCZkukDHDaD_V84eSx6RaN11FEtfTmJ4i45Ek4uHxnay1tB-oWhJqZP6W1zt2vDZL9rZ6"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h3 class="font-title-md text-title-md text-text-primary truncate">Amul Taaza Milk 500ml</h3>
+<span class="font-title-md text-title-md text-text-primary font-bold">₹30,240</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary truncate">Dairy • 1,120 pkts sold</p>
+<div class="flex items-center justify-between gap-2 mt-1">
+<span class="font-label-sm text-label-sm text-primary font-semibold">8.8% of store</span>
+<!-- Out of Stock Alert -->
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-status-danger-bg text-status-danger font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[13px]">error</span>
+              Out of Stock (0)
+            </span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Action Recommendation Footer Card -->
+<section class="px-space-lg mt-5">
+<div class="bg-surface-canvas rounded-[14px] p-space-md shadow-md relative overflow-hidden bg-gradient-to-br from-surface-mint via-surface-canvas to-surface-canvas">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[22px]">auto_fix_high</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-1.5">
+<h3 class="font-title-md text-title-md text-text-primary">Reorder Fast-Moving Stock</h3>
+<span class="bg-status-warning-bg text-status-warning font-label-sm text-label-sm px-1.5 py-0.5 rounded font-semibold">3 items low</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary mt-1">
+            Madhur Sugar (4kg), Fortune Oil (14pkts), &amp; Amul Milk (0) will cause estimated daily revenue loss of ₹4,200.
+          </p>
+<button class="w-full mt-3 h-12 rounded-[10px] bg-primary-container text-on-primary font-label-md text-label-md flex items-center justify-center gap-2 shadow-[0_4px_12px_rgba(22,132,71,0.2)] active:bg-secondary transition-all" id="reorderBtn" type="button">
+<span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
+<span>Create Auto-PO for Top 3 (ऑर्डर तयार करा)</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<script>
+  // Simple micro-interaction for Reorder Action
+  document.getElementById('reorderBtn')?.addEventListener('click', function() {
+    const originalText = this.innerHTML;
+    this.disabled = true;
+    this.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-spin">refresh</span><span>Generating PO (ऑर्डर तयार होत आहे...)...</span>';
+    setTimeout(() => {
+      this.innerHTML = '<span class="material-symbols-outlined text-[20px]">check_circle</span><span>Purchase Order #PO-884 Sent!</span>';
+      this.classList.remove('bg-primary-container');
+      this.classList.add('bg-secondary');
+      setTimeout(() => {
+        this.innerHTML = originalText;
+        this.disabled = false;
+        this.classList.remove('bg-secondary');
+        this.classList.add('bg-primary-container');
+      }, 3000);
+    }, 1200);
+  });
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface-canvas/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.04)]" data-active-classes="text-primary-container font-semibold"><div class="flex items-center justify-around h-16 px-space-sm relative"><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[24px]">storefront</span><span class="font-label-nav text-label-nav">Home</span></a><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="inventory" href="#"><span class="material-symbols-outlined text-[24px]">inventory_2</span><span class="font-label-nav text-label-nav">Inventory</span></a><div class="relative flex flex-col items-center justify-center w-14 h-12"><button aria-label="Voice Action" class="absolute -top-5 w-14 h-14 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-[0_4px_12px_rgba(22,132,71,0.3)] active:scale-95 transition-transform" type="button"><span class="absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-30 animate-ping"></span><span class="material-symbols-outlined text-[28px] relative z-10">mic</span></button><span class="font-label-nav text-label-nav text-primary-container mt-6 font-semibold">Voice</span></div><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="reports" href="#"><span class="material-symbols-outlined text-[24px]">bar_chart</span><span class="font-label-nav text-label-nav">Reports</span></a><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="settings" href="#"><span class="material-symbols-outlined text-[24px]">grid_view</span><span class="font-label-nav text-label-nav">More</span></a></div></nav></body></html>

@@ -1,0 +1,159 @@
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css";
+@import "nativewind/theme";
+
+@theme {
+  /* Brand and semantic colors */
+  --color-primary: #168447;
+  --color-primary-pressed: #106b38;
+  --color-primary-deep: #006935;
+  --color-secondary: #136c39;
+  --color-accent: #a0f5b4;
+  --color-on-primary: #ffffff;
+
+  /* Light, mint-tinted surfaces */
+  --color-background: #f0fdf3;
+  --color-surface: #ffffff;
+  --color-card: #ffffff;
+  --color-surface-subtle: #f7f9f7;
+  --color-surface-mint: #f3faf5;
+  --color-surface-tint: #e8f5ec;
+
+  /* Text and borders */
+  --color-text-primary: #202b25;
+  --color-text-secondary: #66736b;
+  --color-muted: #96a19a;
+  --color-control-disabled: #c9d1cb;
+  --color-border: #e5eae6;
+  --color-border-primary: #cde8d5;
+
+  /* Status colors; pair with labels or icons, never color alone */
+  --color-success: #168447;
+  --color-success-bg: #e8f5ec;
+  --color-warning: #d97706;
+  --color-warning-bg: #fff5e5;
+  --color-error: #dc2626;
+  --color-error-bg: #feecec;
+  --color-info: #2563eb;
+  --color-info-bg: #eff6ff;
+
+  /* Typography from the Stitch screens */
+  --font-display: "Inter";
+  --font-sans: "Noto Sans";
+  --text-display: 1.875rem;
+  --text-display--line-height: 2.375rem;
+  --text-headline-lg: 1.5rem;
+  --text-headline-lg--line-height: 2rem;
+  --text-headline-sm: 1.125rem;
+  --text-headline-sm--line-height: 1.5rem;
+  --text-title-md: 1rem;
+  --text-title-md--line-height: 1.375rem;
+  --text-body-lg: 0.9375rem;
+  --text-body-lg--line-height: 1.375rem;
+  --text-body-md: 0.875rem;
+  --text-body-md--line-height: 1.25rem;
+  --text-body-sm: 0.8125rem;
+  --text-body-sm--line-height: 1.125rem;
+  --text-label-md: 0.9375rem;
+  --text-label-md--line-height: 1.25rem;
+  --text-label-sm: 0.75rem;
+  --text-label-sm--line-height: 1rem;
+  --text-label-nav: 0.6875rem;
+  --text-label-nav--line-height: 0.875rem;
+
+  /* 8-point rhythm with 4px half steps */
+  --spacing-space-xs: 0.25rem;
+  --spacing-space-sm: 0.5rem;
+  --spacing-space-md: 0.75rem;
+  --spacing-space-lg: 1rem;
+  --spacing-space-xl: 1.5rem;
+  --spacing-space-2xl: 2rem;
+
+  /* Geometry */
+  --radius-chip: 0.5rem;
+  --radius-button: 0.625rem;
+  --radius-input: 0.625rem;
+  --radius-card: 0.875rem;
+  --radius-sheet: 1.25rem;
+
+  /* Shared control and layout dimensions */
+  --spacing-touch-target: 3rem;
+  --spacing-button-height: 3rem;
+  --spacing-input-height: 3rem;
+  --spacing-voice-fab: 4rem;
+  --spacing-bottom-nav: 4.25rem;
+}
+
+/* NativeWind 5 / Tailwind 4 reusable component recipes. */
+@utility screen-container {
+  @apply flex-1 bg-background px-4;
+}
+
+@utility btn-primary {
+  @apply min-h-12 flex-row items-center justify-center rounded-button bg-primary px-4 py-3;
+}
+
+@utility btn-secondary {
+  @apply min-h-12 flex-row items-center justify-center rounded-button bg-secondary px-4 py-3;
+}
+
+@utility btn-outline {
+  @apply min-h-12 flex-row items-center justify-center rounded-button border border-primary bg-surface px-4 py-3;
+}
+
+@utility btn-destructive {
+  @apply min-h-12 flex-row items-center justify-center rounded-button border border-error bg-error-bg px-4 py-3;
+}
+
+@utility card {
+  @apply rounded-card border border-border bg-card p-4;
+}
+
+@utility input-container {
+  @apply min-h-12 flex-row items-center rounded-input border border-border bg-surface px-4;
+}
+
+@utility badge-success {
+  @apply self-start rounded-chip bg-success-bg px-3 py-1;
+}
+
+@utility badge-warning {
+  @apply self-start rounded-chip bg-warning-bg px-3 py-1;
+}
+
+@utility badge-error {
+  @apply self-start rounded-chip bg-error-bg px-3 py-1;
+}
+
+@utility badge-info {
+  @apply self-start rounded-chip bg-info-bg px-3 py-1;
+}
+
+@utility category-chip {
+  @apply min-h-9 flex-row items-center justify-center rounded-chip bg-surface-subtle px-3;
+}
+
+@utility category-chip-selected {
+  @apply min-h-9 flex-row items-center justify-center rounded-chip bg-primary px-3;
+}
+
+@utility metric-card {
+  @apply rounded-card border border-border bg-card p-4;
+}
+
+@utility voice-fab {
+  @apply h-voice-fab w-voice-fab items-center justify-center rounded-full bg-primary;
+}
+
+@utility bottom-nav {
+  @apply min-h-bottom-nav flex-row items-center justify-around border-t border-border bg-surface px-2;
+}
+
+@utility bottom-sheet {
+  @apply rounded-t-sheet border-t border-border bg-surface px-4 pb-6 pt-4;
+}
+
+@utility voice-confirmation-card {
+  @apply rounded-card border border-border-primary bg-surface-mint p-4;
+}

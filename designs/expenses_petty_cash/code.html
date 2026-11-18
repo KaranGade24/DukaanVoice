@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Noto+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-primary": "#ffffff", "surface-canvas": "#FFFFFF", "on-primary-fixed-variant": "#005228", "secondary-fixed": "#a0f5b4", "inverse-surface": "#28332d", "secondary-container": "#a0f5b4", "outline": "#6f7a6f", "primary-fixed-dim": "#77db94", "surface-bright": "#f0fdf3", "primary-fixed": "#93f8ae", "text-primary": "#202B25", "on-tertiary-fixed-variant": "#3e4943", "error-container": "#ffdad6", "surface-container-high": "#dfebe2", "tertiary-fixed-dim": "#bdcac1", "surface-container-lowest": "#ffffff", "surface": "#f0fdf3", "primary-container": "#168447", "surface-container-highest": "#d9e6dc", "status-info-bg": "#EFF6FF", "on-tertiary-fixed": "#131e19", "outline-variant": "#becabd", "background": "#f0fdf3", "status-warning-bg": "#FFF5E5", "border-primary": "#CDE8D5", "on-surface-variant": "#3f4940", "on-secondary-fixed": "#00210c", "on-secondary-fixed-variant": "#005228", "surface-subtle": "#F7F9F7", "on-tertiary-container": "#f1fef4", "error": "#ba1a1a", "tertiary-fixed": "#d9e6dd", "on-tertiary": "#ffffff", "on-secondary": "#ffffff", "surface-container-low": "#eaf7ed", "surface-tint": "#006d37", "primary": "#006935", "on-error-container": "#93000a", "secondary": "#136c39", "status-info": "#2563EB", "on-secondary-container": "#1c733f", "tertiary": "#515d57", "on-error": "#ffffff", "secondary-fixed-dim": "#85d89a", "status-warning": "#D97706", "tertiary-container": "#6a766f", "surface-variant": "#d9e6dc", "status-danger-bg": "#FEECEC", "on-surface": "#131e18", "control-disabled": "#C9D1CB", "surface-dim": "#d0ddd4", "inverse-primary": "#77db94", "text-secondary": "#66736B", "inverse-on-surface": "#e7f4ea", "on-primary-container": "#edffec", "text-muted": "#96A19A", "on-primary-fixed": "#00210d", "on-background": "#131e18", "surface-container": "#e4f1e7", "border-subtle": "#E5EAE6", "status-danger": "#DC2626", "surface-mint": "#F3FAF5" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-lg": "1rem", "space-xl": "1.5rem", "space-md": "0.75rem", "space-xs": "0.25rem", "margin": "1rem", "gutter": "1rem", "space-sm": "0.5rem" }, fontFamily: { "headline-lg": ["Inter"], "body-md": ["Noto Sans"], "label-md": ["Inter"], "body-sm": ["Noto Sans"], "body-lg": ["Noto Sans"], "label-sm": ["Inter"], "headline-sm": ["Inter"], "title-md": ["Inter"], "display": ["Inter"], "label-nav": ["Inter"] }, fontSize: { "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-md": ["15px", { "lineHeight": "20px", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "body-lg": ["15px", { "lineHeight": "22px", "fontWeight": "500" }], "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "600" }], "display": ["30px", { "lineHeight": "38px", "fontWeight": "700" }], "label-nav": ["11px", { "lineHeight": "14px", "fontWeight": "500" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface-canvas text-text-primary flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface-canvas/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-space-lg flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0 flex-1"><img alt="DukaanVoice Brand Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/ALJJyrBFhjZok_St0s9ndNWJUfhVSnuNph1NkE6Y2cucYkMw82UFMIlhGDh2a2wH_YBKFWRvpW68WYsvAr7X_0D8VepXX4FT05QAdjYrlB1A7Tp7X_IPdlVDJOl7_R6AQFik-cPeYrYAi5xNZgy_L8VJ14cyb9V2DaOA1dBh11OCRq5E0uzSPOjkh56-qwl8ZGUwyZcd9HOMaSYifbBw2KQ3h68vPKsQO1_TPEHN8ubM8YioWw"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-title-md text-title-md text-text-primary truncate">Apna Kirana &amp; General Store</span></div><div class="flex items-center gap-space-xs"><span class="font-label-sm text-label-sm text-text-secondary truncate">Dashboard</span><button class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-surface-mint text-primary font-label-sm text-label-sm" type="button"><span class="material-symbols-outlined text-[12px] mr-0.5">translate</span>मराठी / EN</button></div></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><button aria-label="Notifications" class="w-11 h-11 flex items-center justify-center rounded-full text-text-secondary hover:text-text-primary hover:bg-surface-subtle transition-colors" type="button"><span class="material-symbols-outlined">notifications</span></button><div class="w-11 h-11 flex items-center justify-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYaIDXWuT8fLeKKKdtGCY1FEzcKn5vndNRCoUVaLQyv2MqBIiHyYxsKR_qHVfTCAaAkWzGy6C5s7MIwC_k2i0YLI-afwv5z26288gDBFJTuXlMx_vyaqYIr6gTPDC6xDvcQKyXRlsLf_bTfEn4KYAv_8sM_tLp8GuUb40XS9vNP-u3cZXrBImHJl_QOYG5ceX8DIz6j95YMB_YWQ0qjvqaA1bu3326zLINEs7WmjTH"/></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface-canvas"><div class="flex flex-col w-full pb-8">
+<!-- Interactive Toast Notification Alert (Triggerable) -->
+<div class="fixed top-20 left-4 right-4 z-50 transform -translate-y-24 opacity-0 transition-all duration-300 pointer-events-none flex items-center justify-between p-space-md bg-inverse-surface text-inverse-on-surface rounded-xl shadow-lg" id="toastSuccess">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary-fixed" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md font-medium" id="toastMsg">खर्च यशस्वीरीत्या नोंदवला (Expense Logged)</span>
+</div>
+<span class="material-symbols-outlined text-surface-subtle text-sm">close</span>
+</div>
+<!-- Voice Expense Assistant Prompt Banner -->
+<div class="px-space-lg pt-space-md pb-space-sm">
+<div class="relative overflow-hidden bg-surface-mint p-space-md rounded-xl shadow-sm">
+<div class="flex items-start gap-space-sm relative z-10">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary flex items-center justify-center flex-shrink-0 shadow-sm animate-pulse">
+<span class="material-symbols-outlined text-[20px]">mic</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+              व्हॉइस नोंद / Voice Detected
+            </span>
+<span class="font-label-sm text-label-sm text-text-muted">आत्ताच (Just now)</span>
+</div>
+<p class="font-body-md text-body-md text-text-primary font-medium mt-1 truncate">
+            “दुकानाचा चहा आणि नाश्ता 120 रुपये खर्च रोख दिला”
+          </p>
+<div class="flex items-center justify-between mt-2 pt-2">
+<div class="flex items-center gap-1.5">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+                ₹120 • Cash (रोख)
+              </span>
+<span class="font-label-sm text-label-sm text-text-secondary truncate">चहा/नाश्ता</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-2.5 py-1 bg-primary text-on-primary rounded-lg font-label-sm text-label-sm shadow-sm active:scale-95 transition-transform flex items-center gap-1" onclick="confirmVoiceExpense(this)" type="button">
+<span class="material-symbols-outlined text-[14px]">check</span> नोंद करा
+              </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Subtle background waveform pattern -->
+<svg class="absolute right-0 bottom-0 opacity-10 text-primary h-12 w-32 pointer-events-none" fill="currentColor" viewbox="0 0 100 40">
+<path d="M0 20 Q 12 5, 25 20 T 50 20 T 75 20 T 100 20 L 100 40 L 0 40 Z"></path>
+</svg>
+</div>
+</div>
+<!-- Primary Metric Summary Cards (2-Column Bento Grid) -->
+<div class="px-space-lg pt-space-xs">
+<div class="grid grid-cols-2 gap-space-sm">
+<!-- Total Expenses Oct (Span 2 for emphasis) -->
+<div class="col-span-2 bg-surface-container-lowest p-space-md rounded-xl shadow-sm relative overflow-hidden">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<div class="w-7 h-7 rounded-lg bg-status-danger-bg text-status-danger flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">trending_down</span>
+</div>
+<span class="font-label-sm text-label-sm text-text-secondary font-medium">एकूण खर्च (Total Oct)</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-mint text-primary font-label-sm text-label-sm font-semibold">
+            31 Days
+          </span>
+</div>
+<div class="mt-2 flex items-baseline justify-between">
+<div class="flex items-baseline gap-1">
+<span class="font-headline-lg text-headline-lg text-text-primary tracking-tight">₹14,200</span>
+<span class="font-label-sm text-label-sm text-text-muted">.00</span>
+</div>
+<span class="font-label-sm text-label-sm text-text-secondary">24 नोंदी (Entries)</span>
+</div>
+<div class="mt-2.5 flex items-center gap-1.5 font-label-sm text-label-sm text-text-secondary">
+<span class="inline-flex items-center text-status-warning font-semibold">
+<span class="material-symbols-outlined text-[14px] mr-0.5">arrow_upward</span>+4.2%
+          </span>
+<span>मागील महिन्यापेक्षा (vs Sep)</span>
+</div>
+</div>
+<!-- Petty Cash in Drawer -->
+<div class="bg-surface-mint p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="w-7 h-7 rounded-lg bg-primary-fixed text-on-primary-fixed-variant flex items-center justify-center mb-1.5">
+<span class="material-symbols-outlined text-[18px]">payments</span>
+</div>
+<span class="font-label-sm text-label-sm text-text-secondary">गल्ल्यात शिल्लक (Cash Drawer)</span>
+</div>
+<div class="mt-2">
+<span class="font-headline-sm text-headline-sm text-primary font-bold">₹3,850</span>
+<p class="font-label-sm text-label-sm text-text-muted mt-0.5">Petty Cash In Hand</p>
+</div>
+</div>
+<!-- Daily Average -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="w-7 h-7 rounded-lg bg-status-info-bg text-status-info flex items-center justify-center mb-1.5">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+</div>
+<span class="font-label-sm text-label-sm text-text-secondary">दैनिक सरासरी (Daily Avg)</span>
+</div>
+<div class="mt-2">
+<span class="font-headline-sm text-headline-sm text-text-primary font-bold">₹473</span>
+<p class="font-label-sm text-label-sm text-text-muted mt-0.5">प्रति दिवस (Per Day)</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Primary Floating Action Button / Quick Add -->
+<div class="px-space-lg pt-space-md">
+<button class="w-full h-12 bg-primary-container text-on-primary rounded-xl font-label-md text-label-md flex items-center justify-center gap-2 shadow-sm active:bg-primary transition-all" onclick="openQuickExpenseModal()" type="button">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+<span>नवीन खर्च नोंदवा (+ Record Expense)</span>
+</button>
+</div>
+<!-- Category Filter Chips (Horizontal Scrollable Strip) -->
+<div class="pt-space-md">
+<div class="flex items-center justify-between px-space-lg mb-2">
+<span class="font-label-sm text-label-sm text-text-secondary font-semibold uppercase tracking-wider">वर्गवारी (Categories)</span>
+<span class="font-label-sm text-label-sm text-primary font-medium">सर्व पहा (Filter)</span>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto px-space-lg no-scrollbar pb-1">
+<button class="category-chip h-9 px-3.5 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm flex-shrink-0 flex items-center gap-1.5 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">apps</span>
+<span>सर्व (All)</span>
+</button>
+<button class="category-chip h-9 px-3.5 rounded-lg bg-surface-subtle text-text-secondary font-label-sm text-label-sm flex-shrink-0 flex items-center gap-1.5 hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">apartment</span>
+<span>भाडे (Rent)</span>
+</button>
+<button class="category-chip h-9 px-3.5 rounded-lg bg-surface-subtle text-text-secondary font-label-sm text-label-sm flex-shrink-0 flex items-center gap-1.5 hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+<span>वीजबिल (Light Bill)</span>
+</button>
+<button class="category-chip h-9 px-3.5 rounded-lg bg-surface-subtle text-text-secondary font-label-sm text-label-sm flex-shrink-0 flex items-center gap-1.5 hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">group</span>
+<span>पगार (Helper Wage)</span>
+</button>
+<button class="category-chip h-9 px-3.5 rounded-lg bg-surface-subtle text-text-secondary font-label-sm text-label-sm flex-shrink-0 flex items-center gap-1.5 hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">inventory_2</span>
+<span>पॅकिंग (Packaging)</span>
+</button>
+<button class="category-chip h-9 px-3.5 rounded-lg bg-surface-subtle text-text-secondary font-label-sm text-label-sm flex-shrink-0 flex items-center gap-1.5 hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">coffee</span>
+<span>चहा/नाश्ता (Tea/Snacks)</span>
+</button>
+<button class="category-chip h-9 px-3.5 rounded-lg bg-surface-subtle text-text-secondary font-label-sm text-label-sm flex-shrink-0 flex items-center gap-1.5 hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">local_shipping</span>
+<span>हमाली / वाहतूक (Transport)</span>
+</button>
+</div>
+</div>
+<!-- Monthly Expense Breakdown Visual Section -->
+<div class="px-space-lg pt-space-lg">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">pie_chart</span>
+<span class="font-title-md text-title-md text-text-primary">ऑक्टोबर खर्च विभागणी</span>
+</div>
+<span class="font-label-sm text-label-sm text-text-secondary">Expense Share</span>
+</div>
+<!-- Segmented Visual Bar -->
+<div class="w-full h-3 bg-surface-subtle rounded-full overflow-hidden flex my-3">
+<div class="bg-primary h-full" style="width: 49%;" title="Shop Rent: 49%"></div>
+<div class="bg-primary-fixed-dim h-full" style="width: 25%;" title="Helper Wage: 25%"></div>
+<div class="bg-status-warning h-full" style="width: 20%;" title="Electricity: 20%"></div>
+<div class="bg-status-info h-full" style="width: 6%;" title="Packaging &amp; Daily: 6%"></div>
+</div>
+<!-- Category Legend Grid -->
+<div class="grid grid-cols-2 gap-y-2 gap-x-3 pt-1">
+<div class="flex items-center justify-between p-1.5 rounded-lg bg-surface-subtle">
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="w-2.5 h-2.5 rounded-full bg-primary flex-shrink-0"></span>
+<span class="font-body-sm text-body-sm text-text-secondary truncate">दुकान भाडे (Rent)</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-text-primary font-semibold block">₹7,000</span>
+<span class="font-label-nav text-label-nav text-text-muted">49%</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-1.5 rounded-lg bg-surface-subtle">
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-fixed-dim flex-shrink-0"></span>
+<span class="font-body-sm text-body-sm text-text-secondary truncate">मदतनीस पगार (Wage)</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-text-primary font-semibold block">₹3,500</span>
+<span class="font-label-nav text-label-nav text-text-muted">25%</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-1.5 rounded-lg bg-surface-subtle">
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="w-2.5 h-2.5 rounded-full bg-status-warning flex-shrink-0"></span>
+<span class="font-body-sm text-body-sm text-text-secondary truncate">वीजबिल (Electric)</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-text-primary font-semibold block">₹2,800</span>
+<span class="font-label-nav text-label-nav text-text-muted">20%</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-1.5 rounded-lg bg-surface-subtle">
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="w-2.5 h-2.5 rounded-full bg-status-info flex-shrink-0"></span>
+<span class="font-body-sm text-body-sm text-text-secondary truncate">पॅकिंग व इतर (Daily)</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-text-primary font-semibold block">₹900</span>
+<span class="font-label-nav text-label-nav text-text-muted">6%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Expense Transactions Feed -->
+<div class="px-space-lg pt-space-lg">
+<div class="flex items-center justify-between mb-3">
+<div>
+<h2 class="font-title-md text-title-md text-text-primary">खर्च व्यवहार (Recent Expenses)</h2>
+<span class="font-label-sm text-label-sm text-text-secondary">तारीख व प्रकारानुसार तपशील</span>
+</div>
+<button class="flex items-center gap-1 text-primary font-label-sm text-label-sm hover:underline" type="button">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span>फिल्टर</span>
+</button>
+</div>
+<!-- Feed List Items -->
+<div class="flex flex-col gap-space-sm">
+<!-- Entry 1: 24 Oct - Tea & Snacks -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-11 h-11 rounded-xl bg-status-warning-bg text-status-warning flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">coffee</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-body-lg text-body-lg text-text-primary font-medium truncate">Morning Tea &amp; Snacks</span>
+</div>
+<span class="font-label-sm text-label-sm text-text-secondary truncate">दुकानासाठी चहा-नाश्ता • Staff</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-label-nav text-label-nav text-text-muted">24 Oct • Ramesh</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-subtle text-text-secondary font-label-nav text-label-nav">रोख (Cash)</span>
+</div>
+</div>
+</div>
+<div class="text-right flex-shrink-0">
+<span class="font-title-md text-title-md text-text-primary block font-semibold">-₹120</span>
+<span class="font-label-sm text-label-sm text-text-muted">Petty Cash</span>
+</div>
+</div>
+<!-- Entry 2: 22 Oct - Carry Bags -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-11 h-11 rounded-xl bg-surface-mint text-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">inventory_2</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-body-lg text-body-lg text-text-primary font-medium truncate">Carry Bags &amp; Packaging Boxes</span>
+</div>
+<span class="font-label-sm text-label-sm text-text-secondary truncate">500 नग पिशव्या • Shri Ganesh Traders</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-label-nav text-label-nav text-text-muted">22 Oct • 04:30 PM</span>
+<span class="px-1.5 py-0.5 rounded bg-status-info-bg text-status-info font-label-nav text-label-nav">UPI</span>
+</div>
+</div>
+</div>
+<div class="text-right flex-shrink-0">
+<span class="font-title-md text-title-md text-text-primary block font-semibold">-₹780</span>
+<span class="font-label-sm text-label-sm text-text-muted">GPay Shop</span>
+</div>
+</div>
+<!-- Entry 3: 20 Oct - Hamali & Transport -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-11 h-11 rounded-xl bg-status-info-bg text-status-info flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">local_shipping</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-body-lg text-body-lg text-text-primary font-medium truncate">Hamali &amp; Tempo Transport</span>
+</div>
+<span class="font-label-sm text-label-sm text-text-secondary truncate">APMC मार्केट ते दुकान माल वाहतूक</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-label-nav text-label-nav text-text-muted">20 Oct • Vitthal Tempo</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-subtle text-text-secondary font-label-nav text-label-nav">रोख (Cash)</span>
+</div>
+</div>
+</div>
+<div class="text-right flex-shrink-0">
+<span class="font-title-md text-title-md text-text-primary block font-semibold">-₹650</span>
+<span class="font-label-sm text-label-sm text-text-muted">Petty Cash</span>
+</div>
+</div>
+<!-- Entry 4: 10 Oct - Light Bill -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-11 h-11 rounded-xl bg-status-warning-bg text-status-warning flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">bolt</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-body-lg text-body-lg text-text-primary font-medium truncate">MSEDCL Commercial Light Bill</span>
+</div>
+<span class="font-label-sm text-label-sm text-text-secondary truncate">दुकान मीटर बिल • Consumer #8921</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-label-nav text-label-nav text-text-muted">10 Oct • Autopay</span>
+<span class="px-1.5 py-0.5 rounded bg-status-info-bg text-status-info font-label-nav text-label-nav">UPI / Autopay</span>
+</div>
+</div>
+</div>
+<div class="text-right flex-shrink-0">
+<span class="font-title-md text-title-md text-text-primary block font-semibold">-₹2,800</span>
+<span class="font-label-sm text-label-sm text-text-muted">SBI Bank</span>
+</div>
+</div>
+<!-- Entry 5: 05 Oct - Helper Wage Advance -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-11 h-11 rounded-xl bg-surface-mint text-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">person</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-body-lg text-body-lg text-text-primary font-medium truncate">Helper Salim Bhai Advance</span>
+</div>
+<span class="font-label-sm text-label-sm text-text-secondary truncate">महिना उचल पगार • Monthly Advance</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-label-nav text-label-nav text-text-muted">05 Oct • 09:15 AM</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-subtle text-text-secondary font-label-nav text-label-nav">रोख (Cash)</span>
+</div>
+</div>
+</div>
+<div class="text-right flex-shrink-0">
+<span class="font-title-md text-title-md text-text-primary block font-semibold">-₹3,500</span>
+<span class="font-label-sm text-label-sm text-text-muted">हस्तगत रोख</span>
+</div>
+</div>
+<!-- Entry 6: 01 Oct - Shop Rent -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-11 h-11 rounded-xl bg-status-danger-bg text-status-danger flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">real_estate_agent</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-body-lg text-body-lg text-text-primary font-medium truncate">Shop Monthly Rent</span>
+</div>
+<span class="font-label-sm text-label-sm text-text-secondary truncate">घरमालक कुलकर्णी साहेब (Landlord)</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-label-nav text-label-nav text-text-muted">01 Oct • NEFT #8839</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-nav text-label-nav">Bank NEFT</span>
+</div>
+</div>
+</div>
+<div class="text-right flex-shrink-0">
+<span class="font-title-md text-title-md text-text-primary block font-semibold">-₹7,000</span>
+<span class="font-label-sm text-label-sm text-text-muted">Current A/C</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Shopkeeper Reports & Export Actions -->
+<div class="px-space-lg pt-space-lg">
+<div class="bg-surface-subtle p-space-md rounded-xl flex flex-col gap-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">assignment</span>
+<span class="font-title-md text-title-md text-text-primary">हिशोब अहवाल (Expense Reports)</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary">
+        सीए (CA) किंवा टॅक्स फायलिंगसाठी मासिक खर्चाची यादी डाउनलोड करा.
+      </p>
+<div class="grid grid-cols-2 gap-space-sm pt-1">
+<!-- Export CSV Button -->
+<button class="h-11 px-space-sm bg-surface-container-lowest text-primary font-label-sm text-label-sm rounded-lg flex items-center justify-center gap-1.5 shadow-sm active:bg-surface-mint transition-colors" onclick="triggerDownload('CSV Report')" type="button">
+<span class="material-symbols-outlined text-[18px]">table_view</span>
+<span class="truncate">Export CSV</span>
+</button>
+<!-- Download Tax Slip Button -->
+<button class="h-11 px-space-sm bg-primary text-on-primary font-label-sm text-label-sm rounded-lg flex items-center justify-center gap-1.5 shadow-sm active:bg-primary-container transition-colors" onclick="triggerDownload('Monthly Tax Slip')" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span class="truncate">Tax Slip (PDF)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Quick Add Expense Bottom Sheet Modal (Drawer) -->
+<div class="fixed inset-0 z-50 hidden" id="expenseModal">
+<!-- Scrim -->
+<div class="absolute inset-0 bg-text-primary/40 backdrop-blur-[2px]" onclick="closeQuickExpenseModal()"></div>
+<!-- Content Sheet -->
+<div class="absolute bottom-0 inset-x-0 bg-surface-canvas rounded-t-2xl p-space-lg shadow-xl max-h-[795px] overflow-y-auto">
+<div class="flex items-center justify-between pb-3">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary">नवीन खर्च जोडा</h3>
+<span class="font-label-sm text-label-sm text-text-secondary">Record New Store Expense</span>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-subtle flex items-center justify-center text-text-secondary" onclick="closeQuickExpenseModal()" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Quick Amount Input -->
+<div class="mt-2">
+<label class="block font-label-sm text-label-sm text-text-secondary mb-1">रक्कम टाका (Amount)</label>
+<div class="relative flex items-center">
+<span class="absolute left-3 font-headline-sm text-headline-sm text-text-primary">₹</span>
+<input class="w-full h-12 pl-8 pr-3 bg-surface-canvas text-headline-sm font-headline-sm text-text-primary rounded-xl focus:outline-none focus:bg-surface-mint transition-colors" id="manualAmount" placeholder="0.00" type="number"/>
+</div>
+</div>
+<!-- Category Selector -->
+<div class="mt-4">
+<label class="block font-label-sm text-label-sm text-text-secondary mb-2">खर्च वर्गवारी (Category)</label>
+<div class="grid grid-cols-3 gap-2">
+<button class="modal-cat-btn h-10 px-2 rounded-lg bg-surface-mint text-primary font-label-sm text-label-sm font-semibold flex items-center justify-center gap-1" onclick="selectModalCategory(this)" type="button">
+            चहा/नाश्ता
+          </button>
+<button class="modal-cat-btn h-10 px-2 rounded-lg bg-surface-subtle text-text-secondary font-label-sm text-label-sm flex items-center justify-center gap-1" onclick="selectModalCategory(this)" type="button">
+            पॅकिंग
+          </button>
+<button class="modal-cat-btn h-10 px-2 rounded-lg bg-surface-subtle text-text-secondary font-label-sm text-label-sm flex items-center justify-center gap-1" onclick="selectModalCategory(this)" type="button">
+            भाडे (Rent)
+          </button>
+<button class="modal-cat-btn h-10 px-2 rounded-lg bg-surface-subtle text-text-secondary font-label-sm text-label-sm flex items-center justify-center gap-1" onclick="selectModalCategory(this)" type="button">
+            पगार (Salary)
+          </button>
+<button class="modal-cat-btn h-10 px-2 rounded-lg bg-surface-subtle text-text-secondary font-label-sm text-label-sm flex items-center justify-center gap-1" onclick="selectModalCategory(this)" type="button">
+            वाहतूक
+          </button>
+<button class="modal-cat-btn h-10 px-2 rounded-lg bg-surface-subtle text-text-secondary font-label-sm text-label-sm flex items-center justify-center gap-1" onclick="selectModalCategory(this)" type="button">
+            इतर (Other)
+          </button>
+</div>
+</div>
+<!-- Payment Mode -->
+<div class="mt-4">
+<label class="block font-label-sm text-label-sm text-text-secondary mb-1">पेमेंट प्रकार (Payment Mode)</label>
+<div class="grid grid-cols-2 gap-2">
+<label class="flex items-center gap-2 p-2.5 bg-surface-mint rounded-lg cursor-pointer">
+<input checked="" class="text-primary focus:ring-0 w-4 h-4" name="payMode" type="radio"/>
+<span class="font-label-sm text-label-sm text-text-primary font-medium">रोख (Cash Drawer)</span>
+</label>
+<label class="flex items-center gap-2 p-2.5 bg-surface-subtle rounded-lg cursor-pointer">
+<input class="text-primary focus:ring-0 w-4 h-4" name="payMode" type="radio"/>
+<span class="font-label-sm text-label-sm text-text-primary font-medium">ऑनलाइन / UPI</span>
+</label>
+</div>
+</div>
+<!-- Description / Note -->
+<div class="mt-4">
+<label class="block font-label-sm text-label-sm text-text-secondary mb-1">तपशील (Notes / Paid To)</label>
+<input class="w-full h-11 px-3 bg-surface-canvas text-body-md font-body-md text-text-primary rounded-xl focus:outline-none focus:bg-surface-mint transition-colors" placeholder="उदा. सलीम भाई चहा किंवा किराणा माल भाडे" type="text"/>
+</div>
+<!-- Submit Action -->
+<div class="mt-6">
+<button class="w-full h-12 bg-primary-container text-on-primary rounded-xl font-label-md text-label-md font-semibold flex items-center justify-center gap-2 shadow-sm active:bg-primary transition-all" onclick="submitExpenseForm()" type="button">
+<span class="material-symbols-outlined text-[20px]">save</span>
+<span>खर्च नोंद जतन करा (Save Entry)</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function showToast(message) {
+    const toast = document.getElementById('toastSuccess');
+    const toastMsg = document.getElementById('toastMsg');
+    if (!toast || !toastMsg) return;
+    toastMsg.textContent = message;
+    toast.classList.remove('opacity-0', '-translate-y-24');
+    toast.classList.add('opacity-100', 'translate-y-0');
+    setTimeout(() => {
+      toast.classList.remove('opacity-100', 'translate-y-0');
+      toast.classList.add('opacity-0', '-translate-y-24');
+    }, 2800);
+  }
+
+  function confirmVoiceExpense(btn) {
+    btn.disabled = true;
+    btn.innerHTML = `<span class="material-symbols-outlined text-[14px]">done_all</span> नोंदवले!`;
+    btn.classList.remove('bg-primary');
+    btn.classList.add('bg-text-secondary');
+    showToast('व्हॉइस नोंद यशस्वीरीत्या जतन झाली (₹120 Cash Logged)');
+  }
+
+  function openQuickExpenseModal() {
+    const modal = document.getElementById('expenseModal');
+    if (modal) modal.classList.remove('hidden');
+  }
+
+  function closeQuickExpenseModal() {
+    const modal = document.getElementById('expenseModal');
+    if (modal) modal.classList.add('hidden');
+  }
+
+  function selectModalCategory(button) {
+    document.querySelectorAll('.modal-cat-btn').forEach(btn => {
+      btn.classList.remove('bg-surface-mint', 'text-primary', 'font-semibold');
+      btn.classList.add('bg-surface-subtle', 'text-text-secondary');
+    });
+    button.classList.add('bg-surface-mint', 'text-primary', 'font-semibold');
+    button.classList.remove('bg-surface-subtle', 'text-text-secondary');
+  }
+
+  function submitExpenseForm() {
+    const amt = document.getElementById('manualAmount');
+    const val = amt && amt.value ? amt.value : '250';
+    closeQuickExpenseModal();
+    showToast(`खर्च ₹${val} नोंदवला गेला! (Expense Saved)`);
+    if (amt) amt.value = '';
+  }
+
+  function triggerDownload(type) {
+    showToast(`${type} डाउनलोड होत आहे... (Downloading)`);
+  }
+
+  // Interactive category pill selection in horizontal strip
+  document.querySelectorAll('.category-chip').forEach(chip => {
+    chip.addEventListener('click', function() {
+      document.querySelectorAll('.category-chip').forEach(c => {
+        c.classList.remove('bg-primary', 'text-on-primary');
+        c.classList.add('bg-surface-subtle', 'text-text-secondary');
+      });
+      this.classList.remove('bg-surface-subtle', 'text-text-secondary');
+      this.classList.add('bg-primary', 'text-on-primary');
+    });
+  });
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface-canvas/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.04)]" data-active-classes="text-primary-container font-semibold"><div class="flex items-center justify-around h-16 px-space-sm relative"><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[24px]">storefront</span><span class="font-label-nav text-label-nav">Home</span></a><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="inventory" href="#"><span class="material-symbols-outlined text-[24px]">inventory_2</span><span class="font-label-nav text-label-nav">Inventory</span></a><div class="relative flex flex-col items-center justify-center w-14 h-12"><button aria-label="Voice Action" class="absolute -top-5 w-14 h-14 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-[0_4px_12px_rgba(22,132,71,0.3)] active:scale-95 transition-transform" type="button"><span class="absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-30 animate-ping"></span><span class="material-symbols-outlined text-[28px] relative z-10">mic</span></button><span class="font-label-nav text-label-nav text-primary-container mt-6 font-semibold">Voice</span></div><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="reports" href="#"><span class="material-symbols-outlined text-[24px]">bar_chart</span><span class="font-label-nav text-label-nav">Reports</span></a><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="settings" href="#"><span class="material-symbols-outlined text-[24px]">grid_view</span><span class="font-label-nav text-label-nav">More</span></a></div></nav></body></html>

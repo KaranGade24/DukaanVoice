@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Noto+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-primary": "#ffffff", "surface-canvas": "#FFFFFF", "on-primary-fixed-variant": "#005228", "secondary-fixed": "#a0f5b4", "inverse-surface": "#28332d", "secondary-container": "#a0f5b4", "outline": "#6f7a6f", "primary-fixed-dim": "#77db94", "surface-bright": "#f0fdf3", "primary-fixed": "#93f8ae", "text-primary": "#202B25", "on-tertiary-fixed-variant": "#3e4943", "error-container": "#ffdad6", "surface-container-high": "#dfebe2", "tertiary-fixed-dim": "#bdcac1", "surface-container-lowest": "#ffffff", "surface": "#f0fdf3", "primary-container": "#168447", "surface-container-highest": "#d9e6dc", "status-info-bg": "#EFF6FF", "on-tertiary-fixed": "#131e19", "outline-variant": "#becabd", "background": "#f0fdf3", "status-warning-bg": "#FFF5E5", "border-primary": "#CDE8D5", "on-surface-variant": "#3f4940", "on-secondary-fixed": "#00210c", "on-secondary-fixed-variant": "#005228", "surface-subtle": "#F7F9F7", "on-tertiary-container": "#f1fef4", "error": "#ba1a1a", "tertiary-fixed": "#d9e6dd", "on-tertiary": "#ffffff", "on-secondary": "#ffffff", "surface-container-low": "#eaf7ed", "surface-tint": "#006d37", "primary": "#006935", "on-error-container": "#93000a", "secondary": "#136c39", "status-info": "#2563EB", "on-secondary-container": "#1c733f", "tertiary": "#515d57", "on-error": "#ffffff", "secondary-fixed-dim": "#85d89a", "status-warning": "#D97706", "tertiary-container": "#6a766f", "surface-variant": "#d9e6dc", "status-danger-bg": "#FEECEC", "on-surface": "#131e18", "control-disabled": "#C9D1CB", "surface-dim": "#d0ddd4", "inverse-primary": "#77db94", "text-secondary": "#66736B", "inverse-on-surface": "#e7f4ea", "on-primary-container": "#edffec", "text-muted": "#96A19A", "on-primary-fixed": "#00210d", "on-background": "#131e18", "surface-container": "#e4f1e7", "border-subtle": "#E5EAE6", "status-danger": "#DC2626", "surface-mint": "#F3FAF5" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-lg": "1rem", "space-xl": "1.5rem", "space-md": "0.75rem", "space-xs": "0.25rem", "margin": "1rem", "gutter": "1rem", "space-sm": "0.5rem" }, fontFamily: { "headline-lg": ["Inter"], "body-md": ["Noto Sans"], "label-md": ["Inter"], "body-sm": ["Noto Sans"], "body-lg": ["Noto Sans"], "label-sm": ["Inter"], "headline-sm": ["Inter"], "title-md": ["Inter"], "display": ["Inter"], "label-nav": ["Inter"] }, fontSize: { "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-md": ["15px", { "lineHeight": "20px", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "body-lg": ["15px", { "lineHeight": "22px", "fontWeight": "500" }], "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "600" }], "display": ["30px", { "lineHeight": "38px", "fontWeight": "700" }], "label-nav": ["11px", { "lineHeight": "14px", "fontWeight": "500" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface-canvas text-text-primary flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface-canvas/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-space-lg flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0 flex-1"><img alt="DukaanVoice Brand Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/ALJJyrBFhjZok_St0s9ndNWJUfhVSnuNph1NkE6Y2cucYkMw82UFMIlhGDh2a2wH_YBKFWRvpW68WYsvAr7X_0D8VepXX4FT05QAdjYrlB1A7Tp7X_IPdlVDJOl7_R6AQFik-cPeYrYAi5xNZgy_L8VJ14cyb9V2DaOA1dBh11OCRq5E0uzSPOjkh56-qwl8ZGUwyZcd9HOMaSYifbBw2KQ3h68vPKsQO1_TPEHN8ubM8YioWw"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-title-md text-title-md text-text-primary truncate">Apna Kirana &amp; General Store</span></div><div class="flex items-center gap-space-xs"><span class="font-label-sm text-label-sm text-text-secondary truncate">Dashboard</span><button class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-surface-mint text-primary font-label-sm text-label-sm" type="button"><span class="material-symbols-outlined text-[12px] mr-0.5">translate</span>मराठी / EN</button></div></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><button aria-label="Notifications" class="w-11 h-11 flex items-center justify-center rounded-full text-text-secondary hover:text-text-primary hover:bg-surface-subtle transition-colors" type="button"><span class="material-symbols-outlined">notifications</span></button><div class="w-11 h-11 flex items-center justify-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYaIDXWuT8fLeKKKdtGCY1FEzcKn5vndNRCoUVaLQyv2MqBIiHyYxsKR_qHVfTCAaAkWzGy6C5s7MIwC_k2i0YLI-afwv5z26288gDBFJTuXlMx_vyaqYIr6gTPDC6xDvcQKyXRlsLf_bTfEn4KYAv_8sM_tLp8GuUb40XS9vNP-u3cZXrBImHJl_QOYG5ceX8DIz6j95YMB_YWQ0qjvqaA1bu3326zLINEs7WmjTH"/></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface-canvas"><div class="flex flex-col w-full pb-8">
+<!-- Top Sub-header & Date Selection Strip -->
+<section class="px-space-lg pt-4 pb-2">
+<div class="flex items-start justify-between gap-3">
+<div class="min-w-0">
+<h1 class="font-headline-sm text-headline-sm text-text-primary tracking-tight">Business Reports &amp; Analytics</h1>
+<p class="font-body-sm text-body-sm text-text-secondary mt-0.5">हिशोब व नफा विश्लेषण (Oct 2024)</p>
+</div>
+<button aria-label="Export reports in PDF or CSV format" class="flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl bg-surface-container text-primary hover:bg-surface-container-high transition-colors shadow-sm" id="exportModalBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span class="font-label-sm text-label-sm font-semibold">Export</span>
+</button>
+</div>
+<!-- Date Period Horizontal Filter Chips -->
+<div class="flex items-center gap-2 overflow-x-auto py-3 no-scrollbar -mx-space-lg px-space-lg">
+<button class="period-chip px-3.5 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-subtle text-text-secondary whitespace-nowrap transition-all active:scale-95" type="button">Today</button>
+<button class="period-chip px-3.5 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-subtle text-text-secondary whitespace-nowrap transition-all active:scale-95" type="button">This Week</button>
+<button class="period-chip active px-4 py-1.5 rounded-full text-label-sm font-label-sm bg-primary-container text-on-primary whitespace-nowrap font-semibold shadow-sm transition-all active:scale-95" type="button">
+        This Month (Oct 2024)
+      </button>
+<button class="period-chip px-3.5 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-subtle text-text-secondary whitespace-nowrap transition-all active:scale-95" type="button">Quarterly</button>
+<button class="period-chip px-3.5 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-subtle text-text-secondary whitespace-nowrap transition-all active:scale-95 flex items-center gap-1" type="button">
+<span>Custom Range</span>
+<span class="material-symbols-outlined text-[15px]">calendar_today</span>
+</button>
+</div>
+</section>
+<!-- Performance Summary Cards (2x2 Compact Bento Grid) -->
+<section class="px-space-lg pt-1">
+<div class="grid grid-cols-2 gap-3">
+<!-- 1. Total Revenue Card -->
+<div class="p-3.5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-secondary font-medium">Total Sales / विक्री</span>
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]">point_of_sale</span>
+</div>
+</div>
+<div class="font-headline-sm text-headline-sm text-text-primary mt-1.5 font-bold tracking-tight">₹3,42,850</div>
+</div>
+<div class="flex items-center gap-1 mt-2.5">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px] font-semibold bg-secondary-container text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[12px] mr-0.5">trending_up</span>+14.2%
+          </span>
+<span class="font-label-nav text-label-nav text-text-muted">vs Sep</span>
+</div>
+</div>
+<!-- 2. Net Profit Card -->
+<div class="p-3.5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-secondary font-medium">Net Profit / नफा</span>
+<div class="w-6 h-6 rounded-full bg-surface-mint flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[16px]">account_balance_wallet</span>
+</div>
+</div>
+<div class="font-headline-sm text-headline-sm text-primary-container mt-1.5 font-bold tracking-tight">₹52,480</div>
+</div>
+<div class="flex items-center gap-1 mt-2.5">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px] font-medium bg-surface-container-high text-on-secondary-fixed-variant">
+            15.3% Margin
+          </span>
+<span class="font-label-nav text-label-nav text-text-muted">Healthy</span>
+</div>
+</div>
+<!-- 3. Expenses Card -->
+<div class="p-3.5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-secondary font-medium">Store Expenses</span>
+<div class="w-6 h-6 rounded-full bg-status-danger-bg flex items-center justify-center text-status-danger">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+</div>
+</div>
+<div class="font-headline-sm text-headline-sm text-text-primary mt-1.5 font-bold tracking-tight">₹14,200</div>
+</div>
+<p class="font-label-nav text-label-nav text-text-muted mt-2.5 truncate" title="Rent, Power &amp; Wages">Rent, Power, Wages</p>
+</div>
+<!-- 4. Stock Valuation Card -->
+<div class="p-3.5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-secondary font-medium">Stock Value</span>
+<div class="w-6 h-6 rounded-full bg-status-info-bg flex items-center justify-center text-status-info">
+<span class="material-symbols-outlined text-[16px]">inventory</span>
+</div>
+</div>
+<div class="font-headline-sm text-headline-sm text-text-primary mt-1.5 font-bold tracking-tight">₹4,82,600</div>
+</div>
+<div class="flex items-center gap-1 mt-2.5">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px] font-medium bg-status-warning-bg text-status-warning">
+            Wholesale cost
+          </span>
+</div>
+</div>
+</div>
+</section>
+<!-- Sales & Revenue Trend Chart Section -->
+<section class="px-space-lg pt-4">
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-sm">
+<div class="flex items-center justify-between mb-3">
+<div>
+<div class="flex items-center gap-1.5">
+<h2 class="font-title-md text-title-md text-text-primary">Weekly Revenue Velocity</h2>
+<span class="material-symbols-outlined text-text-muted text-[16px]">info</span>
+</div>
+<p class="font-label-sm text-label-sm text-text-secondary mt-0.5">October weekly billing totals</p>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-text-muted">Total Run</span>
+<div class="font-label-md text-label-md text-text-primary font-bold">4 Weeks</div>
+</div>
+</div>
+<!-- SVG Bar Chart -->
+<div class="w-full pt-2">
+<svg aria-label="October weekly sales trend bar chart" class="w-full h-auto overflow-visible" role="img" viewbox="0 0 340 135">
+<!-- Background Grid lines -->
+<line stroke="#E5EAE6" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="340" y1="20" y2="20"></line>
+<line stroke="#E5EAE6" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="340" y1="60" y2="60"></line>
+<line stroke="#E5EAE6" stroke-width="1" x1="0" x2="340" y1="100" y2="100"></line>
+<!-- Week 1: ₹74,500 (height 68) -->
+<g class="cursor-pointer group">
+<rect class="group-hover:fill-primary-fixed-dim transition-colors" fill="#dfebe2" height="62" rx="6" width="40" x="24" y="38"></rect>
+<text fill="#66736B" font-family="Inter" font-size="10" font-weight="600" text-anchor="middle" x="44" y="32">₹74.5K</text>
+<text fill="#66736B" font-family="Inter" font-size="11" text-anchor="middle" x="44" y="116">W1 (1-7)</text>
+</g>
+<!-- Week 2: ₹82,100 (height 75) -->
+<g class="cursor-pointer group">
+<rect class="group-hover:fill-primary-fixed-dim transition-colors" fill="#dfebe2" height="69" rx="6" width="40" x="108" y="31"></rect>
+<text fill="#66736B" font-family="Inter" font-size="10" font-weight="600" text-anchor="middle" x="128" y="25">₹82.1K</text>
+<text fill="#66736B" font-family="Inter" font-size="11" text-anchor="middle" x="128" y="116">W2 (8-14)</text>
+</g>
+<!-- Week 3: ₹1,12,800 (Diwali surge peak) (height 100) -->
+<g class="cursor-pointer">
+<!-- Glow background pill for peak -->
+<rect fill="#168447" height="95" rx="8" width="44" x="190" y="5"></rect>
+<!-- Peak badge marker -->
+<polygon fill="#168447" points="212,0 216,-6 208,-6"></polygon>
+<text fill="#168447" font-family="Inter" font-size="9" font-weight="700" text-anchor="middle" x="212" y=" -9">★ FESTIVE</text>
+<text fill="#ffffff" font-family="Inter" font-size="10" font-weight="700" text-anchor="middle" x="212" y="24">₹1.13L</text>
+<text fill="#136c39" font-family="Inter" font-size="11" font-weight="700" text-anchor="middle" x="212" y="116">W3 (15-21)</text>
+</g>
+<!-- Week 4: ₹73,450 (height 66) -->
+<g class="cursor-pointer group">
+<rect class="group-hover:fill-primary-fixed-dim transition-colors" fill="#dfebe2" height="61" rx="6" width="40" x="276" y="39"></rect>
+<text fill="#66736B" font-family="Inter" font-size="10" font-weight="600" text-anchor="middle" x="296" y="33">₹73.4K</text>
+<text fill="#66736B" font-family="Inter" font-size="11" text-anchor="middle" x="296" y="116">W4 (22-28)</text>
+</g>
+</svg>
+</div>
+<!-- Festive Peak Sales Insight Highlight -->
+<div class="mt-4 p-2.5 rounded-lg bg-surface-mint flex items-center justify-between gap-2">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-primary text-[20px] flex-shrink-0" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<div class="min-w-0">
+<div class="font-label-sm text-label-sm text-text-primary font-semibold truncate">Peak sales day: Sunday 20 Oct</div>
+<div class="font-label-nav text-label-nav text-text-secondary truncate">Diwali Prep Shopping Rush · 318 bills made</div>
+</div>
+</div>
+<span class="font-label-md text-label-md text-primary font-bold whitespace-nowrap">₹28,400</span>
+</div>
+</div>
+</section>
+<!-- Voice Assistant Kirana Query Banner (Moment of Delight) -->
+<section class="px-space-lg pt-4">
+<div class="p-3.5 rounded-xl bg-surface-container flex items-center gap-3 active:scale-[0.99] transition-transform cursor-pointer shadow-sm" id="voicePromptTrigger">
+<div class="relative w-11 h-11 rounded-full bg-primary-container text-on-primary flex items-center justify-center flex-shrink-0 shadow-[0_2px_8px_rgba(22,132,71,0.25)]">
+<span class="material-symbols-outlined text-[22px]">mic</span>
+<span class="absolute -top-0.5 -right-0.5 flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-fixed opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-primary-fixed-dim"></span>
+</span>
+</div>
+<div class="min-w-0 flex-1">
+<div class="flex items-center gap-1.5">
+<span class="font-label-sm text-label-sm font-semibold text-primary">आवाज देऊन विचारा (Ask by Voice)</span>
+<span class="font-label-nav text-label-nav px-1.5 py-0.2 rounded bg-surface-canvas text-secondary font-medium">Instant</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-primary mt-0.5 truncate italic font-medium">
+          "या महिन्याचा एकूण नफा किती झाला?"
+        </p>
+<p class="font-label-nav text-label-nav text-text-secondary truncate">
+          Tap here to ask daily profit, top customer, or fastest moving goods.
+        </p>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[18px] flex-shrink-0">arrow_forward_ios</span>
+</div>
+</section>
+<!-- Deep Dive Module Navigators & Drilldowns -->
+<section class="px-space-lg pt-4 flex flex-col gap-2.5">
+<div class="flex items-center justify-between px-0.5">
+<h2 class="font-title-md text-title-md text-text-primary font-bold">Detailed Reports / सविस्तर अहवाल</h2>
+<span class="font-label-sm text-label-sm text-text-secondary">5 Core Modules</span>
+</div>
+<!-- 1. P&L Report Drilldown -->
+<a aria-label="Open Profit and Loss statement" class="block p-3.5 rounded-xl bg-surface-container-lowest shadow-sm hover:bg-surface-subtle transition-all active:scale-[0.99]" href="#" role="button">
+<div class="flex items-center justify-between gap-3">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">bar_chart_4_bars</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-text-primary font-semibold">Profit &amp; Loss (P&amp;L) Report</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary truncate">नफा-तोटा पत्रक · Rev ₹3.42L · COGS ₹2.76L</p>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<div class="text-right">
+<span class="font-label-md text-label-md text-primary font-bold">Net ₹52.4K</span>
+<div class="font-label-nav text-label-nav text-text-muted">Gross: ₹66.6K</div>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[18px]">chevron_right</span>
+</div>
+</div>
+</a>
+<!-- 2. Best-Selling Products -->
+<a aria-label="View best selling inventory items" class="block p-3.5 rounded-xl bg-surface-container-lowest shadow-sm hover:bg-surface-subtle transition-all active:scale-[0.99]" href="#" role="button">
+<div class="flex items-center justify-between gap-3">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-xl bg-surface-mint flex items-center justify-center text-primary-container flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">award_star</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-text-primary font-semibold">Best-Selling Items &amp; Categories</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary truncate">सर्वाधिक विक्री · Madhur Pure Sugar (#1)</p>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<div class="text-right">
+<span class="font-label-md text-label-md text-text-primary font-bold">1,420 kg</span>
+<div class="font-label-nav text-label-nav text-text-muted">₹63.9K billed</div>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[18px]">chevron_right</span>
+</div>
+</div>
+</a>
+<!-- 3. Inventory Valuation & Stock Health -->
+<a aria-label="View inventory valuation and reorder levels" class="block p-3.5 rounded-xl bg-surface-container-lowest shadow-sm hover:bg-surface-subtle transition-all active:scale-[0.99]" href="#" role="button">
+<div class="flex items-center justify-between gap-3">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-xl bg-status-warning-bg flex items-center justify-center text-status-warning flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">production_quantity_limits</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-text-primary font-semibold">Inventory Valuation &amp; Health</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary truncate">44 items critically low on stock</p>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<div class="text-right">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-status-warning-bg text-status-warning">
+              44 Reorders
+            </span>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[18px]">chevron_right</span>
+</div>
+</div>
+</a>
+<!-- 4. Store Expenses & Petty Cash -->
+<a aria-label="View store expenses breakdown" class="block p-3.5 rounded-xl bg-surface-container-lowest shadow-sm hover:bg-surface-subtle transition-all active:scale-[0.99]" href="#" role="button">
+<div class="flex items-center justify-between gap-3">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-xl bg-status-danger-bg flex items-center justify-center text-status-danger flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">payments</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-text-primary font-semibold">Expenses &amp; Petty Cash / दुकानाचे खर्च</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary truncate">₹14,200 logged across 8 vouchers</p>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<div class="text-right">
+<span class="font-label-md text-label-md text-status-danger font-bold">-₹14,200</span>
+<div class="font-label-nav text-label-nav text-text-muted">8 Entries</div>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[18px]">chevron_right</span>
+</div>
+</div>
+</a>
+<!-- 5. Tax & GST Summary (GSTR-3B Ready) -->
+<a aria-label="View GST filing summary" class="block p-3.5 rounded-xl bg-surface-container-lowest shadow-sm hover:bg-surface-subtle transition-all active:scale-[0.99]" href="#" role="button">
+<div class="flex items-center justify-between gap-3">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-xl bg-status-info-bg flex items-center justify-center text-status-info flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">description</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-text-primary font-semibold">Tax &amp; GST Summary (GSTR-3B)</span>
+<span class="px-1.5 py-0.2 rounded text-[10px] font-bold bg-surface-mint text-primary">Ready</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary truncate">0% (Atta, Rice) vs 5% vs 12% Breakdown</p>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<div class="text-right">
+<span class="font-label-md text-label-md text-text-primary font-bold">₹11,430</span>
+<div class="font-label-nav text-label-nav text-text-muted">Tax Payable</div>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[18px]">chevron_right</span>
+</div>
+</div>
+</a>
+</section>
+<!-- Kirana Store Owner Tip / Delight Micro-card -->
+<section class="px-space-lg pt-4">
+<div class="p-3.5 rounded-xl bg-surface-mint flex items-start gap-3">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">tips_and_updates</span>
+</div>
+<div class="min-w-0 flex-1">
+<span class="font-label-sm text-label-sm font-semibold text-text-primary">Dukaan Insight · नफा वाढवण्याची संधी</span>
+<p class="font-body-sm text-body-sm text-text-secondary mt-0.5 leading-snug">
+          Ghee &amp; Dry Fruits sales surged by 42% this week. Re-order with wholesale supplier <span class="font-medium text-text-primary">Patil Traders</span> before Friday delivery rush.
+        </p>
+</div>
+</div>
+</section>
+<!-- Interactive Export Drawer / Modal (Hidden by default, toggled via JS) -->
+<div class="hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-end justify-center" id="exportModal">
+<div class="w-full max-w-lg bg-surface-canvas rounded-t-2xl p-5 shadow-2xl animate-in slide-in-from-bottom duration-200">
+<div class="w-12 h-1 bg-surface-variant rounded-full mx-auto mb-4"></div>
+<div class="flex items-center justify-between mb-3">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary">Download Financial Report</h3>
+<p class="font-body-sm text-body-sm text-text-secondary">अहवाल डाऊनलोड करा (Oct 2024)</p>
+</div>
+<button aria-label="Close export menu" class="w-9 h-9 rounded-full bg-surface-subtle flex items-center justify-center text-text-secondary hover:text-text-primary" id="closeExportBtn">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="space-y-2.5 my-4">
+<!-- PDF Export Button -->
+<button class="w-full p-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high flex items-center justify-between transition-colors text-left" type="button">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-status-danger text-[26px]">picture_as_pdf</span>
+<div>
+<div class="font-label-md text-label-md text-text-primary">Formal CA / Auditor P&amp;L (PDF)</div>
+<div class="font-label-sm text-label-sm text-text-secondary">Official balance sheet with Marathi &amp; English headers</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-[20px]">file_download</span>
+</button>
+<!-- CSV / Excel Export Button -->
+<button class="w-full p-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high flex items-center justify-between transition-colors text-left" type="button">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container text-[26px]">table_view</span>
+<div>
+<div class="font-label-md text-label-md text-text-primary">Raw Transaction Data (Excel / CSV)</div>
+<div class="font-label-sm text-label-sm text-text-secondary">Line-by-line itemized sales, margins &amp; taxes</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-[20px]">file_download</span>
+</button>
+</div>
+<button class="w-full py-3 rounded-xl bg-surface-subtle font-label-md text-label-md text-text-secondary font-semibold hover:bg-surface-container transition-colors" id="cancelExportBtn" type="button">
+        Cancel / मागे जा
+      </button>
+</div>
+</div>
+</div>
+<script>
+  // Simple client-side micro-interactions for Period Chips and Export Modal
+  document.addEventListener('DOMContentLoaded', () => {
+    const chips = document.querySelectorAll('.period-chip');
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => {
+          c.classList.remove('active', 'bg-primary-container', 'text-on-primary', 'font-semibold', 'shadow-sm');
+          c.classList.add('bg-surface-subtle', 'text-text-secondary');
+        });
+        chip.classList.add('active', 'bg-primary-container', 'text-on-primary', 'font-semibold', 'shadow-sm');
+        chip.classList.remove('bg-surface-subtle', 'text-text-secondary');
+      });
+    });
+
+    const exportBtn = document.getElementById('exportModalBtn');
+    const exportModal = document.getElementById('exportModal');
+    const closeExportBtn = document.getElementById('closeExportBtn');
+    const cancelExportBtn = document.getElementById('cancelExportBtn');
+
+    const openModal = () => exportModal?.classList.remove('hidden');
+    const closeModal = () => exportModal?.classList.add('hidden');
+
+    exportBtn?.addEventListener('click', openModal);
+    closeExportBtn?.addEventListener('click', closeModal);
+    cancelExportBtn?.addEventListener('click', closeModal);
+
+    // Clicking outside drawer closes it
+    exportModal?.addEventListener('click', (e) => {
+      if (e.target === exportModal) closeModal();
+    });
+  });
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface-canvas/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.04)]" data-active-classes="text-primary-container font-semibold"><div class="flex items-center justify-around h-16 px-space-sm relative"><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[24px]">storefront</span><span class="font-label-nav text-label-nav">Home</span></a><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="inventory" href="#"><span class="material-symbols-outlined text-[24px]">inventory_2</span><span class="font-label-nav text-label-nav">Inventory</span></a><div class="relative flex flex-col items-center justify-center w-14 h-12"><button aria-label="Voice Action" class="absolute -top-5 w-14 h-14 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-[0_4px_12px_rgba(22,132,71,0.3)] active:scale-95 transition-transform" type="button"><span class="absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-30 animate-ping"></span><span class="material-symbols-outlined text-[28px] relative z-10">mic</span></button><span class="font-label-nav text-label-nav text-primary-container mt-6 font-semibold">Voice</span></div><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="reports" href="#"><span class="material-symbols-outlined text-[24px]">bar_chart</span><span class="font-label-nav text-label-nav">Reports</span></a><a class="flex flex-col items-center justify-center gap-1 w-14 h-12 text-text-secondary hover:text-text-primary transition-all" data-path="settings" href="#"><span class="material-symbols-outlined text-[24px]">grid_view</span><span class="font-label-nav text-label-nav">More</span></a></div></nav></body></html>
