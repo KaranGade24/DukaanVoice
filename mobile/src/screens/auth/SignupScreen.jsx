@@ -19,6 +19,7 @@ import PasswordField from "../../components/auth/PasswordField";
 import PrimaryButton from "../../components/auth/PrimaryButton";
 import CategorySelector from "../../components/auth/CategorySelector";
 import { useAuth } from "../../context/AuthContext";
+import { showValidationAlert } from "../../utils/validationAlert";
 import { normalizeEmail, validateSignup } from "../../utils/authValidation";
 import theme from "../../constants/theme";
 
@@ -60,11 +61,14 @@ export default function SignupScreen() {
       });
       router.replace("/(app)");
     } catch (error) {
+      showValidationAlert(error, t("validation.alertTitle"));
       if (
         error.code === "EMAIL_ALREADY_REGISTERED" ||
         error.code === "DUPLICATE_RESOURCE"
       )
         setErrors({ email: t("auth.signupFailed") });
+      else if (error.code === "VALIDATION_ERROR")
+        setGeneralError(error.message);
       else if (
         error.code === "NETWORK_ERROR" ||
         error.code === "NETWORK_TIMEOUT"
@@ -78,9 +82,10 @@ export default function SignupScreen() {
   return (
     <KeyboardAvoidingView
       style={styles.page}
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 20}
     >
-      <AuthHeader title={t("auth.signupTitle")} backHref="/(auth)/login" />
+      <AuthHeader title={t("auth.signupTitle")} />
       <ScrollView
         contentContainerStyle={styles.content}
         keyboardShouldPersistTaps="handled"
@@ -211,10 +216,16 @@ export default function SignupScreen() {
 
 const styles = StyleSheet.create({
   page: { flex: 1, backgroundColor: theme.colors.background },
-  content: { padding: theme.spacing.screenGutter, gap: 20, paddingBottom: 36 },
+  content: {
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    gap: 16,
+    paddingBottom: 24,
+  },
   topRow: {
     flexDirection: "row",
     alignItems: "center",
+    flexWrap: "wrap",
     justifyContent: "space-between",
     gap: 12,
   },
@@ -237,7 +248,7 @@ const styles = StyleSheet.create({
   subheading: { ...theme.typography.body, color: theme.colors.textSecondary },
   formCard: {
     gap: 17,
-    padding: 18,
+    padding: 16,
     borderRadius: theme.radii.card,
     backgroundColor: theme.colors.surface,
     borderWidth: 1,

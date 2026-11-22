@@ -1,0 +1,17 @@
+import { Router } from "express";
+import { requireAuth } from "../../middleware/auth.middleware.js";
+import { validate } from "../../middleware/validation.middleware.js";
+import * as controller from "./purchase.controller.js";
+import { paymentCreateSchema, paymentIdSchema, paymentListSchema, purchaseCancelSchema, purchaseCreateSchema, purchaseIdSchema, purchaseListSchema, supplierPaymentListSchema } from "./purchase.validators.js";
+const router = Router();
+router.use(requireAuth);
+router.get("/supplier-payments", validate(supplierPaymentListSchema), controller.supplierPayments);
+router.get("/supplier-payments/:id", validate(paymentIdSchema), controller.supplierPayment);
+router.post("/", validate(purchaseCreateSchema), controller.create);
+router.get("/", validate(purchaseListSchema), controller.list);
+router.get("/:id/payments", validate(paymentListSchema), controller.listPayments);
+router.post("/:id/payments", validate(paymentCreateSchema), controller.addPayment);
+router.get("/:id/invoice", validate(purchaseIdSchema), controller.invoice);
+router.post("/:id/cancel", validate(purchaseCancelSchema), controller.cancel);
+router.get("/:id", validate(purchaseIdSchema), controller.get);
+export default router;

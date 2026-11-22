@@ -28,13 +28,15 @@ export default function LanguageSelector() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
+    flexShrink: 1,
     backgroundColor: theme.colors.surfaceTint,
     borderRadius: theme.radii.pill,
     padding: 4,
   },
   option: {
     minHeight: 36,
-    paddingHorizontal: 12,
+    flexShrink: 1,
+    paddingHorizontal: 8,
     borderRadius: theme.radii.pill,
     justifyContent: "center",
   },
@@ -45,6 +47,10 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
   },
-  text: { ...theme.typography.body, color: theme.colors.textSecondary },
+  text: {
+    ...theme.typography.small,
+    color: theme.colors.textSecondary,
+    textAlign: "center",
+  },
   activeText: { color: theme.colors.onPrimary, fontWeight: "700" },
 });

@@ -1,0 +1,381 @@
+openapi: 3.1.0
+info:
+  title: DukaanVoice Inventory API
+  version: 1.0.0
+  description: Shop scoped inventory endpoints. Shop ownership is derived from the authenticated user.
+servers:
+  - url: /api
+security:
+  - bearerAuth: []
+paths:
+  /categories:
+    get:
+      summary: List categories with product counts
+      parameters:
+        - { in: query, name: search, schema: { type: string } }
+        - { in: query, name: isActive, schema: { type: boolean } }
+        - {
+            in: query,
+            name: page,
+            schema: { type: integer, minimum: 1, default: 1 },
+          }
+        - {
+            in: query,
+            name: limit,
+            schema: { type: integer, minimum: 1, maximum: 100, default: 20 },
+          }
+        - {
+            in: query,
+            name: sortBy,
+            schema:
+              {
+                type: string,
+                enum: [name, createdAt, updatedAt, productCount],
+              },
+          }
+        - {
+            in: query,
+            name: sortOrder,
+            schema: { type: string, enum: [asc, desc] },
+          }
+      responses:
+        "200": { description: Paginated category list with productCount }
+        "401": { $ref: "#/components/responses/Error" }
+    post:
+      summary: Create a category
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name: { type: string, maxLength: 80 }
+                description: { type: string, maxLength: 300 }
+                image: { type: string, maxLength: 2048 }
+                icon: { type: string, maxLength: 80 }
+      responses:
+        "201": { description: Created category }
+        "409": { $ref: "#/components/responses/Error" }
+  /categories/{id}:
+    parameters:
+      - { $ref: "#/components/parameters/id" }
+    get:
+      summary: Get a category and product count
+      responses:
+        "200": { description: Category }
+        "404": { $ref: "#/components/responses/Error" }
+    put:
+      summary: Update category details
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              {
+                type: object,
+                minProperties: 1,
+                properties:
+                  {
+                    name: { type: string },
+                    description: { type: string },
+                    image: { type: string },
+                    icon: { type: string },
+                  },
+              }
+      responses:
+        "200": { description: Updated category }
+        "404": { $ref: "#/components/responses/Error" }
+    delete:
+      summary: Delete a category with no assigned products
+      responses:
+        "200": { description: Deleted category }
+        "409": { $ref: "#/components/responses/Error" }
+  /categories/{id}/status:
+    patch:
+      summary: Activate or deactivate a category
+      parameters:
+        - { $ref: "#/components/parameters/id" }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              {
+                type: object,
+                required: [isActive],
+                properties: { isActive: { type: boolean } },
+              }
+      responses:
+        "200": { description: Updated category status }
+  /products:
+    get:
+      summary: Search and filter products
+      parameters:
+        - { in: query, name: search, schema: { type: string } }
+        - { in: query, name: categoryId, schema: { type: string } }
+        - {
+            in: query,
+            name: stockStatus,
+            schema: { type: string, enum: [IN_STOCK, LOW_STOCK, OUT_OF_STOCK] },
+          }
+        - { in: query, name: page, schema: { type: integer, minimum: 1 } }
+        - {
+            in: query,
+            name: limit,
+            schema: { type: integer, minimum: 1, maximum: 100 },
+          }
+        - {
+            in: query,
+            name: sortBy,
+            schema:
+              {
+                type: string,
+                enum:
+                  [
+                    name,
+                    sku,
+                    quantity,
+                    sellingPrice,
+                    purchasePrice,
+                    createdAt,
+                    updatedAt,
+                  ],
+              },
+          }
+        - {
+            in: query,
+            name: sortOrder,
+            schema: { type: string, enum: [asc, desc] },
+          }
+      responses:
+        "200": { description: Paginated products with category and stockStatus }
+    post:
+      summary: Create a product; nonzero opening quantity creates OPENING_STOCK history
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [categoryId, name, sellingPrice, unit]
+              properties:
+                categoryId: { type: string }
+                name: { type: string, maxLength: 160 }
+                description: { type: string }
+                sku: { type: string }
+                barcode: { type: string }
+                purchasePrice: { type: number, minimum: 0, maximum: 1000000000, multipleOf: 0.01, nullable: true, description: Rupees; maximum two decimal places }
+                sellingPrice: { type: number, minimum: 0, maximum: 1000000000, multipleOf: 0.01, description: Rupees; maximum two decimal places }
+                quantity: { type: number, minimum: 0, maximum: 1000000000, multipleOf: 0.000001, default: 0, description: Up to six decimal places }
+                unit: { type: string }
+                minimumStock: { type: number, minimum: 0, maximum: 1000000000, multipleOf: 0.000001, description: Up to six decimal places }
+                image: { type: string }
+      responses:
+        "201": { description: Created product }
+        "400": { $ref: "#/components/responses/Error" }
+        "409": { $ref: "#/components/responses/Error" }
+  /products/{id}:
+    parameters:
+      - { $ref: "#/components/parameters/id" }
+    get:
+      summary: Get a product
+      responses:
+        "200": { description: Product with stockStatus }
+        "404": { $ref: "#/components/responses/Error" }
+    put:
+      summary: Update product details (stock quantity is managed through inventory endpoints)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, minProperties: 1 }
+      responses:
+        "200": { description: Updated product }
+        "400": { $ref: "#/components/responses/Error" }
+    delete:
+      summary: Permanently delete a product only when it has no stock history
+      responses:
+        "200": { description: Deleted product }
+        "409": { $ref: "#/components/responses/Error" }
+  /products/{id}/status:
+    patch:
+      summary: Archive or restore a product
+      parameters:
+        - { $ref: "#/components/parameters/id" }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              {
+                type: object,
+                required: [isActive],
+                properties: { isActive: { type: boolean } },
+              }
+      responses:
+        "200": { description: Updated product status }
+  /inventory/summary:
+    get:
+      summary: Inventory counts and purchase-price stock valuation
+      responses:
+        "200": { description: Summary includes productsMissingPurchasePrice }
+  /inventory/stock-in:
+    post:
+      summary: Add stock and record a STOCK_IN movement
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/StockIn" }
+      responses:
+        "200": { description: Updated product }
+        "409": { $ref: "#/components/responses/Error" }
+  /inventory/stock-out:
+    post:
+      summary: Remove available stock and record a STOCK_OUT movement
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/StockOut" }
+      responses:
+        "200": { description: Updated product }
+        "409": { $ref: "#/components/responses/Error" }
+  /inventory/adjust:
+    post:
+      summary: Set stock to a counted quantity and record the adjustment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [productId, newQuantity, reason]
+              properties:
+                productId: { type: string }
+                newQuantity: { type: number, minimum: 0 }
+                reason: { type: string, minLength: 1 }
+                notes: { type: string }
+      responses:
+        "200": { description: Updated product }
+        "409": { $ref: "#/components/responses/Error" }
+  /inventory/history:
+    get:
+      summary: List stock movements
+      parameters:
+        - { in: query, name: productId, schema: { type: string } }
+        - { in: query, name: type, schema: { type: string } }
+        - { in: query, name: from, schema: { type: string, format: date-time } }
+        - { in: query, name: to, schema: { type: string, format: date-time } }
+        - { in: query, name: page, schema: { type: integer, minimum: 1 } }
+        - {
+            in: query,
+            name: limit,
+            schema: { type: integer, minimum: 1, maximum: 100 },
+          }
+      responses:
+        "200":
+          {
+            description: Paginated immutable movements with product and performer names,
+          }
+  /inventory/history/{productId}:
+    get:
+      summary: List stock movements for a product
+      parameters:
+        - {
+            in: path,
+            name: productId,
+            required: true,
+            schema: { type: string },
+          }
+        - { in: query, name: type, schema: { type: string } }
+        - { in: query, name: from, schema: { type: string, format: date-time } }
+        - { in: query, name: to, schema: { type: string, format: date-time } }
+        - { in: query, name: page, schema: { type: integer, minimum: 1 } }
+        - {
+            in: query,
+            name: limit,
+            schema: { type: integer, minimum: 1, maximum: 100 },
+          }
+      responses:
+        "200": { description: Paginated product movements }
+  /inventory/alerts:
+    get:
+      summary: List low-stock and out-of-stock products
+      parameters:
+        - { in: query, name: page, schema: { type: integer, minimum: 1 } }
+        - {
+            in: query,
+            name: limit,
+            schema: { type: integer, minimum: 1, maximum: 100 },
+          }
+      responses:
+        "200": { description: Paginated alerts with category and stockStatus }
+components:
+  securitySchemes:
+    bearerAuth: { type: http, scheme: bearer, bearerFormat: JWT }
+  parameters:
+    id:
+      {
+        in: path,
+        name: id,
+        required: true,
+        schema: { type: string, pattern: "^[a-fA-F0-9]{24}$" },
+      }
+  schemas:
+    StockIn:
+      type: object
+      required: [productId, quantity]
+      properties:
+        productId: { type: string }
+        quantity: { type: number, exclusiveMinimum: 0 }
+        purchaseCost: { type: number, minimum: 0 }
+        reason: { type: string }
+        reference: { type: string }
+        notes: { type: string }
+    StockOut:
+      type: object
+      required: [productId, quantity, reason]
+      properties:
+        productId: { type: string }
+        quantity: { type: number, exclusiveMinimum: 0 }
+        reason: { type: string, minLength: 1 }
+        notes: { type: string }
+  responses:
+    Error:
+      description: Standard API error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success: { type: boolean, const: false }
+              error:
+                type: object
+                required: [code, message]
+                properties:
+                  code: { type: string }
+                  message: { type: string }
+                  details:
+                    type: object
+                    description: Validation errors include backward-compatible fieldErrors plus structured issues identifying request location, field path, issue code, and reason. At most 50 issues are returned.
+                    properties:
+                      fieldErrors:
+                        type: object
+                        additionalProperties:
+                          type: array
+                          items: { type: string }
+                      issues:
+                        type: array
+                        items:
+                          type: object
+                          required: [field, location, code, message]
+                          properties:
+                            field: { type: string, description: Dot-separated field path or _form for request-level errors }
+                            location: { type: string, enum: [body, params, query, request] }
+                            code: { type: string }
+                            message: { type: string }
+                      totalIssues: { type: integer, minimum: 0 }
+                      truncated: { type: boolean }

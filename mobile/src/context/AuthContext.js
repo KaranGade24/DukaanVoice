@@ -6,11 +6,33 @@ import {
   useMemo,
   useState,
 } from "react";
+import { Platform } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import * as authService from "../services/authService";
 
 const TOKEN_KEY = "dukaanvoice.accessToken";
 const AuthContext = createContext(null);
+
+const getStoredToken = async () => {
+  if (Platform.OS === "web") return globalThis.localStorage.getItem(TOKEN_KEY);
+  return SecureStore.getItemAsync(TOKEN_KEY);
+};
+
+const setStoredToken = async (token) => {
+  if (Platform.OS === "web") {
+    globalThis.localStorage.setItem(TOKEN_KEY, token);
+    return;
+  }
+  await SecureStore.setItemAsync(TOKEN_KEY, token);
+};
+
+const removeStoredToken = async () => {
+  if (Platform.OS === "web") {
+    globalThis.localStorage.removeItem(TOKEN_KEY);
+    return;
+  }
+  await SecureStore.deleteItemAsync(TOKEN_KEY);
+};
 
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(null);
@@ -19,22 +41,20 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const saveSession = useCallback(async (session) => {
-    await SecureStore.setItemAsync(TOKEN_KEY, session.token);
+    await setStoredToken(session.token);
     setToken(session.token);
     setUser(session.user);
     setShop(session.shop);
   }, []);
   const clearSession = useCallback(async () => {
-    await SecureStore.deleteItemAsync(TOKEN_KEY).catch(() => null);
+    await removeStoredToken().catch(() => null);
     setToken(null);
     setUser(null);
     setShop(null);
   }, []);
   useEffect(() => {
     (async () => {
-      const storedToken = await SecureStore.getItemAsync(TOKEN_KEY).catch(
-        () => null,
-      );
+      const storedToken = await getStoredToken().catch(() => null);
       if (!storedToken) {
         setLoading(false);
         return;

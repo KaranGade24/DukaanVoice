@@ -1,0 +1,17 @@
+import { Router } from "express";
+import { requireAuth } from "../../middleware/auth.middleware.js";
+import { validate } from "../../middleware/validation.middleware.js";
+import { supplierCreateSchema, supplierIdSchema, supplierListSchema, supplierOutstandingSchema, supplierUpdateSchema } from "./supplier.validators.js";
+import * as controller from "./supplier.controller.js";
+import { supplierPurchaseListSchema } from "../purchases/purchase.validators.js";
+const router = Router();
+router.use(requireAuth);
+router.post("/", validate(supplierCreateSchema), controller.create);
+router.get("/", validate(supplierListSchema), controller.list);
+router.get("/:id/purchases", validate(supplierPurchaseListSchema), controller.purchases);
+router.get("/:id/summary", validate(supplierIdSchema), controller.summary);
+router.get("/:id/outstanding", validate(supplierOutstandingSchema), controller.outstanding);
+router.patch("/:id/archive", validate(supplierIdSchema), controller.archive);
+router.get("/:id", validate(supplierIdSchema), controller.get);
+router.put("/:id", validate(supplierUpdateSchema), controller.update);
+export default router;

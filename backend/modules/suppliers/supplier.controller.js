@@ -1,0 +1,10 @@
+import { sendSuccess } from "../../utils/response.js";
+import * as service from "./supplier.service.js";
+export const create = async (req, res) => sendSuccess(res, 201, await service.createSupplier(req.user._id, req.body));
+export const list = async (req, res) => sendSuccess(res, 200, await service.listSuppliers(req.user._id, req.validatedQuery || req.query));
+export const get = async (req, res) => sendSuccess(res, 200, await service.getSupplier(req.user._id, req.params.id));
+export const update = async (req, res) => sendSuccess(res, 200, await service.updateSupplier(req.user._id, req.params.id, req.body));
+export const archive = async (req, res) => sendSuccess(res, 200, await service.archiveSupplier(req.user._id, req.params.id));
+export const purchases = async (req, res) => sendSuccess(res, 200, await service.supplierPurchases(req.user._id, req.params.id, req.validatedQuery || req.query));
+export const summary = async (req, res) => sendSuccess(res, 200, await service.supplierSummary(req.user._id, req.params.id));
+export const outstanding = async (req, res) => sendSuccess(res, 200, await service.supplierOutstanding(req.user._id, req.params.id, req.validatedQuery || req.query));

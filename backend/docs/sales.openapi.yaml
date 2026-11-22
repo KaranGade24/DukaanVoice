@@ -1,0 +1,73 @@
+openapi: 3.0.3
+info:
+  title: DukaanVoice Sales API
+  version: 1.0.0
+paths:
+  /api/sales:
+    post:
+      summary: Complete a point-of-sale transaction
+      description: Prices are read from active products owned by the authenticated user's shop. Sale, stock decrements, and SALE stock movements are committed in one MongoDB transaction. Send an Idempotency-Key header to safely retry.
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          required: false
+          schema:
+            type: string
+            minLength: 8
+            maxLength: 100
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [items, amountReceived, paymentMethod]
+              properties:
+                items:
+                  type: array
+                  minItems: 1
+                  maxItems: 100
+                  items:
+                    type: object
+                    additionalProperties: false
+                    required: [productId, quantity]
+                    properties:
+                      productId: { type: string, pattern: '^[a-fA-F0-9]{24}$' }
+                      quantity: { type: number, exclusiveMinimum: 0 }
+                discount: { type: number, minimum: 0, default: 0, description: Fixed bill discount in major currency units; cannot exceed subtotal. }
+                amountReceived: { type: number, minimum: 0 }
+                paymentMethod: { type: string, enum: [CASH, UPI, CARD] }
+      responses:
+        '201':
+          description: Sale created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success: { type: boolean, example: true }
+                  data:
+                    type: object
+                    properties:
+                      id: { type: string }
+                      saleNumber: { type: string }
+                      subtotal: { type: number }
+                      discount: { type: number }
+                      total: { type: number }
+                      amountReceived: { type: number }
+                      change: { type: number }
+                      paymentMethod: { type: string, enum: [CASH, UPI, CARD] }
+        '400': { description: Invalid product, discount, amount, or request data }
+        '401': { description: Authentication required }
+        '403': { description: No active shop for the authenticated user }
+        '409': { description: Insufficient stock, concurrent stock update, or duplicate request conflict }
+        '503': { description: Transaction-capable MongoDB deployment required }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

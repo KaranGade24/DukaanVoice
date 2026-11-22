@@ -38,6 +38,10 @@ export default function HomeScreen() {
         </Pressable>
       </View>
       <LanguageSelector />
+      <Pressable onPress={() => router.push("/sales")} style={styles.posButton} accessibilityRole="button">
+        <MaterialCommunityIcons name="point-of-sale" size={22} color="#fff" />
+        <Text style={styles.posButtonText}>{t("pos.open")}</Text>
+      </Pressable>
       <View style={styles.card}>
         <View style={styles.icon}>
           <MaterialCommunityIcons
@@ -82,6 +86,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  posButton: { minHeight: 52, borderRadius: 12, backgroundColor: theme.colors.primary, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 10 },
+  posButtonText: { ...theme.typography.label, color: "#fff" },
   card: {
     padding: 20,
     borderRadius: theme.radii.card,

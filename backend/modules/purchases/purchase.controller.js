@@ -1,0 +1,12 @@
+import { sendSuccess } from "../../utils/response.js";
+import * as purchases from "./purchase.service.js";
+import * as payments from "./purchasePayment.service.js";
+export const create = async (req, res) => sendSuccess(res, 201, await purchases.createPurchase(req.user._id, req.body, req.get("idempotency-key")));
+export const list = async (req, res) => sendSuccess(res, 200, await purchases.listPurchases(req.user._id, req.validatedQuery || req.query));
+export const get = async (req, res) => sendSuccess(res, 200, await purchases.getPurchase(req.user._id, req.params.id));
+export const invoice = async (req, res) => sendSuccess(res, 200, await purchases.getPurchaseInvoice(req.user._id, req.params.id));
+export const cancel = async (req, res) => sendSuccess(res, 200, await purchases.cancelPurchase(req.user._id, req.params.id, req.body.reason));
+export const addPayment = async (req, res) => sendSuccess(res, 201, await payments.recordPurchasePayment(req.user._id, req.params.id, req.body, req.get("idempotency-key")));
+export const listPayments = async (req, res) => sendSuccess(res, 200, await payments.purchasePayments(req.user._id, req.params.id, req.validatedQuery || req.query));
+export const supplierPayments = async (req, res) => sendSuccess(res, 200, await payments.listSupplierPayments(req.user._id, req.validatedQuery || req.query));
+export const supplierPayment = async (req, res) => sendSuccess(res, 200, await payments.getSupplierPayment(req.user._id, req.params.id));

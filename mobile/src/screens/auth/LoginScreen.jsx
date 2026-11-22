@@ -19,6 +19,7 @@ import FormField from "../../components/auth/FormField";
 import PasswordField from "../../components/auth/PasswordField";
 import PrimaryButton from "../../components/auth/PrimaryButton";
 import { useAuth } from "../../context/AuthContext";
+import { showValidationAlert } from "../../utils/validationAlert";
 import { validateLogin, normalizeEmail } from "../../utils/authValidation";
 import theme from "../../constants/theme";
 
@@ -51,8 +52,11 @@ export default function LoginScreen() {
       });
       router.replace("/(app)");
     } catch (error) {
+      showValidationAlert(error, t("validation.alertTitle"));
       if (error.code === "INVALID_CREDENTIALS")
         setGeneralError(t("auth.invalidCredentials"));
+      else if (error.code === "VALIDATION_ERROR")
+        setGeneralError(error.message);
       else if (
         error.code === "NETWORK_ERROR" ||
         error.code === "NETWORK_TIMEOUT"
@@ -66,7 +70,8 @@ export default function LoginScreen() {
   return (
     <KeyboardAvoidingView
       style={styles.page}
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 20}
     >
       <AuthHeader title={t("auth.loginTitle")} />
       <ScrollView
@@ -74,6 +79,14 @@ export default function LoginScreen() {
         keyboardShouldPersistTaps="handled"
       >
         <View style={styles.topRow}>
+          <View style={styles.badge}>
+            <MaterialCommunityIcons
+              name="account-voice"
+              size={18}
+              color={theme.colors.primary}
+            />
+            <Text style={styles.badgeText}>{t("auth.welcomeBadge")}</Text>
+          </View>
           <LanguageSelector />
         </View>
         <View style={styles.brandRow}>
@@ -195,15 +208,31 @@ const styles = StyleSheet.create({
   page: { flex: 1, backgroundColor: theme.colors.background },
   content: {
     flexGrow: 1,
-    padding: theme.spacing.screenGutter,
-    gap: 20,
-    paddingBottom: 36,
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    gap: 16,
+    paddingBottom: 24,
   },
   topRow: {
     flexDirection: "row",
+    flexWrap: "wrap",
     alignItems: "center",
-    justifyContent: "flex-end",
+    justifyContent: "space-between",
     gap: 12,
+  },
+  badge: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 7,
+    paddingHorizontal: 14,
+    paddingVertical: 9,
+    borderRadius: theme.radii.pill,
+    backgroundColor: theme.colors.surfaceTint,
+  },
+  badgeText: {
+    ...theme.typography.body,
+    color: theme.colors.primary,
+    fontWeight: "600",
   },
   brandRow: { flexDirection: "row", gap: 16, alignItems: "center" },
   brandIcon: {
@@ -226,7 +255,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 12,
-    padding: 16,
+    padding: 14,
     borderRadius: theme.radii.card,
     backgroundColor: theme.colors.surfaceMint,
     borderWidth: 1,
@@ -253,7 +282,7 @@ const styles = StyleSheet.create({
   },
   formCard: {
     gap: 18,
-    padding: 18,
+    padding: 16,
     borderRadius: theme.radii.card,
     backgroundColor: theme.colors.surface,
     borderWidth: 1,
@@ -286,7 +315,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 12,
-    padding: 16,
+    padding: 14,
     borderRadius: theme.radii.card,
     backgroundColor: theme.colors.surfaceTint,
     borderWidth: 1,
