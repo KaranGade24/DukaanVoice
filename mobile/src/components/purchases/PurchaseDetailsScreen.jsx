@@ -19,7 +19,6 @@ import {
   date,
   errorText,
   money,
-  styles,
 } from "../purchase-management/PurchaseManagementUI";
 
 export function PurchaseDetailsScreen() {
@@ -66,7 +65,7 @@ export function PurchaseDetailsScreen() {
   if (state.loading)
     return (
       <Page title={t("supplierPurchase.purchaseDetails")}>
-        <ActivityIndicator style={styles.center} color={theme.colors.primary} />
+        <ActivityIndicator className="mt-[60px]" color={theme.colors.primary} />
       </Page>
     );
   if (state.error || !p)
@@ -78,20 +77,20 @@ export function PurchaseDetailsScreen() {
   return (
     <ScrollPage title={p.purchaseReference}>
       <Card>
-        <View style={styles.rowBetween}>
-          <Text style={styles.cardTitle}>
+        <View className="flex-row items-center justify-between gap-2">
+          <Text className="text-[15px] leading-[21px] font-semibold text-text-primary">
             {p.supplier?.supplierName || t("supplierPurchase.supplier")}
           </Text>
           <Status value={p.status} />
         </View>
-        <Text style={styles.muted}>
+        <Text className="text-xs leading-[17px] text-text-secondary">
           {date(p.purchaseDate)} ·{" "}
           {p.supplierInvoiceNumber || t("supplierPurchase.noInvoice")}
         </Text>
         {p.items.map((line, i) => (
-          <View style={styles.lineItem} key={`${line.productId}-${i}`}>
-            <Text style={styles.body}>{line.productNameSnapshot}</Text>
-            <Text style={styles.muted}>
+          <View className="gap-[3px] py-[7px]" key={`${line.productId}-${i}`}>
+            <Text className="text-sm leading-5 text-text-primary">{line.productNameSnapshot}</Text>
+            <Text className="text-xs leading-[17px] text-text-secondary">
               {line.quantity} {line.unit} × {money(line.unitPurchasePrice)} ={" "}
               {money(line.lineTotal)}
             </Text>
@@ -125,7 +124,7 @@ export function PurchaseDetailsScreen() {
           strong
         />
       </Card>
-      <View style={styles.actions}>
+      <View className="gap-2 mb-2.5">
         <Button
           title={t("supplierPurchase.invoice")}
           secondary
@@ -151,16 +150,16 @@ export function PurchaseDetailsScreen() {
           onPress={cancel}
         />
       ) : null}
-      <Text style={styles.sectionTitle}>
+      <Text className="mt-2 mb-1 text-lg leading-6 font-semibold text-text-primary">
         {t("supplierPurchase.paymentHistory")}
       </Text>
       {payments.map((payment) => (
         <Card key={payment.id}>
-          <View style={styles.rowBetween}>
-            <Text style={styles.cardTitle}>{money(payment.amount)}</Text>
+          <View className="flex-row items-center justify-between gap-2">
+            <Text className="text-[15px] leading-[21px] font-semibold text-text-primary">{money(payment.amount)}</Text>
             <Status value={payment.entryType} />
           </View>
-          <Text style={styles.muted}>
+          <Text className="text-xs leading-[17px] text-text-secondary">
             {t(`supplierPurchase.methods.${payment.paymentMethod}`)} ·{" "}
             {date(payment.paymentDate)}
           </Text>

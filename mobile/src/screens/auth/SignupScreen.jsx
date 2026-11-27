@@ -4,8 +4,8 @@ import {
   Platform,
   Pressable,
   ScrollView,
-  StyleSheet,
   Text,
+  useWindowDimensions,
   View,
 } from "react-native";
 import { useRouter } from "expo-router";
@@ -24,6 +24,7 @@ import { normalizeEmail, validateSignup } from "../../utils/authValidation";
 import theme from "../../constants/theme";
 
 export default function SignupScreen() {
+  const { height } = useWindowDimensions();
   const { t } = useTranslation();
   const router = useRouter();
   const { signup } = useAuth();
@@ -81,29 +82,33 @@ export default function SignupScreen() {
   };
   return (
     <KeyboardAvoidingView
-      style={styles.page}
+      style={{ height: height - 56 }}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 20}
     >
       <AuthHeader title={t("auth.signupTitle")} />
       <ScrollView
-        contentContainerStyle={styles.content}
+        contentContainerClassName="flex-grow gap-4 px-4 pt-4 pb-6"
         keyboardShouldPersistTaps="handled"
       >
-        <View style={styles.topRow}>
-          <View style={styles.badge}>
+        <View className="flex-row flex-wrap items-center justify-between gap-3">
+          <View className="flex-row items-center gap-1.75 rounded-full bg-surface-tint px-3.5 py-2.25">
             <MaterialCommunityIcons
               name="account-voice"
               size={18}
               color={theme.colors.primary}
             />
-            <Text style={styles.badgeText}>{t("auth.welcomeBadge")}</Text>
+            <Text className="text-sm leading-5 font-semibold text-primary">
+              {t("auth.welcomeBadge")}
+            </Text>
           </View>
           <LanguageSelector />
         </View>
-        <View style={styles.intro}>
-          <Text style={styles.heading}>{t("auth.signupHeading")}</Text>
-          <Text style={styles.subheading}>
+        <View className="gap-1.25">
+          <Text className="text-2xl font-bold leading-8 text-text-primary">
+            {t("auth.signupHeading")}
+          </Text>
+          <Text className="text-sm leading-5 text-text-secondary">
             <MaterialCommunityIcons
               name="flash"
               size={18}
@@ -112,7 +117,7 @@ export default function SignupScreen() {
             {t("auth.signupSub")}
           </Text>
         </View>
-        <View style={styles.formCard}>
+        <View className="gap-4.5 rounded-card border border-border bg-white p-4 shadow-sm">
           <FormField
             label={t("auth.fullName")}
             placeholder={t("auth.fullNamePlaceholder")}
@@ -172,12 +177,17 @@ export default function SignupScreen() {
             autoCapitalize="words"
           />
           {generalError ? (
-            <Text style={styles.generalError} accessibilityRole="alert">
+            <Text
+              className="text-center text-sm leading-5 text-error"
+              accessibilityRole="alert"
+            >
               {generalError}
             </Text>
           ) : null}
-          <View style={styles.terms}>
-            <Text style={styles.termsText}>{t("auth.secureNote")}</Text>
+          <View className="rounded-xl bg-surface-mint p-3">
+            <Text className="text-center text-xs leading-4.25 text-text-secondary">
+              {t("auth.secureNote")}
+            </Text>
           </View>
           <PrimaryButton
             label={
@@ -189,7 +199,7 @@ export default function SignupScreen() {
         </View>
         <Pressable
           onPress={() => router.replace("/(auth)/login")}
-          style={styles.loginCard}
+          className="flex-row items-center justify-center gap-3 rounded-card border border-border bg-white p-4.5"
           accessibilityRole="button"
         >
           <MaterialCommunityIcons
@@ -197,9 +207,11 @@ export default function SignupScreen() {
             size={24}
             color={theme.colors.primary}
           />
-          <View style={styles.loginCopy}>
-            <Text style={styles.loginTitle}>{t("auth.haveAccount")}</Text>
-            <Text style={styles.loginAction}>
+          <View className="items-center gap-0.75">
+            <Text className="text-[15px] leading-5.25 font-semibold text-text-primary">
+              {t("auth.haveAccount")}
+            </Text>
+            <Text className="text-sm leading-5 font-bold text-primary">
               {t("auth.login")}{" "}
               <MaterialCommunityIcons
                 name="chevron-right"
@@ -213,82 +225,3 @@ export default function SignupScreen() {
     </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({
-  page: { flex: 1, backgroundColor: theme.colors.background },
-  content: {
-    paddingHorizontal: 16,
-    paddingTop: 16,
-    gap: 16,
-    paddingBottom: 24,
-  },
-  topRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    gap: 12,
-  },
-  badge: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 7,
-    paddingHorizontal: 14,
-    paddingVertical: 9,
-    borderRadius: theme.radii.pill,
-    backgroundColor: theme.colors.surfaceTint,
-  },
-  badgeText: {
-    ...theme.typography.body,
-    color: theme.colors.primary,
-    fontWeight: "600",
-  },
-  intro: { gap: 5 },
-  heading: { ...theme.typography.headline, color: theme.colors.textPrimary },
-  subheading: { ...theme.typography.body, color: theme.colors.textSecondary },
-  formCard: {
-    gap: 17,
-    padding: 16,
-    borderRadius: theme.radii.card,
-    backgroundColor: theme.colors.surface,
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-    shadowColor: "#000",
-    shadowOpacity: 0.06,
-    shadowRadius: 8,
-    elevation: 2,
-  },
-  terms: {
-    padding: 12,
-    borderRadius: 12,
-    backgroundColor: theme.colors.surfaceMint,
-  },
-  termsText: {
-    ...theme.typography.small,
-    color: theme.colors.textSecondary,
-    textAlign: "center",
-  },
-  generalError: {
-    ...theme.typography.body,
-    color: theme.colors.error,
-    textAlign: "center",
-  },
-  loginCard: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 12,
-    padding: 18,
-    borderRadius: theme.radii.card,
-    backgroundColor: theme.colors.surface,
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-  },
-  loginCopy: { alignItems: "center", gap: 3 },
-  loginTitle: { ...theme.typography.label, color: theme.colors.textPrimary },
-  loginAction: {
-    ...theme.typography.body,
-    color: theme.colors.primary,
-    fontWeight: "700",
-  },
-});

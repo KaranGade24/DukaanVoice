@@ -8,7 +8,6 @@ import {
   Status,
   useLoad,
   money,
-  styles,
 } from "../purchase-management/PurchaseManagementUI";
 import theme from "../../constants/theme";
 import { useCallback, useState } from "react";
@@ -73,13 +72,13 @@ export function SupplierListScreen() {
       right={
         <Pressable
           onPress={() => router.push("/suppliers/new")}
-          style={styles.add}
+          className="h-10 w-10 items-center justify-center rounded-full bg-surface-tint"
         >
-          <Text style={styles.addText}>＋</Text>
+          <Text className="text-2xl font-semibold text-primary">＋</Text>
         </Pressable>
       }
     >
-      <View style={styles.toolbar}>
+      <View className="gap-2.5 px-5 py-2.5">
         <TextInput
           value={search}
           onChangeText={(v) => {
@@ -87,9 +86,9 @@ export function SupplierListScreen() {
             setSearch(v);
           }}
           placeholder={t("supplierPurchase.searchSuppliers")}
-          style={styles.search}
+          className="min-h-11.5 rounded-xl border border-border bg-white px-3.5 text-text-primary"
         />
-        <View style={styles.chips}>
+        <View className="flex-row flex-wrap gap-2">
           {["true", "false", "all"].map((v) => (
             <Pressable
               key={v}
@@ -97,10 +96,18 @@ export function SupplierListScreen() {
                 setPage(1);
                 setActive(v);
               }}
-              style={[styles.chip, active === v && styles.chipActive]}
+              className={
+                active === v
+                  ? "rounded-full border border-primary bg-primary px-3 py-2"
+                  : "rounded-full border border-border bg-white px-3 py-2"
+              }
             >
               <Text
-                style={[styles.chipText, active === v && styles.chipTextActive]}
+                className={
+                  active === v
+                    ? "text-xs font-semibold text-white"
+                    : "text-xs text-text-secondary"
+                }
               >
                 {t(`supplierPurchase.filter.${v}`)}
               </Text>
@@ -109,14 +116,14 @@ export function SupplierListScreen() {
         </View>
       </View>
       {state.loading ? (
-        <ActivityIndicator style={styles.center} color={theme.colors.primary} />
+        <ActivityIndicator className="mt-15" color={theme.colors.primary} />
       ) : state.error ? (
         <Notice text={state.error} retry={() => state.load()} />
       ) : (
         <FlatList
           data={rows}
           keyExtractor={(item) => item.id}
-          contentContainerStyle={styles.list}
+          contentContainerClassName="px-[18px] pb-10"
           refreshControl={
             <RefreshControl
               refreshing={state.refreshing}
@@ -145,19 +152,21 @@ export function SupplierListScreen() {
           }
           renderItem={({ item }) => (
             <Card onPress={() => router.push(`/suppliers/${item.id}`)}>
-              <View style={styles.rowBetween}>
-                <Text style={styles.cardTitle}>{item.supplierName}</Text>
+              <View className="flex-row items-center justify-between gap-2">
+                <Text className="text-[15px] leading-5.25 font-semibold text-text-primary">
+                  {item.supplierName}
+                </Text>
                 <Status value={item.isActive ? "ACTIVE" : "ARCHIVED"} />
               </View>
-              <Text style={styles.muted}>
+              <Text className="text-xs leading-4.25 text-text-secondary">
                 {item.phoneNumber}
                 {item.businessName ? ` · ${item.businessName}` : ""}
               </Text>
-              <View style={styles.rowBetween}>
-                <Text style={styles.body}>
+              <View className="flex-row items-center justify-between gap-2">
+                <Text className="text-sm leading-5 text-text-primary">
                   {t("supplierPurchase.outstanding")}
                 </Text>
-                <Text style={styles.money}>
+                <Text className="text-[15px] leading-5.25 font-semibold text-primary">
                   {money(item.outstandingBalance)}
                 </Text>
               </View>

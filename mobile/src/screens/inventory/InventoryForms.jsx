@@ -8,9 +8,9 @@ import {
   Platform,
   Pressable,
   ScrollView,
-  StyleSheet,
   Text,
   TextInput,
+  useWindowDimensions,
   View,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -21,11 +21,12 @@ import {
   useSegments,
 } from "expo-router";
 import { useTranslation } from "react-i18next";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { clsx } from "clsx";
 import { useAuth } from "../../context/AuthContext";
 import * as api from "../../services/inventoryService";
 import { showValidationAlert } from "../../utils/validationAlert";
 import theme from "../../constants/theme";
+import KeyboardAwareScroll from "../../components/keyboard/KeyboardAwareScroll";
 
 const units = [
   "piece",
@@ -47,26 +48,33 @@ const hasPrecision = (value, places) => {
 
 function Page({ title, children }) {
   const router = useRouter();
+  const { height } = useWindowDimensions();
+
   return (
-    <SafeAreaView style={styles.page} edges={["top"]}>
-      <View style={styles.header}>
-        <Pressable onPress={() => router.back()} style={styles.back}>
+    <View className="flex-1 bg-background">
+      <View className="min-h-14 flex-row items-center gap-2.5 border-b border-border bg-white px-4">
+        <Pressable
+          onPress={() => router.back()}
+          className="h-11 w-11 items-center justify-center"
+        >
           <MaterialCommunityIcons
             name="arrow-left"
             size={22}
             color={theme.colors.textPrimary}
           />
         </Pressable>
-        <Text style={styles.title}>{title}</Text>
+        <Text className="text-lg font-semibold leading-6 text-text-primary">
+          {title}
+        </Text>
       </View>
       <KeyboardAvoidingView
-        style={{ flex: 1 }}
+        style={{ height: height - 56 }}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 20}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 40}
       >
         {children}
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -79,8 +87,10 @@ function Field({
   multiline = false,
 }) {
   return (
-    <View style={styles.field}>
-      <Text style={styles.label}>{label}</Text>
+    <View className="gap-1.5">
+      <Text className="text-xs leading-4.25 font-semibold text-text-primary">
+        {label}
+      </Text>
       <TextInput
         value={value}
         onChangeText={onChangeText}
@@ -88,7 +98,11 @@ function Field({
         placeholderTextColor={theme.colors.muted}
         keyboardType={keyboardType}
         multiline={multiline}
-        style={[styles.input, multiline && styles.multiline]}
+        className={clsx(
+          "min-h-12 rounded-[10px] border border-border bg-white px-3 text-[15px] text-text-primary",
+          multiline && "min-h-20.5 pt-3",
+        )}
+        style={multiline ? { textAlignVertical: "top" } : undefined}
       />
     </View>
   );
@@ -99,13 +113,18 @@ function Button({ label, onPress, disabled = false, secondary = false }) {
     <Pressable
       onPress={onPress}
       disabled={disabled}
-      style={[
-        styles.button,
-        secondary && styles.secondaryButton,
-        disabled && { opacity: 0.55 },
-      ]}
+      className={clsx(
+        "mt-1 min-h-12.5 items-center justify-center rounded-[11px] bg-primary px-3.5",
+        secondary && "border border-primary bg-white",
+        disabled && "opacity-[0.55]",
+      )}
     >
-      <Text style={[styles.buttonText, secondary && styles.secondaryText]}>
+      <Text
+        className={clsx(
+          "text-[15px] font-bold text-white",
+          secondary && "text-primary",
+        )}
+      >
         {label}
       </Text>
     </Pressable>
@@ -113,6 +132,7 @@ function Button({ label, onPress, disabled = false, secondary = false }) {
 }
 
 export function ProductFormScreen() {
+  const { height } = useWindowDimensions();
   const { t } = useTranslation();
   const router = useRouter();
   const { token } = useAuth();
@@ -267,137 +287,151 @@ export function ProductFormScreen() {
   };
   return (
     <Page title={t(id ? "inventory.editProduct" : "inventory.addProduct")}>
-      <ScrollView
-        contentContainerStyle={styles.form}
+      <KeyboardAwareScroll
+        className="flex-1"
+        enableOnAndroid
+        enableAutomaticScroll
+        extraScrollHeight={16}
+        contentContainerClassName="gap-3 p-4 pb-[30px]"
         keyboardShouldPersistTaps="handled"
       >
-          <Field
-            label={t("inventory.productName")}
-            value={values.name}
-            onChangeText={(v) => set("name", v)}
-          />
-          <Text style={styles.label}>{t("inventory.category")}</Text>
-          <Pressable
-            style={styles.select}
-            onPress={() => setCategoryModal(true)}
+        <Field
+          label={t("inventory.productName")}
+          value={values.name}
+          onChangeText={(v) => set("name", v)}
+        />
+        <Text className="text-xs leading-4.25 font-semibold text-text-primary">
+          {t("inventory.category")}
+        </Text>
+        <Pressable
+          className="min-h-12 flex-row items-center justify-between rounded-[10px] border border-border bg-white px-3"
+          onPress={() => setCategoryModal(true)}
+        >
+          <Text
+            className={
+              values.categoryId
+                ? "text-sm leading-5 text-text-primary"
+                : "text-sm leading-5 text-muted"
+            }
           >
-            <Text
-              style={values.categoryId ? styles.selectText : styles.placeholder}
-            >
-              {categories.find((c) => c.id === values.categoryId)?.name ||
-                t("inventory.selectCategory")}
-            </Text>
-            <MaterialCommunityIcons
-              name="chevron-down"
-              size={20}
-              color={theme.colors.textSecondary}
+            {categories.find((c) => c.id === values.categoryId)?.name ||
+              t("inventory.selectCategory")}
+          </Text>
+          <MaterialCommunityIcons
+            name="chevron-down"
+            size={20}
+            color={theme.colors.textSecondary}
+          />
+        </Pressable>
+        <View className="flex-row gap-2.5">
+          <View className="flex-1">
+            <Field
+              label={t("inventory.sellingPrice")}
+              value={values.sellingPrice}
+              onChangeText={(v) => set("sellingPrice", v)}
+              keyboardType="decimal-pad"
+              placeholder="₹0.00"
             />
-          </Pressable>
-          <View style={styles.row}>
-            <View style={styles.half}>
-              <Field
-                label={t("inventory.sellingPrice")}
-                value={values.sellingPrice}
-                onChangeText={(v) => set("sellingPrice", v)}
-                keyboardType="decimal-pad"
-                placeholder="₹0.00"
-              />
-            </View>
-            <View style={styles.half}>
-              <Field
-                label={t("inventory.purchasePrice")}
-                value={values.purchasePrice}
-                onChangeText={(v) => set("purchasePrice", v)}
-                keyboardType="decimal-pad"
-                placeholder="₹0.00"
-              />
-            </View>
           </View>
-          <View style={styles.row}>
-            <View style={styles.half}>
-              <Field
-                label={t(
-                  id ? "inventory.currentStock" : "inventory.openingStock",
+          <View className="flex-1">
+            <Field
+              label={t("inventory.purchasePrice")}
+              value={values.purchasePrice}
+              onChangeText={(v) => set("purchasePrice", v)}
+              keyboardType="decimal-pad"
+              placeholder="₹0.00"
+            />
+          </View>
+        </View>
+        <View className="flex-row gap-2.5">
+          <View className="flex-1">
+            <Field
+              label={t(
+                id ? "inventory.currentStock" : "inventory.openingStock",
+              )}
+              value={values.openingStock}
+              onChangeText={(v) => set("openingStock", v)}
+              keyboardType="decimal-pad"
+              placeholder="0"
+            />
+          </View>
+          <View className="flex-1">
+            <Field
+              label={t("inventory.minimumStock")}
+              value={values.minimumStock}
+              onChangeText={(v) => set("minimumStock", v)}
+              keyboardType="decimal-pad"
+              placeholder="5"
+            />
+          </View>
+        </View>
+        <Text className="text-xs leading-4.25 font-semibold text-text-primary">
+          {t("inventory.unit")}
+        </Text>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerClassName="gap-[7px] py-[3px]"
+        >
+          {units.map((unit) => (
+            <Pressable
+              key={unit}
+              onPress={() => {
+                set("unit", unit);
+                setCustomUnit("");
+              }}
+              className={clsx(
+                "min-h-8.5 justify-center rounded-lg bg-surface-subtle px-2.75",
+                values.unit === unit && !customUnit && "bg-primary",
+              )}
+            >
+              <Text
+                className={clsx(
+                  "text-xs font-semibold text-text-secondary",
+                  values.unit === unit && !customUnit && "text-white",
                 )}
-                value={values.openingStock}
-                onChangeText={(v) => set("openingStock", v)}
-                keyboardType="decimal-pad"
-                placeholder="0"
-              />
-            </View>
-            <View style={styles.half}>
-              <Field
-                label={t("inventory.minimumStock")}
-                value={values.minimumStock}
-                onChangeText={(v) => set("minimumStock", v)}
-                keyboardType="decimal-pad"
-                placeholder="5"
-              />
-            </View>
-          </View>
-          <Text style={styles.label}>{t("inventory.unit")}</Text>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.unitRail}
-          >
-            {units.map((unit) => (
-              <Pressable
-                key={unit}
-                onPress={() => {
-                  set("unit", unit);
-                  setCustomUnit("");
-                }}
-                style={[
-                  styles.unitChip,
-                  values.unit === unit && !customUnit && styles.unitActive,
-                ]}
               >
-                <Text
-                  style={[
-                    styles.unitText,
-                    values.unit === unit && !customUnit && { color: "#fff" },
-                  ]}
-                >
-                  {t(`inventory.units.${unit}`)}
-                </Text>
-              </Pressable>
-            ))}
-          </ScrollView>
-          <Field
-            label={t("inventory.customUnit")}
-            value={customUnit}
-            onChangeText={setCustomUnit}
-            placeholder={t("inventory.customUnitPlaceholder")}
-          />
-          <Field
-            label={t("inventory.sku")}
-            value={values.sku}
-            onChangeText={(v) => set("sku", v)}
-          />
-          <Field
-            label={t("inventory.barcode")}
-            value={values.barcode}
-            onChangeText={(v) => set("barcode", v)}
-          />
-          <Field
-            label={t("inventory.description")}
-            value={values.description}
-            onChangeText={(v) => set("description", v)}
-            multiline
-          />
-          <Field
-            label={t("inventory.imageUrl")}
-            value={values.imageUrl}
-            onChangeText={(v) => set("imageUrl", v)}
-          />
-          {error ? <Text style={styles.error}>{error}</Text> : null}
-          <Button
-            label={busy ? t("common.loading") : t("inventory.saveProduct")}
-            onPress={save}
-            disabled={busy}
-          />
-      </ScrollView>
+                {t(`inventory.units.${unit}`)}
+              </Text>
+            </Pressable>
+          ))}
+        </ScrollView>
+        <Field
+          label={t("inventory.customUnit")}
+          value={customUnit}
+          onChangeText={setCustomUnit}
+          placeholder={t("inventory.customUnitPlaceholder")}
+        />
+        <Field
+          label={t("inventory.sku")}
+          value={values.sku}
+          onChangeText={(v) => set("sku", v)}
+        />
+        <Field
+          label={t("inventory.barcode")}
+          value={values.barcode}
+          onChangeText={(v) => set("barcode", v)}
+        />
+        <Field
+          label={t("inventory.description")}
+          value={values.description}
+          onChangeText={(v) => set("description", v)}
+          multiline
+        />
+        <Field
+          label={t("inventory.imageUrl")}
+          value={values.imageUrl}
+          onChangeText={(v) => set("imageUrl", v)}
+        />
+        {error ? (
+          <Text className="text-xs leading-4.25 text-error">{error}</Text>
+        ) : null}
+        <Button
+          label={busy ? t("common.loading") : t("inventory.saveProduct")}
+          onPress={save}
+          disabled={busy}
+        />
+      </KeyboardAwareScroll>
       <Modal
         visible={categoryModal}
         animationType="slide"
@@ -405,55 +439,65 @@ export function ProductFormScreen() {
         onRequestClose={() => setCategoryModal(false)}
       >
         <KeyboardAvoidingView
-          style={{ flex: 1, justifyContent: "flex-end" }}
+          className="justify-end"
+          style={{ height: height - 56 }}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 20}
         >
-        <View style={styles.scrim}>
-          <View style={styles.sheet}>
-            <Text style={styles.sheetTitle}>{t("inventory.category")}</Text>
-            <TextInput
-              value={categorySearch}
-              onChangeText={setCategorySearch}
-              placeholder={t("inventory.searchCategories")}
-              style={styles.input}
-            />
-            <View style={styles.inlineCreate}>
+          <View className="flex-1 justify-end bg-black/40">
+            <View className="min-h-[40%] max-h-[75%] gap-2.5 rounded-t-sheet bg-white p-4.5">
+              <Text className="text-lg font-semibold leading-6 text-text-primary">
+                {t("inventory.category")}
+              </Text>
               <TextInput
-                value={newCategoryName}
-                onChangeText={setNewCategoryName}
-                placeholder={t("inventory.categoryName")}
-                style={[styles.input, { flex: 1 }]}
+                value={categorySearch}
+                onChangeText={setCategorySearch}
+                placeholder={t("inventory.searchCategories")}
+                className="min-h-12 rounded-[10px] border border-border bg-white px-3 text-[15px] text-text-primary"
               />
-              <Pressable onPress={createCategoryInline} style={styles.addMini}>
-                <MaterialCommunityIcons name="plus" size={23} color="#fff" />
-              </Pressable>
-            </View>
-            <FlatList
-              data={categories.filter((c) =>
-                c.name.toLowerCase().includes(categorySearch.toLowerCase()),
-              )}
-              keyExtractor={(c) => c.id}
-              renderItem={({ item }) => (
+              <View className="flex-row items-center gap-2">
+                <TextInput
+                  value={newCategoryName}
+                  onChangeText={setNewCategoryName}
+                  placeholder={t("inventory.categoryName")}
+                  className="min-h-12 flex-1 rounded-[10px] border border-border bg-white px-3 text-[15px] text-text-primary"
+                />
                 <Pressable
-                  style={styles.categoryRow}
-                  onPress={() => {
-                    set("categoryId", item.id);
-                    setCategoryModal(false);
-                  }}
+                  onPress={createCategoryInline}
+                  className="h-12 w-12 items-center justify-center rounded-[10px] bg-primary"
                 >
-                  <Text style={styles.body}>{item.name}</Text>
-                  <Text style={styles.muted}>{item.productCount}</Text>
+                  <MaterialCommunityIcons name="plus" size={23} color="#fff" />
                 </Pressable>
-              )}
-            />
-            <Button
-              label={t("common.back")}
-              secondary
-              onPress={() => setCategoryModal(false)}
-            />
+              </View>
+              <FlatList
+                data={categories.filter((c) =>
+                  c.name.toLowerCase().includes(categorySearch.toLowerCase()),
+                )}
+                keyExtractor={(c) => c.id}
+                renderItem={({ item }) => (
+                  <Pressable
+                    className="min-h-12.5 flex-row items-center justify-between border-b border-border"
+                    onPress={() => {
+                      set("categoryId", item.id);
+                      setCategoryModal(false);
+                    }}
+                  >
+                    <Text className="text-sm leading-5 text-text-primary">
+                      {item.name}
+                    </Text>
+                    <Text className="mt-0.75 text-xs leading-4.25 text-text-secondary">
+                      {item.productCount}
+                    </Text>
+                  </Pressable>
+                )}
+              />
+              <Button
+                label={t("common.back")}
+                secondary
+                onPress={() => setCategoryModal(false)}
+              />
+            </View>
           </View>
-        </View>
         </KeyboardAvoidingView>
       </Modal>
     </Page>
@@ -515,27 +559,29 @@ export function CategoryListScreen() {
   };
   return (
     <Page title={t("inventory.categories")}>
-      <View style={styles.form}>
+      <View className="gap-3 p-4 pb-7.5">
         <TextInput
           value={search}
           onChangeText={setSearch}
           placeholder={t("inventory.searchCategories")}
-          style={styles.input}
+          className="min-h-12 rounded-[10px] border border-border bg-white px-3 text-[15px] text-text-primary"
         />
         <Button
           label={`＋ ${t("inventory.addCategory")}`}
           onPress={() => router.push("/categories/new")}
         />
-        {error ? <Text style={styles.error}>{error}</Text> : null}
+        {error ? (
+          <Text className="text-xs leading-4.25 text-error">{error}</Text>
+        ) : null}
       </View>
       <FlatList
         data={items}
         keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.list}
+        contentContainerClassName="gap-[9px] p-4"
         renderItem={({ item }) => (
-          <View style={styles.categoryCard}>
+          <View className="min-h-bottom-nav flex-row items-center gap-0.75 rounded-xl border border-border bg-white p-3">
             <Pressable
-              style={{ flex: 1 }}
+              className="flex-1"
               onPress={() =>
                 router.push({
                   pathname: "/(app)/(tabs)/inventory",
@@ -543,14 +589,16 @@ export function CategoryListScreen() {
                 })
               }
             >
-              <Text style={styles.body}>{item.name}</Text>
-              <Text style={styles.muted}>
+              <Text className="text-sm leading-5 text-text-primary">
+                {item.name}
+              </Text>
+              <Text className="mt-0.75 text-xs leading-4.25 text-text-secondary">
                 {t("inventory.productCount", { count: item.productCount })}
                 {!item.isActive ? ` · ${t("inventory.inactive")}` : ""}
               </Text>
             </Pressable>
             <Pressable
-              style={styles.iconButton}
+              className="h-11 w-10.5 items-center justify-center"
               onPress={() =>
                 router.push({
                   pathname: "/categories/[id]",
@@ -565,7 +613,7 @@ export function CategoryListScreen() {
               />
             </Pressable>
             <Pressable
-              style={styles.iconButton}
+              className="h-11 w-10.5 items-center justify-center"
               onPress={() => deactivate(item)}
             >
               <MaterialCommunityIcons
@@ -574,7 +622,10 @@ export function CategoryListScreen() {
                 color={theme.colors.textSecondary}
               />
             </Pressable>
-            <Pressable style={styles.iconButton} onPress={() => remove(item)}>
+            <Pressable
+              className="h-11 w-10.5 items-center justify-center"
+              onPress={() => remove(item)}
+            >
               <MaterialCommunityIcons
                 name="delete-outline"
                 size={20}
@@ -584,7 +635,9 @@ export function CategoryListScreen() {
           </View>
         )}
         ListEmptyComponent={
-          <Text style={styles.emptyText}>{t("inventory.noCategories")}</Text>
+          <Text className="p-6 text-center text-sm leading-5 text-text-secondary">
+            {t("inventory.noCategories")}
+          </Text>
         }
       />
     </Page>
@@ -642,8 +695,12 @@ export function CategoryFormScreen() {
   };
   return (
     <Page title={t(id ? "inventory.editCategory" : "inventory.addCategory")}>
-      <ScrollView
-        contentContainerStyle={styles.form}
+      <KeyboardAwareScroll
+        className="flex-1"
+        enableOnAndroid
+        enableAutomaticScroll
+        extraScrollHeight={16}
+        contentContainerClassName="gap-3 p-4 pb-[30px]"
         keyboardShouldPersistTaps="handled"
       >
         <Field
@@ -667,13 +724,15 @@ export function CategoryFormScreen() {
           value={image}
           onChangeText={setImage}
         />
-        {error ? <Text style={styles.error}>{error}</Text> : null}
+        {error ? (
+          <Text className="text-xs leading-4.25 text-error">{error}</Text>
+        ) : null}
         <Button
           label={busy ? t("common.loading") : t("inventory.saveCategory")}
           onPress={save}
           disabled={busy}
         />
-      </ScrollView>
+      </KeyboardAwareScroll>
     </Page>
   );
 }
@@ -759,13 +818,28 @@ export function StockOperationScreen() {
   };
   return (
     <Page title={t(`inventory.${titles[operation]}`)}>
-      <ScrollView
-        contentContainerStyle={styles.form}
+      <KeyboardAwareScroll
+        className="flex-1"
+        enableOnAndroid
+        enableAutomaticScroll
+        extraScrollHeight={16}
+        contentContainerClassName="gap-3 p-4 pb-[30px]"
         keyboardShouldPersistTaps="handled"
       >
-        <Text style={styles.label}>{t("inventory.product")}</Text>
-        <Pressable style={styles.select} onPress={() => setPicker(true)}>
-          <Text style={selected ? styles.selectText : styles.placeholder}>
+        <Text className="text-xs leading-4.25 font-semibold text-text-primary">
+          {t("inventory.product")}
+        </Text>
+        <Pressable
+          className="min-h-12 flex-row items-center justify-between rounded-[10px] border border-border bg-white px-3"
+          onPress={() => setPicker(true)}
+        >
+          <Text
+            className={
+              selected
+                ? "text-sm leading-5 text-text-primary"
+                : "text-sm leading-5 text-muted"
+            }
+          >
             {selected
               ? `${selected.name} · ${selected.quantity} ${selected.unit}`
               : t("inventory.selectProduct")}
@@ -777,7 +851,7 @@ export function StockOperationScreen() {
           />
         </Pressable>
         {operation === "adjust" && selected ? (
-          <Text style={styles.muted}>
+          <Text className="mt-0.75 text-xs leading-4.25 text-text-secondary">
             {t("inventory.currentStock")}: {selected.quantity} {selected.unit} ·{" "}
             {t("inventory.difference")}:{" "}
             {Number(quantity || 0) - selected.quantity}
@@ -795,18 +869,21 @@ export function StockOperationScreen() {
           placeholder="0"
         />
         {operation === "out" ? (
-          <View style={styles.reasonRow}>
+          <View className="flex-row flex-wrap gap-2">
             {["damaged", "expired", "manual"].map((item) => (
               <Pressable
                 key={item}
                 onPress={() => setReason(item)}
-                style={[styles.unitChip, reason === item && styles.unitActive]}
+                className={clsx(
+                  "min-h-8.5 justify-center rounded-lg bg-surface-subtle px-2.75",
+                  reason === item && "bg-primary",
+                )}
               >
                 <Text
-                  style={[
-                    styles.unitText,
-                    reason === item && { color: "#fff" },
-                  ]}
+                  className={clsx(
+                    "text-xs font-semibold text-text-secondary",
+                    reason === item && "text-white",
+                  )}
                 >
                   {t(`inventory.reasons.${item}`)}
                 </Text>
@@ -840,22 +917,24 @@ export function StockOperationScreen() {
           onChangeText={setNotes}
           multiline
         />
-        {error ? <Text style={styles.error}>{error}</Text> : null}
+        {error ? (
+          <Text className="text-xs leading-4.25 text-error">{error}</Text>
+        ) : null}
         <Button
           label={busy ? t("common.loading") : t("inventory.confirm")}
           onPress={save}
           disabled={busy}
         />
-      </ScrollView>
+      </KeyboardAwareScroll>
       <Modal
         visible={picker}
         transparent
         animationType="slide"
         onRequestClose={() => setPicker(false)}
       >
-        <View style={styles.scrim}>
-          <View style={styles.sheet}>
-            <Text style={styles.sheetTitle}>
+        <View className="flex-1 justify-end bg-black/40">
+          <View className="min-h-[40%] max-h-[75%] gap-2.5 rounded-t-sheet bg-white p-4.5">
+            <Text className="text-lg font-semibold leading-6 text-text-primary">
               {t("inventory.selectProduct")}
             </Text>
             <FlatList
@@ -863,14 +942,16 @@ export function StockOperationScreen() {
               keyExtractor={(item) => item.id}
               renderItem={({ item }) => (
                 <Pressable
-                  style={styles.categoryRow}
+                  className="min-h-12.5 flex-row items-center justify-between border-b border-border"
                   onPress={() => {
                     setSelected(item);
                     setPicker(false);
                   }}
                 >
-                  <Text style={styles.body}>{item.name}</Text>
-                  <Text style={styles.muted}>
+                  <Text className="text-sm leading-5 text-text-primary">
+                    {item.name}
+                  </Text>
+                  <Text className="mt-0.75 text-xs leading-4.25 text-text-secondary">
                     {item.quantity} {item.unit}
                   </Text>
                 </Pressable>
@@ -923,28 +1004,30 @@ export function ProductDetailsScreen() {
   return (
     <Page title={t("inventory.productDetails")}>
       {!item ? (
-        <View style={styles.center}>
+        <View className="flex-1 items-center justify-center">
           {error ? (
-            <Text style={styles.error}>{error}</Text>
+            <Text className="text-xs leading-4.25 text-error">{error}</Text>
           ) : (
             <ActivityIndicator color={theme.colors.primary} />
           )}
         </View>
       ) : (
-        <ScrollView contentContainerStyle={styles.form}>
-          <View style={styles.detailIcon}>
+        <ScrollView contentContainerClassName="gap-3 p-4 pb-[30px]">
+          <View className="h-19 w-19 self-center items-center justify-center rounded-sheet bg-surface-tint">
             <MaterialCommunityIcons
               name="package-variant-closed"
               size={40}
               color={theme.colors.primary}
             />
           </View>
-          <Text style={styles.detailName}>{item.name}</Text>
-          <Text style={styles.muted}>
+          <Text className="text-center text-2xl font-bold leading-8 text-text-primary">
+            {item.name}
+          </Text>
+          <Text className="mt-0.75 text-xs leading-4.25 text-text-secondary">
             {item.sku || item.barcode || t("inventory.noSku")} ·{" "}
             {item.categoryName}
           </Text>
-          <View style={styles.detailGrid}>
+          <View className="flex-row flex-wrap rounded-card border border-border bg-white p-2">
             <Detail
               label={t("inventory.currentStock")}
               value={`${item.quantity} ${item.unit}`}
@@ -967,7 +1050,9 @@ export function ProductDetailsScreen() {
             />
           </View>
           {item.description ? (
-            <Text style={styles.body}>{item.description}</Text>
+            <Text className="text-sm leading-5 text-text-primary">
+              {item.description}
+            </Text>
           ) : null}
           <Button
             label={t("inventory.editProduct")}
@@ -1005,9 +1090,13 @@ export function ProductDetailsScreen() {
 
 function Detail({ label, value }) {
   return (
-    <View style={styles.detailCell}>
-      <Text style={styles.muted}>{label}</Text>
-      <Text style={styles.detailValue}>{value}</Text>
+    <View className="w-1/2 p-2.5">
+      <Text className="mt-0.75 text-xs leading-4.25 text-text-secondary">
+        {label}
+      </Text>
+      <Text className="mt-0.75 text-[15px] leading-5.25 font-semibold text-text-primary">
+        {value}
+      </Text>
     </View>
   );
 }
@@ -1040,29 +1129,33 @@ export function HistoryScreen() {
       <FlatList
         data={items}
         keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.list}
+        contentContainerClassName="gap-[9px] p-4"
         renderItem={({ item }) => (
-          <View style={styles.historyCard}>
-            <View style={styles.historyHeader}>
-              <Text style={styles.body}>{item.productName}</Text>
-              <Text style={styles.muted}>
+          <View className="gap-1 rounded-xl border border-border bg-white p-3.25">
+            <View className="flex-row justify-between gap-2.5">
+              <Text className="text-sm leading-5 text-text-primary">
+                {item.productName}
+              </Text>
+              <Text className="mt-0.75 text-xs leading-4.25 text-text-secondary">
                 {new Date(item.createdAt).toLocaleString()}
               </Text>
             </View>
-            <Text style={styles.muted}>
+            <Text className="mt-0.75 text-xs leading-4.25 text-text-secondary">
               {t(
                 `inventory.movement.${{ OPENING_STOCK: "opening", STOCK_IN: "in", STOCK_OUT: "out", STOCK_ADJUSTMENT: "adjustment" }[item.type] || "adjustment"}`,
               )}{" "}
               · {item.previousQuantity} → {item.newQuantity} {item.unit}
             </Text>
-            <Text style={styles.body}>
+            <Text className="text-sm leading-5 text-text-primary">
               {item.reason} {item.notes ? `· ${item.notes}` : ""}
             </Text>
-            <Text style={styles.muted}>{item.performedByName}</Text>
+            <Text className="mt-0.75 text-xs leading-4.25 text-text-secondary">
+              {item.performedByName}
+            </Text>
           </View>
         )}
         ListEmptyComponent={
-          <Text style={styles.emptyText}>
+          <Text className="p-6 text-center text-sm leading-5 text-text-secondary">
             {error || t("inventory.noHistory")}
           </Text>
         }
@@ -1090,18 +1183,20 @@ export function AlertsScreen() {
       <FlatList
         data={items}
         keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.list}
+        contentContainerClassName="gap-[9px] p-4"
         renderItem={({ item }) => (
-          <View style={styles.categoryCard}>
-            <View style={{ flex: 1 }}>
-              <Text style={styles.body}>{item.name}</Text>
-              <Text style={styles.muted}>
+          <View className="min-h-bottom-nav flex-row items-center gap-0.75 rounded-xl border border-border bg-white p-3">
+            <View className="flex-1">
+              <Text className="text-sm leading-5 text-text-primary">
+                {item.name}
+              </Text>
+              <Text className="mt-0.75 text-xs leading-4.25 text-text-secondary">
                 {item.quantity} {item.unit} ·{" "}
                 {t(`inventory.status.${item.stockStatus}`)}
               </Text>
             </View>
             <Pressable
-              style={styles.stockInButton}
+              className="min-h-10.5 justify-center rounded-[9px] bg-surface-tint px-3.25"
               onPress={() =>
                 router.push({
                   pathname: "/stock/in",
@@ -1109,12 +1204,14 @@ export function AlertsScreen() {
                 })
               }
             >
-              <Text style={styles.stockInText}>{t("inventory.stockIn")}</Text>
+              <Text className="font-bold text-primary">
+                {t("inventory.stockIn")}
+              </Text>
             </Pressable>
           </View>
         )}
         ListEmptyComponent={
-          <Text style={styles.emptyText}>
+          <Text className="p-6 text-center text-sm leading-5 text-text-secondary">
             {error || t("inventory.noAlerts")}
           </Text>
         }
@@ -1122,204 +1219,3 @@ export function AlertsScreen() {
     </Page>
   );
 }
-
-const styles = StyleSheet.create({
-  page: { flex: 1, backgroundColor: theme.colors.background },
-  header: {
-    minHeight: 56,
-    paddingHorizontal: 16,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-    borderBottomWidth: 1,
-    borderColor: theme.colors.border,
-    backgroundColor: "#fff",
-  },
-  back: {
-    width: 44,
-    height: 44,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: { ...theme.typography.title, color: theme.colors.textPrimary },
-  form: { padding: 16, gap: 12, paddingBottom: 30 },
-  field: { gap: 6 },
-  label: {
-    ...theme.typography.small,
-    color: theme.colors.textPrimary,
-    fontWeight: "600",
-  },
-  input: {
-    minHeight: 48,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-    backgroundColor: "#fff",
-    paddingHorizontal: 12,
-    color: theme.colors.textPrimary,
-    fontSize: 15,
-  },
-  multiline: { minHeight: 82, paddingTop: 12, textAlignVertical: "top" },
-  row: { flexDirection: "row", gap: 10 },
-  half: { flex: 1 },
-  select: {
-    minHeight: 48,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-    backgroundColor: "#fff",
-    paddingHorizontal: 12,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  selectText: { ...theme.typography.body, color: theme.colors.textPrimary },
-  placeholder: { ...theme.typography.body, color: theme.colors.muted },
-  button: {
-    minHeight: 50,
-    borderRadius: 11,
-    backgroundColor: theme.colors.primary,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: 14,
-    marginTop: 4,
-  },
-  buttonText: { color: "#fff", fontWeight: "700", fontSize: 15 },
-  secondaryButton: {
-    backgroundColor: "#fff",
-    borderWidth: 1,
-    borderColor: theme.colors.primary,
-  },
-  secondaryText: { color: theme.colors.primary },
-  error: { color: theme.colors.error, ...theme.typography.small },
-  unitRail: { gap: 7, paddingVertical: 3 },
-  unitChip: {
-    paddingHorizontal: 11,
-    minHeight: 34,
-    borderRadius: 8,
-    backgroundColor: "#F7F9F7",
-    justifyContent: "center",
-  },
-  unitActive: { backgroundColor: theme.colors.primary },
-  unitText: {
-    color: theme.colors.textSecondary,
-    fontSize: 12,
-    fontWeight: "600",
-  },
-  reasonRow: { flexDirection: "row", gap: 8, flexWrap: "wrap" },
-  list: { padding: 16, gap: 9 },
-  categoryCard: {
-    minHeight: 68,
-    padding: 12,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-    backgroundColor: "#fff",
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 3,
-  },
-  body: { ...theme.typography.body, color: theme.colors.textPrimary },
-  muted: {
-    ...theme.typography.small,
-    color: theme.colors.textSecondary,
-    marginTop: 3,
-  },
-  iconButton: {
-    width: 42,
-    height: 44,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  emptyText: {
-    ...theme.typography.body,
-    color: theme.colors.textSecondary,
-    textAlign: "center",
-    padding: 24,
-  },
-  link: { color: theme.colors.primary, fontWeight: "700" },
-  scrim: {
-    flex: 1,
-    backgroundColor: "rgba(32,43,37,0.4)",
-    justifyContent: "flex-end",
-  },
-  sheet: {
-    maxHeight: "75%",
-    minHeight: "40%",
-    backgroundColor: "#fff",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    padding: 18,
-    gap: 10,
-  },
-  sheetTitle: { ...theme.typography.title, color: theme.colors.textPrimary },
-  createInline: { minHeight: 42, justifyContent: "center" },
-  inlineCreate: { flexDirection: "row", gap: 8, alignItems: "center" },
-  addMini: {
-    width: 48,
-    height: 48,
-    borderRadius: 10,
-    backgroundColor: theme.colors.primary,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  categoryRow: {
-    minHeight: 50,
-    borderBottomWidth: 1,
-    borderColor: theme.colors.border,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  center: { flex: 1, alignItems: "center", justifyContent: "center" },
-  detailIcon: {
-    width: 76,
-    height: 76,
-    borderRadius: 20,
-    backgroundColor: theme.colors.surfaceTint,
-    alignItems: "center",
-    justifyContent: "center",
-    alignSelf: "center",
-  },
-  detailName: {
-    ...theme.typography.headline,
-    color: theme.colors.textPrimary,
-    textAlign: "center",
-  },
-  detailGrid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-    backgroundColor: "#fff",
-    borderRadius: 14,
-    padding: 8,
-  },
-  detailCell: { width: "50%", padding: 10 },
-  detailValue: {
-    ...theme.typography.label,
-    color: theme.colors.textPrimary,
-    marginTop: 3,
-  },
-  historyCard: {
-    padding: 13,
-    borderRadius: 12,
-    backgroundColor: "#fff",
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-    gap: 4,
-  },
-  historyHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    gap: 10,
-  },
-  stockInButton: {
-    minHeight: 42,
-    paddingHorizontal: 13,
-    borderRadius: 9,
-    backgroundColor: theme.colors.surfaceTint,
-    justifyContent: "center",
-  },
-  stockInText: { color: theme.colors.primary, fontWeight: "700" },
-});

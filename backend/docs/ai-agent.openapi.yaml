@@ -1,0 +1,131 @@
+openapi: 3.0.3
+info:
+  title: DukaanVoice AI Assistant API
+  version: 1.0.0
+paths:
+  /api/ai-agent/chat:
+    post:
+      summary: Continue or create an authenticated shop assistant conversation
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [message]
+              properties:
+                conversationId: { type: string, pattern: '^[a-fA-F0-9]{24}$' }
+                message: { type: string, minLength: 1, maxLength: 4000 }
+                draft:
+                  type: object
+                  additionalProperties: false
+                  required: [items, discount, paymentMethod, amountReceived]
+                  properties:
+                    items:
+                      type: array
+                      maxItems: 100
+                      items:
+                        type: object
+                        additionalProperties: false
+                        required: [productId, quantity]
+                        properties:
+                          productId: { type: string, pattern: '^[a-fA-F0-9]{24}$' }
+                          quantity: { type: number, minimum: 0, exclusiveMinimum: true, maximum: 1000000000 }
+                    discount: { type: number, minimum: 0, maximum: 1000000000 }
+                    paymentMethod: { type: string, enum: [CASH, UPI, CARD, UDHAR] }
+                    amountReceived: { type: number, minimum: 0, maximum: 1000000000 }
+                    customerId: { type: string, pattern: '^[a-fA-F0-9]{24}$' }
+      responses:
+        '200':
+          description: Assistant response, current server-priced draft, payment preview, and short-lived confirmation token when the bill is valid.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success: { type: boolean }
+                  data:
+                    type: object
+                    properties:
+                      conversationId: { type: string }
+                      message: { type: string }
+                      toolResults:
+                        type: array
+                        description: Structured JSON results from tools used for this reply. Results include only successfully parsed outputs and are scoped to the authenticated shop.
+                        items:
+                          type: object
+                          required: [name, data]
+                          properties:
+                            name: { type: string }
+                            data: {}
+                      data:
+                        type: object
+                        properties:
+                          cart: { type: array, items: { type: object } }
+                          customer: { type: object, nullable: true }
+                          billingPreview: { type: object }
+                          requiresConfirmation: { type: boolean }
+                          pendingAction: { type: object, nullable: true }
+        '401': { description: Authentication required }
+        '429': { description: Chat rate limit exceeded }
+        '503': { description: AI configuration or provider temporarily unavailable }
+  /api/ai-agent/chat/stream:
+    post:
+      summary: Return one assistant response as a server-sent event
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, required: [message], properties: { message: { type: string, minLength: 1, maxLength: 4000 }, conversationId: { type: string }, draft: { type: object } } }
+      responses:
+        '200': { description: One final response event in text/event-stream format. Model token streaming is not enabled. }
+  /api/ai-agent/conversations:
+    get:
+      summary: List the authenticated user's conversations for the active shop
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200': { description: Conversation summaries }
+  /api/ai-agent/conversations/{id}:
+    get:
+      summary: Retrieve a shop-scoped conversation
+      security: [{ bearerAuth: [] }]
+      parameters: [{ in: path, name: id, required: true, schema: { type: string, pattern: '^[a-fA-F0-9]{24}$' } }]
+      responses:
+        '200': { description: Conversation messages and draft }
+        '404': { description: Conversation not found }
+    delete:
+      summary: Archive a conversation and invalidate pending confirmation
+      security: [{ bearerAuth: [] }]
+      parameters: [{ in: path, name: id, required: true, schema: { type: string } }]
+      responses:
+        '200': { description: Conversation archived }
+  /api/ai-agent/confirm-action:
+    post:
+      summary: Explicitly confirm and post an assistant prepared sale
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [conversationId, confirmationToken]
+              properties:
+                conversationId: { type: string }
+                confirmationToken: { type: string, minLength: 32, maxLength: 128 }
+      responses:
+        '200': { description: Sale created using the standard sales service }
+        '409': { description: Confirmation expired or invalid }
+  /api/ai-agent/cancel-action:
+    post:
+      summary: Cancel a pending sale confirmation
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200': { description: Pending confirmation invalidated }
+components:
+  securitySchemes:
+    bearerAuth: { type: http, scheme: bearer, bearerFormat: JWT }

@@ -1,4 +1,4 @@
-import { ActivityIndicator, Pressable, StyleSheet, Text } from "react-native";
+import { ActivityIndicator, Pressable, Text } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import theme from "../../constants/theme";
 
@@ -12,15 +12,16 @@ export default function PrimaryButton({
     <Pressable
       onPress={onPress}
       disabled={loading}
-      style={({ pressed }) => [
-        styles.button,
-        pressed && styles.pressed,
-        loading && styles.disabled,
-      ]}
+      className={`min-h-[54px] flex-row items-center justify-center gap-2.5 rounded-button bg-primary px-4 shadow-md ${loading ? "opacity-70" : ""}`}
+      style={({ pressed }) =>
+        pressed ? { backgroundColor: theme.colors.primaryPressed } : undefined
+      }
       accessibilityRole="button"
       accessibilityState={{ disabled: loading, busy: loading }}
     >
-      <Text style={styles.label}>{loading ? label : label}</Text>
+      <Text className="text-lg font-semibold leading-6 text-on-primary">
+        {label}
+      </Text>
       {loading ? (
         <ActivityIndicator color={theme.colors.onPrimary} size="small" />
       ) : (
@@ -33,22 +34,3 @@ export default function PrimaryButton({
     </Pressable>
   );
 }
-const styles = StyleSheet.create({
-  button: {
-    minHeight: 54,
-    borderRadius: theme.radii.button,
-    backgroundColor: theme.colors.primary,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 10,
-    paddingHorizontal: 16,
-    shadowColor: theme.colors.primary,
-    shadowOpacity: 0.2,
-    shadowRadius: 10,
-    elevation: 3,
-  },
-  pressed: { backgroundColor: theme.colors.primaryPressed },
-  disabled: { opacity: 0.7 },
-  label: { ...theme.typography.title, color: theme.colors.onPrimary },
-});

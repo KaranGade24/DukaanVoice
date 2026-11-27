@@ -13,92 +13,175 @@ paths:
       summary: List suppliers and all-time account totals
       parameters:
         - { in: query, name: search, schema: { type: string } }
-        - { in: query, name: isActive, schema: { type: string, enum: ["true", "false", all], default: "true" } }
-        - { in: query, name: page, schema: { type: integer, minimum: 1, default: 1 } }
-        - { in: query, name: limit, schema: { type: integer, minimum: 1, maximum: 100, default: 20 } }
-        - { in: query, name: sortBy, schema: { type: string, enum: [supplierName, createdAt, updatedAt, purchaseCount, totalPurchases, outstandingBalance] } }
-        - { in: query, name: sortOrder, schema: { type: string, enum: [asc, desc] } }
+        - {
+            in: query,
+            name: isActive,
+            schema:
+              { type: string, enum: ["true", "false", all], default: "true" },
+          }
+        - {
+            in: query,
+            name: page,
+            schema: { type: integer, minimum: 1, default: 1 },
+          }
+        - {
+            in: query,
+            name: limit,
+            schema: { type: integer, minimum: 1, maximum: 100, default: 20 },
+          }
+        - {
+            in: query,
+            name: sortBy,
+            schema:
+              {
+                type: string,
+                enum:
+                  [
+                    supplierName,
+                    createdAt,
+                    updatedAt,
+                    purchaseCount,
+                    totalPurchases,
+                    outstandingBalance,
+                  ],
+              },
+          }
+        - {
+            in: query,
+            name: sortOrder,
+            schema: { type: string, enum: [asc, desc] },
+          }
       responses:
-        '200': { description: Paginated supplier rows with purchaseCount, totalPurchases, totalPaid, and outstandingBalance }
-        '401': { $ref: '#/components/responses/Error' }
+        "200":
+          {
+            description: Paginated supplier rows with purchaseCount,
+            totalPurchases,
+            totalPaid,
+            and outstandingBalance,
+          }
+        "401": { $ref: "#/components/responses/Error" }
     post:
       summary: Create a supplier; response may include a duplicateWarning
       requestBody:
         required: true
         content:
           application/json:
-            schema: { $ref: '#/components/schemas/SupplierInput' }
+            schema: { $ref: "#/components/schemas/SupplierInput" }
       responses:
-        '201': { description: Created supplier }
-        '400': { $ref: '#/components/responses/Error' }
+        "201": { description: Created supplier }
+        "400": { $ref: "#/components/responses/Error" }
   /suppliers/{id}:
-    parameters: [{ $ref: '#/components/parameters/id' }]
+    parameters: [{ $ref: "#/components/parameters/id" }]
     get:
       summary: Supplier details with lifetime account summary and recent purchases
       responses:
-        '200': { description: Supplier details }
-        '404': { $ref: '#/components/responses/Error' }
+        "200": { description: Supplier details }
+        "404": { $ref: "#/components/responses/Error" }
     put:
       summary: Update supplier details or active state
       requestBody:
         required: true
         content:
           application/json:
-            schema: { allOf: [{ $ref: '#/components/schemas/SupplierInput' }] }
+            schema: { allOf: [{ $ref: "#/components/schemas/SupplierInput" }] }
       responses:
-        '200': { description: Updated supplier }
-        '400': { $ref: '#/components/responses/Error' }
+        "200": { description: Updated supplier }
+        "400": { $ref: "#/components/responses/Error" }
   /suppliers/{id}/archive:
     patch:
       summary: Archive a supplier while preserving purchase history
-      parameters: [{ $ref: '#/components/parameters/id' }]
+      parameters: [{ $ref: "#/components/parameters/id" }]
       responses:
-        '200': { description: Archived supplier }
-        '404': { $ref: '#/components/responses/Error' }
+        "200": { description: Archived supplier }
+        "404": { $ref: "#/components/responses/Error" }
   /suppliers/{id}/purchases:
     get:
       summary: List a supplier's purchases
       parameters:
-        - { $ref: '#/components/parameters/id' }
+        - { $ref: "#/components/parameters/id" }
         - { in: query, name: page, schema: { type: integer, minimum: 1 } }
-        - { in: query, name: limit, schema: { type: integer, minimum: 1, maximum: 100 } }
-        - { in: query, name: status, schema: { type: string, enum: [POSTED, CANCELLED] } }
-        - { in: query, name: paymentStatus, schema: { type: string, enum: [UNPAID, PARTIALLY_PAID, PAID] } }
+        - {
+            in: query,
+            name: limit,
+            schema: { type: integer, minimum: 1, maximum: 100 },
+          }
+        - {
+            in: query,
+            name: status,
+            schema: { type: string, enum: [POSTED, CANCELLED] },
+          }
+        - {
+            in: query,
+            name: paymentStatus,
+            schema: { type: string, enum: [UNPAID, PARTIALLY_PAID, PAID] },
+          }
       responses:
-        '200': { description: Paginated supplier purchases }
-        '404': { $ref: '#/components/responses/Error' }
+        "200": { description: Paginated supplier purchases }
+        "404": { $ref: "#/components/responses/Error" }
   /suppliers/{id}/summary:
     get:
       summary: Supplier account totals, recent purchases, and payment history
-      parameters: [{ $ref: '#/components/parameters/id' }]
+      parameters: [{ $ref: "#/components/parameters/id" }]
       responses:
-        '200': { description: Lifetime account summary excluding cancelled purchases }
+        "200":
+          {
+            description: Lifetime account summary excluding cancelled purchases,
+          }
   /suppliers/{id}/outstanding:
     get:
       summary: Supplier's total and purchase-wise outstanding balances
-      parameters: [{ $ref: '#/components/parameters/id' }]
+      parameters: [{ $ref: "#/components/parameters/id" }]
       responses:
-        '200': { description: Outstanding balances for every posted purchase }
+        "200": { description: Outstanding balances for every posted purchase }
   /purchases:
     get:
       summary: List purchases with search, filters, pagination, and sorting
       parameters:
         - { in: query, name: search, schema: { type: string } }
         - { in: query, name: supplierId, schema: { type: string } }
-        - { in: query, name: paymentStatus, schema: { type: string, enum: [UNPAID, PARTIALLY_PAID, PAID] } }
-        - { in: query, name: status, schema: { type: string, enum: [POSTED, CANCELLED] } }
+        - {
+            in: query,
+            name: paymentStatus,
+            schema: { type: string, enum: [UNPAID, PARTIALLY_PAID, PAID] },
+          }
+        - {
+            in: query,
+            name: status,
+            schema: { type: string, enum: [POSTED, CANCELLED] },
+          }
         - { in: query, name: from, schema: { type: string, format: date-time } }
         - { in: query, name: to, schema: { type: string, format: date-time } }
         - { in: query, name: page, schema: { type: integer, minimum: 1 } }
-        - { in: query, name: limit, schema: { type: integer, minimum: 1, maximum: 100 } }
-        - { in: query, name: sortBy, schema: { type: string, enum: [purchaseDate, purchaseReference, grandTotalMinor, createdAt] } }
-        - { in: query, name: sortOrder, schema: { type: string, enum: [asc, desc] } }
+        - {
+            in: query,
+            name: limit,
+            schema: { type: integer, minimum: 1, maximum: 100 },
+          }
+        - {
+            in: query,
+            name: sortBy,
+            schema:
+              {
+                type: string,
+                enum:
+                  [purchaseDate, purchaseReference, grandTotalMinor, createdAt],
+              },
+          }
+        - {
+            in: query,
+            name: sortOrder,
+            schema: { type: string, enum: [asc, desc] },
+          }
       responses:
-        '200': { description: Paginated purchase list }
+        "200": { description: Paginated purchase list }
     post:
       summary: Post a purchase, recalculate totals, record optional initial payment, and increase stock
       parameters:
-        - { in: header, name: Idempotency-Key, schema: { type: string, minLength: 8, maxLength: 100 } }
+        - {
+            in: header,
+            name: Idempotency-Key,
+            schema: { type: string, minLength: 8, maxLength: 100 },
+          }
       requestBody:
         required: true
         content:
@@ -119,96 +202,185 @@ paths:
                     required: [productId, quantity, unitPurchasePrice]
                     properties:
                       productId: { type: string }
-                      quantity: { type: number, exclusiveMinimum: 0, description: Up to 6 decimal places }
-                      unitPurchasePrice: { type: number, minimum: 0, description: Rupees per unit }
-                      discountAmount: { type: number, minimum: 0, description: Per-line rupees; mutually exclusive with discountPercent }
-                      discountPercent: { type: number, minimum: 0, maximum: 100, description: Percentage of the line subtotal; mutually exclusive with discountAmount }
-                      taxRate: { type: number, minimum: 0, maximum: 28, description: Exclusive tax percentage }
-                additionalDiscount: { type: number, minimum: 0, description: Rupees allocated proportionally before tax; mutually exclusive with additionalDiscountPercent }
-                additionalDiscountPercent: { type: number, minimum: 0, maximum: 100, description: Percentage of the pre-tax amount after line discounts; mutually exclusive with additionalDiscount }
-                additionalCharges: { type: number, minimum: 0, description: Rupees added after tax }
-                initialPayment: { $ref: '#/components/schemas/PaymentInput' }
+                      quantity:
+                        {
+                          type: number,
+                          exclusiveMinimum: 0,
+                          description: Up to 6 decimal places,
+                        }
+                      unitPurchasePrice:
+                        {
+                          type: number,
+                          minimum: 0,
+                          description: Rupees per unit,
+                        }
+                      discountAmount:
+                        {
+                          type: number,
+                          minimum: 0,
+                          description: Per-line rupees; mutually exclusive with discountPercent,
+                        }
+                      discountPercent:
+                        {
+                          type: number,
+                          minimum: 0,
+                          maximum: 100,
+                          description: Percentage of the line subtotal; mutually exclusive with discountAmount,
+                        }
+                      taxRate:
+                        {
+                          type: number,
+                          minimum: 0,
+                          maximum: 28,
+                          description: Exclusive tax percentage,
+                        }
+                additionalDiscount:
+                  {
+                    type: number,
+                    minimum: 0,
+                    description: Rupees allocated proportionally before tax; mutually exclusive with additionalDiscountPercent,
+                  }
+                additionalDiscountPercent:
+                  {
+                    type: number,
+                    minimum: 0,
+                    maximum: 100,
+                    description: Percentage of the pre-tax amount after line discounts; mutually exclusive with additionalDiscount,
+                  }
+                additionalCharges:
+                  {
+                    type: number,
+                    minimum: 0,
+                    description: Rupees added after tax,
+                  }
+                initialPayment: { $ref: "#/components/schemas/PaymentInput" }
                 notes: { type: string }
                 idempotencyKey: { type: string, minLength: 8, maxLength: 100 }
       responses:
-        '201': { description: Posted purchase with calculated breakdown }
-        '400': { $ref: '#/components/responses/Error' }
-        '404': { $ref: '#/components/responses/Error' }
-        '409': { $ref: '#/components/responses/Error' }
-        '503': { description: Transaction-capable MongoDB is required for purchase posting }
+        "201": { description: Posted purchase with calculated breakdown }
+        "400": { $ref: "#/components/responses/Error" }
+        "404": { $ref: "#/components/responses/Error" }
+        "409": { $ref: "#/components/responses/Error" }
+        "503":
+          {
+            description: Transaction-capable MongoDB is required for purchase posting,
+          }
   /purchases/{id}:
-    parameters: [{ $ref: '#/components/parameters/id' }]
+    parameters: [{ $ref: "#/components/parameters/id" }]
     get:
       summary: Get a purchase and its historical snapshots
       responses:
-        '200': { description: Purchase details }
-        '404': { $ref: '#/components/responses/Error' }
+        "200": { description: Purchase details }
+        "404": { $ref: "#/components/responses/Error" }
   /purchases/{id}/invoice:
     get:
       summary: Return structured printable invoice data from saved snapshots
-      parameters: [{ $ref: '#/components/parameters/id' }]
+      parameters: [{ $ref: "#/components/parameters/id" }]
       responses:
-        '200': { description: Shop, supplier, item, and total invoice data; no PDF is generated }
-        '404': { $ref: '#/components/responses/Error' }
+        "200":
+          {
+            description: Shop,
+            supplier,
+            item,
+            and total invoice data; no PDF is generated,
+          }
+        "404": { $ref: "#/components/responses/Error" }
   /purchases/{id}/cancel:
     post:
       summary: Cancel an unpaid purchase and append compensating stock movements
-      parameters: [{ $ref: '#/components/parameters/id' }]
+      parameters: [{ $ref: "#/components/parameters/id" }]
       requestBody:
         required: true
         content:
           application/json:
-            schema: { type: object, required: [reason], properties: { reason: { type: string, minLength: 1, maxLength: 500 } } }
+            schema:
+              {
+                type: object,
+                required: [reason],
+                properties:
+                  { reason: { type: string, minLength: 1, maxLength: 500 } },
+              }
       responses:
-        '200': { description: Cancelled purchase }
-        '409': { description: Purchase has payments, is already cancelled, or stock is no longer available }
-        '503': { description: Transaction-capable MongoDB is required }
+        "200": { description: Cancelled purchase }
+        "409":
+          {
+            description: Purchase has payments,
+            is already cancelled,
+            or stock is no longer available,
+          }
+        "503": { description: Transaction-capable MongoDB is required }
   /purchases/{id}/payments:
-    parameters: [{ $ref: '#/components/parameters/id' }]
+    parameters: [{ $ref: "#/components/parameters/id" }]
     get:
       summary: List immutable payments recorded for a purchase
       parameters:
         - { in: query, name: page, schema: { type: integer, minimum: 1 } }
-        - { in: query, name: limit, schema: { type: integer, minimum: 1, maximum: 100 } }
+        - {
+            in: query,
+            name: limit,
+            schema: { type: integer, minimum: 1, maximum: 100 },
+          }
       responses:
-        '200': { description: Paginated purchase payments }
+        "200": { description: Paginated purchase payments }
     post:
       summary: Record a payment without exceeding outstanding balance
       parameters:
-        - { in: header, name: Idempotency-Key, schema: { type: string, minLength: 8, maxLength: 100 } }
+        - {
+            in: header,
+            name: Idempotency-Key,
+            schema: { type: string, minLength: 8, maxLength: 100 },
+          }
       requestBody:
         required: true
         content:
           application/json:
-            schema: { $ref: '#/components/schemas/PaymentInput' }
+            schema: { $ref: "#/components/schemas/PaymentInput" }
       responses:
-        '201': { description: Recorded payment }
-        '409': { description: Overpayment or concurrent balance conflict }
-        '503': { description: Transaction-capable MongoDB is required }
+        "201": { description: Recorded payment }
+        "409": { description: Overpayment or concurrent balance conflict }
+        "503": { description: Transaction-capable MongoDB is required }
   /purchases/supplier-payments:
     get:
       summary: List supplier payments
       parameters:
         - { in: query, name: supplierId, schema: { type: string } }
-        - { in: query, name: paymentMethod, schema: { type: string, enum: [CASH, UPI, BANK_TRANSFER, CARD, CHEQUE, OTHER] } }
+        - {
+            in: query,
+            name: paymentMethod,
+            schema:
+              {
+                type: string,
+                enum: [CASH, UPI, BANK_TRANSFER, CARD, CHEQUE, OTHER],
+              },
+          }
         - { in: query, name: from, schema: { type: string, format: date-time } }
         - { in: query, name: to, schema: { type: string, format: date-time } }
         - { in: query, name: page, schema: { type: integer, minimum: 1 } }
-        - { in: query, name: limit, schema: { type: integer, minimum: 1, maximum: 100 } }
+        - {
+            in: query,
+            name: limit,
+            schema: { type: integer, minimum: 1, maximum: 100 },
+          }
       responses:
-        '200': { description: Paginated payment list }
+        "200": { description: Paginated payment list }
   /purchases/supplier-payments/{id}:
     get:
       summary: Get a supplier payment
-      parameters: [{ $ref: '#/components/parameters/id' }]
+      parameters: [{ $ref: "#/components/parameters/id" }]
       responses:
-        '200': { description: Payment details }
-        '404': { $ref: '#/components/responses/Error' }
+        "200": { description: Payment details }
+        "404": { $ref: "#/components/responses/Error" }
 components:
   securitySchemes:
     bearerAuth: { type: http, scheme: bearer, bearerFormat: JWT }
   parameters:
-    id: { in: path, name: id, required: true, schema: { type: string, pattern: '^[a-fA-F0-9]{24}$' } }
+    id:
+      {
+        in: path,
+        name: id,
+        required: true,
+        schema: { type: string, pattern: "^[a-fA-F0-9]{24}$" },
+      }
   schemas:
     SupplierInput:
       type: object
@@ -229,7 +401,11 @@ components:
       additionalProperties: false
       properties:
         amount: { type: number, exclusiveMinimum: 0, description: Rupees }
-        paymentMethod: { type: string, enum: [CASH, UPI, BANK_TRANSFER, CARD, CHEQUE, OTHER] }
+        paymentMethod:
+          {
+            type: string,
+            enum: [CASH, UPI, BANK_TRANSFER, CARD, CHEQUE, OTHER],
+          }
         paymentDate: { type: string, format: date-time }
         transactionReference: { type: string, maxLength: 120 }
         notes: { type: string, maxLength: 1000 }
@@ -263,8 +439,16 @@ components:
                           type: object
                           required: [field, location, code, message]
                           properties:
-                            field: { type: string, description: Dot-separated field path or _form for request-level errors }
-                            location: { type: string, enum: [body, params, query, request] }
+                            field:
+                              {
+                                type: string,
+                                description: Dot-separated field path or _form for request-level errors,
+                              }
+                            location:
+                              {
+                                type: string,
+                                enum: [body, params, query, request],
+                              }
                             code: { type: string }
                             message: { type: string }
                       totalIssues: { type: integer, minimum: 0 }

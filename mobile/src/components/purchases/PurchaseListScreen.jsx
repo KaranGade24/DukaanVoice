@@ -29,7 +29,6 @@ import {
   errorText,
   money,
   paymentStatuses,
-  styles,
 } from "../purchase-management/PurchaseManagementUI";
 
 export function PurchaseListScreen() {
@@ -98,13 +97,13 @@ export function PurchaseListScreen() {
       right={
         <Pressable
           onPress={() => router.push("/purchases/new")}
-          style={styles.add}
+          className="h-10 w-10 items-center justify-center rounded-full bg-surface-tint"
         >
-          <Text style={styles.addText}>＋</Text>
+          <Text className="text-2xl font-semibold text-primary">＋</Text>
         </Pressable>
       }
     >
-      <View style={styles.toolbar}>
+      <View className="gap-2.5 px-5 py-2.5">
         <TextInput
           value={search}
           onChangeText={(v) => {
@@ -112,12 +111,12 @@ export function PurchaseListScreen() {
             setSearch(v);
           }}
           placeholder={t("supplierPurchase.searchPurchases")}
-          style={styles.search}
+          className="min-h-[46px] rounded-xl border border-border bg-white px-3.5 text-text-primary"
         />
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.chips}
+          contentContainerClassName="gap-2"
         >
           {["", ...paymentStatuses].map((v) => (
             <Pressable
@@ -126,10 +125,18 @@ export function PurchaseListScreen() {
                 setPage(1);
                 setStatus(v);
               }}
-              style={[styles.chip, status === v && styles.chipActive]}
+              className={
+                status === v
+                  ? "rounded-full border border-primary bg-primary px-3 py-2"
+                  : "rounded-full border border-border bg-white px-3 py-2"
+              }
             >
               <Text
-                style={[styles.chipText, status === v && styles.chipTextActive]}
+                className={
+                  status === v
+                    ? "text-xs font-semibold text-white"
+                    : "text-xs text-text-secondary"
+                }
               >
                 {v
                   ? t(`supplierPurchase.status.${v}`)
@@ -141,7 +148,7 @@ export function PurchaseListScreen() {
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.chips}
+          contentContainerClassName="gap-2"
         >
           {supplierRows.map((supplier) => (
             <Pressable
@@ -150,23 +157,25 @@ export function PurchaseListScreen() {
                 setPage(1);
                 setSupplierId(supplierId === supplier.id ? "" : supplier.id);
               }}
-              style={[
-                styles.chip,
-                supplierId === supplier.id && styles.chipActive,
-              ]}
+              className={
+                supplierId === supplier.id
+                  ? "rounded-full border border-primary bg-primary px-3 py-2"
+                  : "rounded-full border border-border bg-white px-3 py-2"
+              }
             >
               <Text
-                style={[
-                  styles.chipText,
-                  supplierId === supplier.id && styles.chipTextActive,
-                ]}
+                className={
+                  supplierId === supplier.id
+                    ? "text-xs font-semibold text-white"
+                    : "text-xs text-text-secondary"
+                }
               >
                 {supplier.supplierName}
               </Text>
             </Pressable>
           ))}
         </ScrollView>
-        <View style={styles.dateRow}>
+        <View className="flex-row items-center gap-1.5">
           <TextInput
             value={dateInputs.from}
             onChangeText={(v) => setDateInputs((old) => ({ ...old, from: v }))}
@@ -175,7 +184,7 @@ export function PurchaseListScreen() {
             autoCapitalize="none"
             autoCorrect={false}
             maxLength={10}
-            style={[styles.search, styles.dateInput]}
+            className="min-h-[46px] flex-1 rounded-xl border border-border bg-white px-3.5 text-[11px] text-text-primary"
           />
           <TextInput
             value={dateInputs.to}
@@ -185,30 +194,30 @@ export function PurchaseListScreen() {
             autoCapitalize="none"
             autoCorrect={false}
             maxLength={10}
-            style={[styles.search, styles.dateInput]}
+            className="min-h-[46px] flex-1 rounded-xl border border-border bg-white px-3.5 text-[11px] text-text-primary"
           />
           <Pressable
             onPress={() => {
               setPage(1);
               setDateFilters(dateInputs);
             }}
-            style={styles.apply}
+            className="rounded-lg bg-surface-tint px-2.5 py-3"
           >
-            <Text style={styles.applyText}>
+            <Text className="text-xs font-bold text-primary">
               {t("supplierPurchase.applyFilters")}
             </Text>
           </Pressable>
         </View>
       </View>
       {state.loading ? (
-        <ActivityIndicator style={styles.center} color={theme.colors.primary} />
+        <ActivityIndicator className="mt-[60px]" color={theme.colors.primary} />
       ) : state.error ? (
         <Notice text={state.error} retry={() => state.load()} />
       ) : (
         <FlatList
           data={state.data?.items || []}
           keyExtractor={(item) => item.id}
-          contentContainerStyle={styles.list}
+          contentContainerClassName="px-[18px] pb-10"
           refreshControl={
             <RefreshControl
               refreshing={state.refreshing}
@@ -237,18 +246,18 @@ export function PurchaseListScreen() {
           }
           renderItem={({ item }) => (
             <Card onPress={() => router.push(`/purchases/${item.id}`)}>
-              <View style={styles.rowBetween}>
-                <Text style={styles.cardTitle}>{item.purchaseReference}</Text>
+              <View className="flex-row items-center justify-between gap-2">
+                <Text className="text-[15px] leading-[21px] font-semibold text-text-primary">{item.purchaseReference}</Text>
                 <Status value={item.paymentStatus} />
               </View>
-              <Text style={styles.muted}>
+              <Text className="text-xs leading-[17px] text-text-secondary">
                 {item.supplier?.supplierName || ""} · {date(item.purchaseDate)}
               </Text>
-              <View style={styles.rowBetween}>
-                <Text style={styles.body}>{t("supplierPurchase.total")}</Text>
-                <Text style={styles.money}>{money(item.grandTotal)}</Text>
+              <View className="flex-row items-center justify-between gap-2">
+                <Text className="text-sm leading-5 text-text-primary">{t("supplierPurchase.total")}</Text>
+                <Text className="text-[15px] leading-[21px] font-semibold text-primary">{money(item.grandTotal)}</Text>
               </View>
-              <Text style={styles.muted}>
+              <Text className="text-xs leading-[17px] text-text-secondary">
                 {t("supplierPurchase.outstanding")}:{" "}
                 {money(item.outstandingAmount)}
               </Text>

@@ -7,7 +7,6 @@ import {
   Notice,
   ScrollPage,
   errorText,
-  styles,
 } from "../purchase-management/PurchaseManagementUI";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useLocalSearchParams, useRouter } from "expo-router";
@@ -43,31 +42,65 @@ export function SupplierPaymentCreateScreen() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const idempotencyKey = useRef(null);
-  const loadSuppliers = useCallback(async (page, search, append = false) => {
-    if (supplierLoading) return;
-    setSupplierLoading(true);
-    try {
-      const data = await suppliersApi.listSuppliers(token, { page, limit: 20, isActive: "all", search });
-      setSuppliers((old) => append ? [...old, ...(data.items || [])] : data.items || []);
-      setSupplierPage(page);
-      setSupplierHasMore(page < (data.pagination?.totalPages || 1));
-    } catch (e) { setError(errorText(e, t("supplierPurchase.loadFailed"))); }
-    finally { setSupplierLoading(false); }
-  }, [token, t, supplierLoading]);
-  useEffect(() => { const timer = setTimeout(() => loadSuppliers(1, supplierSearch), 300); return () => clearTimeout(timer); }, [supplierSearch, token]);
-  const loadOutstanding = useCallback(async (page, append = false) => {
-    if (!supplierId || purchaseLoading) return;
-    setPurchaseLoading(true);
-    try {
-      const data = await suppliersApi.getSupplierOutstanding(token, supplierId, { page, limit: 20 });
-      setOutstanding((old) => append ? [...old, ...(data.purchases || [])] : data.purchases || []);
-      setPurchasePage(page);
-      setPurchaseHasMore(page < (data.pagination?.totalPages || 1));
-    } catch (e) { setError(errorText(e, t("supplierPurchase.loadFailed"))); }
-    finally { setPurchaseLoading(false); }
-  }, [token, supplierId, t, purchaseLoading]);
-  useEffect(() => { if (supplierId) loadOutstanding(1); }, [supplierId, token]);
-  const visiblePurchases = outstanding.filter((item) => `${item.purchaseReference} ${item.supplierInvoiceNumber || ""}`.toLowerCase().includes(purchaseSearch.trim().toLowerCase()));
+  const loadSuppliers = useCallback(
+    async (page, search, append = false) => {
+      if (supplierLoading) return;
+      setSupplierLoading(true);
+      try {
+        const data = await suppliersApi.listSuppliers(token, {
+          page,
+          limit: 20,
+          isActive: "all",
+          search,
+        });
+        setSuppliers((old) =>
+          append ? [...old, ...(data.items || [])] : data.items || [],
+        );
+        setSupplierPage(page);
+        setSupplierHasMore(page < (data.pagination?.totalPages || 1));
+      } catch (e) {
+        setError(errorText(e, t("supplierPurchase.loadFailed")));
+      } finally {
+        setSupplierLoading(false);
+      }
+    },
+    [token, t, supplierLoading],
+  );
+  useEffect(() => {
+    const timer = setTimeout(() => loadSuppliers(1, supplierSearch), 300);
+    return () => clearTimeout(timer);
+  }, [supplierSearch, token]);
+  const loadOutstanding = useCallback(
+    async (page, append = false) => {
+      if (!supplierId || purchaseLoading) return;
+      setPurchaseLoading(true);
+      try {
+        const data = await suppliersApi.getSupplierOutstanding(
+          token,
+          supplierId,
+          { page, limit: 20 },
+        );
+        setOutstanding((old) =>
+          append ? [...old, ...(data.purchases || [])] : data.purchases || [],
+        );
+        setPurchasePage(page);
+        setPurchaseHasMore(page < (data.pagination?.totalPages || 1));
+      } catch (e) {
+        setError(errorText(e, t("supplierPurchase.loadFailed")));
+      } finally {
+        setPurchaseLoading(false);
+      }
+    },
+    [token, supplierId, t, purchaseLoading],
+  );
+  useEffect(() => {
+    if (supplierId) loadOutstanding(1);
+  }, [supplierId, token]);
+  const visiblePurchases = outstanding.filter((item) =>
+    `${item.purchaseReference} ${item.supplierInvoiceNumber || ""}`
+      .toLowerCase()
+      .includes(purchaseSearch.trim().toLowerCase()),
+  );
   const selected = outstanding.find((item) => item.id === purchaseId);
   const submit = async () => {
     const amount = Number(form.amount);
@@ -106,10 +139,15 @@ export function SupplierPaymentCreateScreen() {
   return (
     <ScrollPage title={t("supplierPurchase.recordPayment")}>
       {error ? <Notice text={error} /> : null}
-      <Text style={styles.sectionTitle}>
+      <Text className="mt-2 mb-1 text-lg leading-6 font-semibold text-text-primary">
         {t("supplierPurchase.chooseSupplier")}
       </Text>
-      <Field label={t("supplierPurchase.searchSuppliers")} value={supplierSearch} onChangeText={setSupplierSearch} autoCapitalize="none" />
+      <Field
+        label={t("supplierPurchase.searchSuppliers")}
+        value={supplierSearch}
+        onChangeText={setSupplierSearch}
+        autoCapitalize="none"
+      />
       {suppliers.map((item) => (
         <Pressable
           key={item.id}
@@ -122,54 +160,109 @@ export function SupplierPaymentCreateScreen() {
             setForm((old) => ({ ...old, amount: "" }));
             idempotencyKey.current = null;
           }}
-          style={[
-            styles.selectRow,
-            supplierId === item.id && styles.selectSelected,
-          ]}
+          className={
+            supplierId === item.id
+              ? "min-h-11.5 flex-row items-center justify-between gap-3 rounded-xl border border-primary bg-surface-tint px-3 py-2.5 mb-1.5"
+              : "min-h-11.5 flex-row items-center justify-between gap-3 rounded-xl border border-border bg-white px-3 py-2.5 mb-1.5"
+          }
         >
-          <Text style={styles.body}>{item.supplierName}</Text>
-          <View accessibilityRole="radio" accessibilityState={{ checked: supplierId === item.id }} style={[styles.selectionIndicator, supplierId === item.id && styles.selectionIndicatorSelected]}>
-            {supplierId === item.id ? <View style={styles.selectionDot} /> : null}
+          <Text className="text-sm leading-5 text-text-primary">
+            {item.supplierName}
+          </Text>
+          <View
+            accessibilityRole="radio"
+            accessibilityState={{ checked: supplierId === item.id }}
+            className={
+              supplierId === item.id
+                ? "h-5.5 w-5.5 items-center justify-center rounded-full border-2 border-[#23804A]"
+                : "h-5.5 w-5.5 items-center justify-center rounded-full border-2 border-border-primary"
+            }
+          >
+            {supplierId === item.id ? (
+              <View className="h-2.5 w-2.5 rounded-full bg-[#23804A]" />
+            ) : null}
           </View>
         </Pressable>
       ))}
-      {supplierHasMore ? <Button title={supplierLoading ? t("common.loading") : t("supplierPurchase.loadMore")} secondary disabled={supplierLoading} onPress={() => loadSuppliers(supplierPage + 1, supplierSearch, true)} /> : null}
-      {supplierId ? <>
-      <Text style={styles.sectionTitle}>
-        {t("supplierPurchase.choosePurchase")}
-      </Text>
-      <Field label={t("supplierPurchase.searchPurchases")} value={purchaseSearch} onChangeText={setPurchaseSearch} autoCapitalize="none" />
-      {visiblePurchases.map((item) => (
-        <Pressable
-          key={item.id}
-          onPress={() => {
-            const nextPurchaseId = purchaseId === item.id ? "" : item.id;
-            setPurchaseId(nextPurchaseId);
-            setForm((old) => ({
-              ...old,
-              amount: nextPurchaseId ? String(item.outstandingBalance) : "",
-            }));
-            idempotencyKey.current = null;
-          }}
-          style={[
-            styles.selectRow,
-            purchaseId === item.id && styles.selectSelected,
-          ]}
-        >
-          <View>
-            <Text style={styles.body}>{item.purchaseReference}</Text>
-            <Text style={styles.muted}>
-              {t("supplierPurchase.remaining")}:{" "}
-              {money(item.outstandingBalance)}
-            </Text>
-          </View>
-          <View accessibilityRole="radio" accessibilityState={{ checked: purchaseId === item.id }} style={[styles.selectionIndicator, purchaseId === item.id && styles.selectionIndicatorSelected]}>
-            {purchaseId === item.id ? <View style={styles.selectionDot} /> : null}
-          </View>
-        </Pressable>
-      ))}
-      {purchaseHasMore ? <Button title={purchaseLoading ? t("common.loading") : t("supplierPurchase.loadMore")} secondary disabled={purchaseLoading} onPress={() => loadOutstanding(purchasePage + 1, true)} /> : null}
-      </> : null}
+      {supplierHasMore ? (
+        <Button
+          title={
+            supplierLoading
+              ? t("common.loading")
+              : t("supplierPurchase.loadMore")
+          }
+          secondary
+          disabled={supplierLoading}
+          onPress={() => loadSuppliers(supplierPage + 1, supplierSearch, true)}
+        />
+      ) : null}
+      {supplierId ? (
+        <>
+          <Text className="mt-2 mb-1 text-lg leading-6 font-semibold text-text-primary">
+            {t("supplierPurchase.choosePurchase")}
+          </Text>
+          <Field
+            label={t("supplierPurchase.searchPurchases")}
+            value={purchaseSearch}
+            onChangeText={setPurchaseSearch}
+            autoCapitalize="none"
+          />
+          {visiblePurchases.map((item) => (
+            <Pressable
+              key={item.id}
+              onPress={() => {
+                const nextPurchaseId = purchaseId === item.id ? "" : item.id;
+                setPurchaseId(nextPurchaseId);
+                setForm((old) => ({
+                  ...old,
+                  amount: nextPurchaseId ? String(item.outstandingBalance) : "",
+                }));
+                idempotencyKey.current = null;
+              }}
+              className={
+                purchaseId === item.id
+                  ? "min-h-11.5 flex-row items-center justify-between gap-3 rounded-xl border border-primary bg-surface-tint px-3 py-2.5 mb-1.5"
+                  : "min-h-11.5 flex-row items-center justify-between gap-3 rounded-xl border border-border bg-white px-3 py-2.5 mb-1.5"
+              }
+            >
+              <View>
+                <Text className="text-sm leading-5 text-text-primary">
+                  {item.purchaseReference}
+                </Text>
+                <Text className="text-xs leading-4.25 text-text-secondary">
+                  {t("supplierPurchase.remaining")}:{" "}
+                  {money(item.outstandingBalance)}
+                </Text>
+              </View>
+              <View
+                accessibilityRole="radio"
+                accessibilityState={{ checked: purchaseId === item.id }}
+                className={
+                  purchaseId === item.id
+                    ? "h-5.5 w-5.5 items-center justify-center rounded-full border-2 border-[#23804A]"
+                    : "h-5.5 w-5.5 items-center justify-center rounded-full border-2 border-border-primary"
+                }
+              >
+                {purchaseId === item.id ? (
+                  <View className="h-2.5 w-2.5 rounded-full bg-[#23804A]" />
+                ) : null}
+              </View>
+            </Pressable>
+          ))}
+          {purchaseHasMore ? (
+            <Button
+              title={
+                purchaseLoading
+                  ? t("common.loading")
+                  : t("supplierPurchase.loadMore")
+              }
+              secondary
+              disabled={purchaseLoading}
+              onPress={() => loadOutstanding(purchasePage + 1, true)}
+            />
+          ) : null}
+        </>
+      ) : null}
       {selected ? (
         <>
           <Field
@@ -178,7 +271,7 @@ export function SupplierPaymentCreateScreen() {
             onChangeText={(v) => setForm({ ...form, amount: v })}
             keyboardType="decimal-pad"
           />
-          <Text style={styles.muted}>
+          <Text className="text-xs leading-4.25 text-text-secondary">
             {t("supplierPurchase.remaining")}:{" "}
             {money(selected.outstandingBalance)}
           </Text>
@@ -204,7 +297,9 @@ export function SupplierPaymentCreateScreen() {
             autoCapitalize="characters"
             autoCorrect={false}
           />
-          <Text style={styles.muted}>{t("supplierPurchase.transactionReferenceHelp")}</Text>
+          <Text className="text-xs leading-4.25 text-text-secondary">
+            {t("supplierPurchase.transactionReferenceHelp")}
+          </Text>
           <Field
             label={t("supplierPurchase.notes")}
             value={form.notes}

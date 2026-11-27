@@ -16,7 +16,6 @@ import {
   date,
   errorText,
   money,
-  styles,
 } from "../purchase-management/PurchaseManagementUI";
 
 export function PurchaseInvoiceScreen() {
@@ -50,7 +49,7 @@ export function PurchaseInvoiceScreen() {
   if (state.loading)
     return (
       <Page title={t("supplierPurchase.invoice")}>
-        <ActivityIndicator style={styles.center} color={theme.colors.primary} />
+        <ActivityIndicator className="mt-15" color={theme.colors.primary} />
       </Page>
     );
   if (state.error || !doc)
@@ -63,22 +62,26 @@ export function PurchaseInvoiceScreen() {
   return (
     <ScrollPage title={t("supplierPurchase.invoice")}>
       <Card>
-        <Text style={styles.cardTitle}>{doc.shop.shopName}</Text>
-        <Text style={styles.sectionTitle}>
+        <Text className="text-[15px] leading-5.25 font-semibold text-text-primary">
+          {doc.shop.shopName}
+        </Text>
+        <Text className="mt-2 mb-1 text-lg leading-6 font-semibold text-text-primary">
           {t("supplierPurchase.purchaseInvoice")}
         </Text>
-        <Text style={styles.body}>
+        <Text className="text-sm leading-5 text-text-primary">
           {p.purchaseReference}
           {p.supplierInvoiceNumber ? ` · ${p.supplierInvoiceNumber}` : ""}
         </Text>
-        <Text style={styles.muted}>
+        <Text className="text-xs leading-4.25 text-text-secondary">
           {doc.supplier?.supplierName} · {date(p.purchaseDate)}
         </Text>
         <Divider />
         {p.items.map((line, index) => (
-          <View style={styles.lineItem} key={`${line.productId}-${index}`}>
-            <Text style={styles.body}>{line.productNameSnapshot}</Text>
-            <Text style={styles.muted}>
+          <View className="gap-0.75 py-1.75" key={`${line.productId}-${index}`}>
+            <Text className="text-sm leading-5 text-text-primary">
+              {line.productNameSnapshot}
+            </Text>
+            <Text className="text-xs leading-4.25 text-text-secondary">
               {line.quantity} {line.unit} · {money(line.lineTotal)}
             </Text>
           </View>
@@ -102,7 +105,7 @@ export function PurchaseInvoiceScreen() {
           value={money(p.outstandingAmount)}
         />
       </Card>
-      <Text style={styles.muted}>
+      <Text className="text-xs leading-4.25 text-text-secondary">
         {t("supplierPurchase.invoiceDisclaimer")}
       </Text>
       <Button title={t("supplierPurchase.shareInvoice")} onPress={share} />
