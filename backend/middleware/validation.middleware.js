@@ -12,7 +12,8 @@ export const formatValidationIssues = (issues = []) => {
     const location = REQUEST_LOCATIONS.has(path[0]) ? path[0] : "request";
     const fieldPath = location === "request" ? path : path.slice(1);
     const field = fieldPath.length ? fieldPath.join(".") : "_form";
-    const message = typeof issue.message === "string" ? issue.message : "Invalid value";
+    const message =
+      typeof issue.message === "string" ? issue.message : "Invalid value";
 
     if (!Object.hasOwn(fieldErrors, field)) fieldErrors[field] = [];
     fieldErrors[field].push(message);
@@ -49,6 +50,7 @@ export const validate = (schema) => (req, _res, next) => {
 
   req.body = result.data.body;
   req.params = result.data.params;
+  req.validatedParams = result.data.params;
   req.validatedQuery = result.data.query;
   next();
 };

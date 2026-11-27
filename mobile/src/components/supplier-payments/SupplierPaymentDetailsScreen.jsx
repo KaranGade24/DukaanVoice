@@ -13,7 +13,6 @@ import {
   useLoad,
   date,
   money,
-  styles,
 } from "../purchase-management/PurchaseManagementUI";
 
 export function SupplierPaymentDetailsScreen() {
@@ -28,7 +27,7 @@ export function SupplierPaymentDetailsScreen() {
   if (state.loading)
     return (
       <Page title={t("supplierPurchase.paymentDetails")}>
-        <ActivityIndicator style={styles.center} color={theme.colors.primary} />
+        <ActivityIndicator className="mt-[60px]" color={theme.colors.primary} />
       </Page>
     );
   if (state.error || !payment)
@@ -40,16 +39,16 @@ export function SupplierPaymentDetailsScreen() {
   return (
     <ScrollPage title={t("supplierPurchase.paymentDetails")}>
       <Card>
-        <Text style={styles.cardTitle}>{money(payment.amount)}</Text>
-        <Text style={styles.body}>{payment.supplierName}</Text>
-        <Text style={styles.muted}>
+        <Text className="text-[15px] leading-[21px] font-semibold text-text-primary">{money(payment.amount)}</Text>
+        <Text className="text-sm leading-5 text-text-primary">{payment.supplierName}</Text>
+        <Text className="text-xs leading-[17px] text-text-secondary">
           {payment.purchaseReference} · {date(payment.paymentDate)}
         </Text>
-        <Text style={styles.muted}>
+        <Text className="text-xs leading-[17px] text-text-secondary">
           {t(`supplierPurchase.methods.${payment.paymentMethod}`)} ·{" "}
           {payment.transactionReference || "—"}
         </Text>
-        <Text style={styles.muted}>{payment.notes || "—"}</Text>
+        <Text className="text-xs leading-[17px] text-text-secondary">{payment.notes || "—"}</Text>
         <Status value={payment.entryType} />
       </Card>
     </ScrollPage>

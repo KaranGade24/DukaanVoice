@@ -29,7 +29,6 @@ import {
   errorText,
   money,
   paymentMethods,
-  styles,
 } from "../purchase-management/PurchaseManagementUI";
 
 export function SupplierPaymentListScreen() {
@@ -95,17 +94,17 @@ export function SupplierPaymentListScreen() {
       right={
         <Pressable
           onPress={() => router.push("/supplier-payments/new")}
-          style={styles.add}
+          className="h-10 w-10 items-center justify-center rounded-full bg-surface-tint"
         >
-          <Text style={styles.addText}>＋</Text>
+          <Text className="text-2xl font-semibold text-primary">＋</Text>
         </Pressable>
       }
     >
-      <View style={styles.toolbar}>
+      <View className="gap-2.5 px-5 py-2.5">
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.chips}
+          contentContainerClassName="gap-2"
         >
           {["", ...paymentMethods].map((v) => (
             <Pressable
@@ -114,13 +113,18 @@ export function SupplierPaymentListScreen() {
                 setPage(1);
                 setMethod(v);
               }}
-              style={[styles.chip, paymentMethod === v && styles.chipActive]}
+              className={
+                paymentMethod === v
+                  ? "rounded-full border border-primary bg-primary px-3 py-2"
+                  : "rounded-full border border-border bg-white px-3 py-2"
+              }
             >
               <Text
-                style={[
-                  styles.chipText,
-                  paymentMethod === v && styles.chipTextActive,
-                ]}
+                className={
+                  paymentMethod === v
+                    ? "text-xs font-semibold text-white"
+                    : "text-xs text-text-secondary"
+                }
               >
                 {v
                   ? t(`supplierPurchase.methods.${v}`)
@@ -132,7 +136,7 @@ export function SupplierPaymentListScreen() {
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.chips}
+          contentContainerClassName="gap-2"
         >
           {suppliers.map((supplier) => (
             <Pressable
@@ -141,23 +145,25 @@ export function SupplierPaymentListScreen() {
                 setPage(1);
                 setSupplierId(supplierId === supplier.id ? "" : supplier.id);
               }}
-              style={[
-                styles.chip,
-                supplierId === supplier.id && styles.chipActive,
-              ]}
+              className={
+                supplierId === supplier.id
+                  ? "rounded-full border border-primary bg-primary px-3 py-2"
+                  : "rounded-full border border-border bg-white px-3 py-2"
+              }
             >
               <Text
-                style={[
-                  styles.chipText,
-                  supplierId === supplier.id && styles.chipTextActive,
-                ]}
+                className={
+                  supplierId === supplier.id
+                    ? "text-xs font-semibold text-white"
+                    : "text-xs text-text-secondary"
+                }
               >
                 {supplier.supplierName}
               </Text>
             </Pressable>
           ))}
         </ScrollView>
-        <View style={styles.dateRow}>
+        <View className="flex-row items-center gap-1.5">
           <TextInput
             value={dateInputs.from}
             onChangeText={(v) => setDateInputs((old) => ({ ...old, from: v }))}
@@ -166,7 +172,7 @@ export function SupplierPaymentListScreen() {
             autoCapitalize="none"
             autoCorrect={false}
             maxLength={10}
-            style={[styles.search, styles.dateInput]}
+            className="min-h-[46px] flex-1 rounded-xl border border-border bg-white px-3.5 text-[11px] text-text-primary"
           />
           <TextInput
             value={dateInputs.to}
@@ -176,30 +182,30 @@ export function SupplierPaymentListScreen() {
             autoCapitalize="none"
             autoCorrect={false}
             maxLength={10}
-            style={[styles.search, styles.dateInput]}
+            className="min-h-[46px] flex-1 rounded-xl border border-border bg-white px-3.5 text-[11px] text-text-primary"
           />
           <Pressable
             onPress={() => {
               setPage(1);
               setDateFilters(dateInputs);
             }}
-            style={styles.apply}
+            className="rounded-lg bg-surface-tint px-2.5 py-3"
           >
-            <Text style={styles.applyText}>
+            <Text className="text-xs font-bold text-primary">
               {t("supplierPurchase.applyFilters")}
             </Text>
           </Pressable>
         </View>
       </View>
       {state.loading ? (
-        <ActivityIndicator style={styles.center} color={theme.colors.primary} />
+        <ActivityIndicator className="mt-[60px]" color={theme.colors.primary} />
       ) : state.error ? (
         <Notice text={state.error} retry={() => state.load()} />
       ) : (
         <FlatList
           data={rows}
           keyExtractor={(item) => item.id}
-          contentContainerStyle={styles.list}
+          contentContainerClassName="px-[18px] pb-10"
           refreshControl={
             <RefreshControl
               refreshing={state.refreshing}
@@ -226,14 +232,14 @@ export function SupplierPaymentListScreen() {
           }
           renderItem={({ item }) => (
             <Card onPress={() => router.push(`/supplier-payments/${item.id}`)}>
-              <View style={styles.rowBetween}>
-                <Text style={styles.cardTitle}>{money(item.amount)}</Text>
+              <View className="flex-row items-center justify-between gap-2">
+                <Text className="text-[15px] leading-[21px] font-semibold text-text-primary">{money(item.amount)}</Text>
                 <Status value={item.entryType} />
               </View>
-              <Text style={styles.muted}>
+              <Text className="text-xs leading-[17px] text-text-secondary">
                 {item.supplierName} · {item.purchaseReference}
               </Text>
-              <Text style={styles.muted}>
+              <Text className="text-xs leading-[17px] text-text-secondary">
                 {t(`supplierPurchase.methods.${item.paymentMethod}`)} ·{" "}
                 {date(item.paymentDate)}
               </Text>

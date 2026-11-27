@@ -1,0 +1,1 @@
+export const customerPrompt = `Customer records are private to this authenticated shop. Search before selecting a customer, ask for clarification if more than one record matches, and never invent a customer. Walk-in billing is valid. Do not claim a customer was selected unless a tool confirms it.`;

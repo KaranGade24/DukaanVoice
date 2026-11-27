@@ -16,17 +16,28 @@ export const formatApiErrorMessage = (message, code, details) => {
     .filter((issue) => typeof issue?.message === "string")
     .map((issue) => {
       const field = typeof issue.field === "string" ? issue.field : "_form";
-      const location = issue.location === "query" ? "Query" : issue.location === "params" ? "Path" : "";
+      const location =
+        issue.location === "query"
+          ? "Query"
+          : issue.location === "params"
+            ? "Path"
+            : "";
       const label = field === "_form" ? "Request" : humanizeField(field);
       return `• ${location ? `${location} · ` : ""}${label}: ${issue.message}`;
     });
 
-  if (!lines.length && details?.fieldErrors && typeof details.fieldErrors === "object") {
+  if (
+    !lines.length &&
+    details?.fieldErrors &&
+    typeof details.fieldErrors === "object"
+  ) {
     for (const [field, messages] of Object.entries(details.fieldErrors)) {
       const list = Array.isArray(messages) ? messages : [messages];
       for (const reason of list) {
         if (typeof reason === "string") {
-          lines.push(`• ${field === "_form" ? "Request" : humanizeField(field)}: ${reason}`);
+          lines.push(
+            `• ${field === "_form" ? "Request" : humanizeField(field)}: ${reason}`,
+          );
         }
       }
     }
@@ -52,9 +63,9 @@ export class ApiError extends Error {
 }
 
 export async function apiRequest(path, options = {}) {
-  const { token, body, ...requestOptions } = options;
+  const { token, body, timeoutMs = 15000, ...requestOptions } = options;
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 15000);
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
   try {
     const response = await fetch(`${API_BASE_URL}${path}`, {
       ...requestOptions,

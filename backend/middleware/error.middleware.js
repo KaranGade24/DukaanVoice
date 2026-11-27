@@ -22,18 +22,28 @@ export const errorHandler = (error, _req, res, _next) => {
           ? "A product with this SKU already exists"
           : fields.includes("barcode")
             ? "A product with this barcode already exists"
-          : fields.includes("supplierInvoiceNumber")
-            ? "This supplier invoice has already been recorded"
-            : fields.includes("purchaseReference")
-              ? "Purchase reference already exists"
-              : fields.includes("idempotencyKey")
-                ? "This request has already been processed"
-                : "A resource with these details already exists";
+            : fields.includes("supplierInvoiceNumber")
+              ? "This supplier invoice has already been recorded"
+              : fields.includes("purchaseReference")
+                ? "Purchase reference already exists"
+                : fields.includes("idempotencyKey")
+                  ? "This request has already been processed"
+                  : "A resource with these details already exists";
   }
   if (error.name === "ValidationError") {
     statusCode = 400;
     code = "DATABASE_VALIDATION_ERROR";
-    message = "Invalid data";
+    const fields = Object.keys(error.errors || {});
+    console.error("Database validation failed", {
+      fields,
+      errors: fields.map((field) => ({
+        field,
+        kind: error.errors[field]?.kind || "validation",
+      })),
+    });
+    message = fields.length
+      ? `Invalid data in: ${fields.join(", ")}`
+      : "Invalid data";
   }
 
   if (statusCode >= 500) console.error(error);

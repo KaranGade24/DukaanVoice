@@ -166,11 +166,41 @@ paths:
                 description: { type: string }
                 sku: { type: string }
                 barcode: { type: string }
-                purchasePrice: { type: number, minimum: 0, maximum: 1000000000, multipleOf: 0.01, nullable: true, description: Rupees; maximum two decimal places }
-                sellingPrice: { type: number, minimum: 0, maximum: 1000000000, multipleOf: 0.01, description: Rupees; maximum two decimal places }
-                quantity: { type: number, minimum: 0, maximum: 1000000000, multipleOf: 0.000001, default: 0, description: Up to six decimal places }
+                purchasePrice:
+                  {
+                    type: number,
+                    minimum: 0,
+                    maximum: 1000000000,
+                    multipleOf: 0.01,
+                    nullable: true,
+                    description: Rupees; maximum two decimal places,
+                  }
+                sellingPrice:
+                  {
+                    type: number,
+                    minimum: 0,
+                    maximum: 1000000000,
+                    multipleOf: 0.01,
+                    description: Rupees; maximum two decimal places,
+                  }
+                quantity:
+                  {
+                    type: number,
+                    minimum: 0,
+                    maximum: 1000000000,
+                    multipleOf: 0.000001,
+                    default: 0,
+                    description: Up to six decimal places,
+                  }
                 unit: { type: string }
-                minimumStock: { type: number, minimum: 0, maximum: 1000000000, multipleOf: 0.000001, description: Up to six decimal places }
+                minimumStock:
+                  {
+                    type: number,
+                    minimum: 0,
+                    maximum: 1000000000,
+                    multipleOf: 0.000001,
+                    description: Up to six decimal places,
+                  }
                 image: { type: string }
       responses:
         "201": { description: Created product }
@@ -373,8 +403,16 @@ components:
                           type: object
                           required: [field, location, code, message]
                           properties:
-                            field: { type: string, description: Dot-separated field path or _form for request-level errors }
-                            location: { type: string, enum: [body, params, query, request] }
+                            field:
+                              {
+                                type: string,
+                                description: Dot-separated field path or _form for request-level errors,
+                              }
+                            location:
+                              {
+                                type: string,
+                                enum: [body, params, query, request],
+                              }
                             code: { type: string }
                             message: { type: string }
                       totalIssues: { type: integer, minimum: 0 }

@@ -7,24 +7,25 @@ import {
   Image,
   Pressable,
   RefreshControl,
-  StyleSheet,
   Text,
   TextInput,
+  useWindowDimensions,
   View,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuth } from "../../context/AuthContext";
 import * as inventoryService from "../../services/inventoryService";
 import theme from "../../constants/theme";
+import KeyboardAwareList from "../../components/keyboard/KeyboardAwareList";
 
 const filters = ["all", "inStock", "lowStock", "outOfStock"];
 const formatMoney = (value) =>
   `₹${Number(value || 0).toLocaleString("en-IN", { maximumFractionDigits: 2 })}`;
 
 export default function InventoryScreen() {
+  const { height } = useWindowDimensions();
   const { t } = useTranslation();
   const router = useRouter();
   const params = useLocalSearchParams();
@@ -40,6 +41,7 @@ export default function InventoryScreen() {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState("");
+
   const load = useCallback(
     async (nextPage = 1, append = false) => {
       setError("");
@@ -70,12 +72,14 @@ export default function InventoryScreen() {
     },
     [token, search, status, categoryId],
   );
+
   useFocusEffect(
     useCallback(() => {
       setLoading(true);
       load(1);
     }, [load]),
   );
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(true);
@@ -88,6 +92,7 @@ export default function InventoryScreen() {
     await load(1);
     setRefreshing(false);
   };
+
   const quickActions = [
     {
       label: t("inventory.addProduct"),
@@ -116,6 +121,7 @@ export default function InventoryScreen() {
     },
     { label: t("inventory.history"), icon: "history", path: "/stock/history" },
   ];
+
   const metrics = [
     [
       t("inventory.totalProducts"),
@@ -143,6 +149,7 @@ export default function InventoryScreen() {
       "package-variant-remove",
     ],
   ];
+
   const categoryName = (id) =>
     categories.find((category) => category.id === id)?.name || "";
   const statusLabel = (value) => t(`inventory.status.${value}`);
@@ -155,16 +162,19 @@ export default function InventoryScreen() {
           : "success";
     return (
       <Pressable
-        style={styles.productCard}
+        className="min-h-23.5 mb-2.25 flex-row items-center gap-2.5 rounded-card border border-border bg-white p-2.75"
         onPress={() =>
           router.push({ pathname: "/products/[id]", params: { id: item.id } })
         }
         accessibilityRole="button"
       >
         {item.imageUrl ? (
-          <Image source={{ uri: item.imageUrl }} style={styles.productIcon} />
+          <Image
+            source={{ uri: item.imageUrl }}
+            className="h-13.5 w-13.5 items-center justify-center rounded-[11px] bg-surface-tint"
+          />
         ) : (
-          <View style={styles.productIcon}>
+          <View className="h-13.5 w-13.5 items-center justify-center rounded-[11px] bg-surface-tint">
             <MaterialCommunityIcons
               name="package-variant-closed"
               size={26}
@@ -172,23 +182,44 @@ export default function InventoryScreen() {
             />
           </View>
         )}
-        <View style={styles.productInfo}>
-          <Text style={styles.productName} numberOfLines={1}>
+        <View className="min-w-0 flex-1">
+          <Text
+            className="text-[15px] leading-5.25 font-semibold text-text-primary"
+            numberOfLines={1}
+          >
             {item.name}
           </Text>
-          <Text style={styles.muted}>
+          <Text className="mt-0.75 text-xs leading-4.25 text-text-secondary">
             {item.sku || item.barcode || t("inventory.noSku")} ·{" "}
             {item.categoryName || categoryName(item.categoryId)}
           </Text>
-          <View style={styles.productMeta}>
-            <Text style={styles.quantity}>
+          <View className="mt-1.25 flex-row justify-between">
+            <Text className="text-xs leading-4.25 font-semibold text-text-primary">
               {item.quantity} {item.unit}
             </Text>
-            <Text style={styles.price}>{formatMoney(item.sellingPrice)}</Text>
+            <Text className="text-xs leading-4.25 font-bold text-primary">
+              {formatMoney(item.sellingPrice)}
+            </Text>
           </View>
         </View>
-        <View style={[styles.badge, styles[tone + "Badge"]]}>
-          <Text style={[styles.badgeText, styles[tone + "Text"]]}>
+        <View
+          className={
+            tone === "danger"
+              ? "rounded-[7px] bg-error-bg px-1.75 py-1.25"
+              : tone === "warning"
+                ? "rounded-[7px] bg-warning-bg px-1.75 py-1.25"
+                : "rounded-[7px] bg-[#E8F5EC] px-1.75 py-1.25"
+          }
+        >
+          <Text
+            className={
+              tone === "danger"
+                ? "text-[10px] font-bold text-error"
+                : tone === "warning"
+                  ? "text-[10px] font-bold text-[#B45309]"
+                  : "text-[10px] font-bold text-primary"
+            }
+          >
             {statusLabel(item.stockStatus)}
           </Text>
         </View>
@@ -197,390 +228,246 @@ export default function InventoryScreen() {
   };
   if (loading && !summary)
     return (
-      <SafeAreaView style={styles.page}>
+      <View className="flex-1 bg-background">
         <ActivityIndicator size="large" color={theme.colors.primary} />
-      </SafeAreaView>
+      </View>
     );
   return (
-    <SafeAreaView style={styles.page} edges={["top"]}>
+    <View className="flex-1 bg-background">
       <KeyboardAvoidingView
-        style={{ flex: 1 }}
+        style={{ height: height - 56 }}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 20}
       >
-      <FlatList
-        data={products}
-        keyExtractor={(item) => item.id}
-        renderItem={renderProduct}
-        contentContainerStyle={styles.listContent}
-        ListHeaderComponent={
-          <>
-            <View style={styles.header}>
-              <View>
-                <Text style={styles.title}>{t("inventory.title")}</Text>
-                <Text style={styles.muted}>
-                  {shop?.shopName || t("inventory.shopContext")}
-                </Text>
-              </View>
-              <Pressable
-                onPress={() => router.push("/inventory/alerts")}
-                style={styles.alertButton}
-                accessibilityLabel={t("inventory.alerts")}
-              >
-                <MaterialCommunityIcons
-                  name="bell-outline"
-                  size={22}
-                  color={theme.colors.primary}
-                />
-                {(summary?.lowStockProducts || 0) +
-                  (summary?.outOfStockProducts || 0) >
-                  0 && <View style={styles.alertDot} />}
-              </Pressable>
-            </View>
-            <FlatList
-              horizontal
-              data={metrics}
-              keyExtractor={(item) => item[0]}
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={styles.metricRail}
-              renderItem={({ item }) => (
-                <View style={styles.metricCard}>
-                  <View style={styles.metricLabelRow}>
-                    <MaterialCommunityIcons
-                      name={item[2]}
-                      size={17}
-                      color={theme.colors.primary}
-                    />
-                    <Text style={styles.metricLabel}>{item[0]}</Text>
-                  </View>
-                  <Text style={styles.metricValue}>{item[1]}</Text>
+        <KeyboardAwareList
+          className="flex-1"
+          enableOnAndroid
+          enableAutomaticScroll
+          extraScrollHeight={16}
+          keyboardShouldPersistTaps="handled"
+          keyboardDismissMode={Platform.OS === "ios" ? "interactive" : "on-drag"}
+          data={products}
+          keyExtractor={(item) => item.id}
+          renderItem={renderProduct}
+          contentContainerClassName="px-4 pb-5"
+          ListHeaderComponent={
+            <>
+              <View className="flex-row items-center justify-between pt-2.5 pb-3.5">
+                <View>
+                  <Text className="text-2xl font-bold leading-8 text-text-primary">
+                    {t("inventory.title")}
+                  </Text>
+                  <Text className="mt-0.75 text-xs leading-4.25 text-text-secondary">
+                    {shop?.shopName || t("inventory.shopContext")}
+                  </Text>
                 </View>
-              )}
-            />
-            <Text style={styles.sectionTitle}>
-              {t("inventory.quickActions")}
-            </Text>
-            <View style={styles.actions}>
-              {quickActions.map((action) => (
                 <Pressable
-                  key={action.path}
-                  onPress={() => router.push(action.path)}
-                  style={styles.actionCard}
+                  onPress={() => router.push("/inventory/alerts")}
+                  className="h-11.5 w-11.5 items-center justify-center rounded-card border border-border bg-white"
+                  accessibilityLabel={t("inventory.alerts")}
                 >
                   <MaterialCommunityIcons
-                    name={action.icon}
+                    name="bell-outline"
                     size={22}
                     color={theme.colors.primary}
                   />
-                  <Text style={styles.actionText}>{action.label}</Text>
+                  {(summary?.lowStockProducts || 0) +
+                    (summary?.outOfStockProducts || 0) >
+                    0 && (
+                    <View className="absolute right-2.75 top-2.5 h-2 w-2 rounded-full bg-error" />
+                  )}
                 </Pressable>
-              ))}
-            </View>
-            <Text style={styles.sectionTitle}>{t("inventory.products")}</Text>
-            <View style={styles.searchBox}>
-              <MaterialCommunityIcons
-                name="magnify"
-                size={21}
-                color={theme.colors.muted}
-              />
-              <TextInput
-                value={search}
-                onChangeText={setSearch}
-                placeholder={t("inventory.searchPlaceholder")}
-                placeholderTextColor={theme.colors.muted}
-                style={styles.searchInput}
-                returnKeyType="search"
-              />
-            </View>
-            <FlatList
-              horizontal
-              data={filters}
-              keyExtractor={(item) => item}
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={styles.filterRail}
-              renderItem={({ item }) => (
-                <Pressable
-                  onPress={() => {
-                    setStatus(item);
-                    setPage(1);
-                  }}
-                  style={[
-                    styles.filterChip,
-                    status === item && styles.filterSelected,
-                  ]}
-                >
-                  <Text
-                    style={[
-                      styles.filterText,
-                      status === item && styles.filterTextSelected,
-                    ]}
-                  >
-                    {t(`inventory.filter.${item}`)}
-                  </Text>
-                </Pressable>
-              )}
-            />
-            {categories.length > 0 ? (
+              </View>
               <FlatList
                 horizontal
-                data={[
-                  {
-                    id: "",
-                    name: t("inventory.allCategories"),
-                    productCount: summary?.totalProducts || 0,
-                  },
-                  ...categories,
-                ]}
-                keyExtractor={(item) => item.id || "all"}
+                data={metrics}
+                keyExtractor={(item) => item[0]}
                 showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.filterRail}
+                contentContainerClassName="gap-2.5 pb-[7px]"
+                renderItem={({ item }) => (
+                  <View className="min-h-21 w-38.75 justify-between rounded-card border border-border bg-white p-3">
+                    <View className="flex-row items-center gap-1.5">
+                      <MaterialCommunityIcons
+                        name={item[2]}
+                        size={17}
+                        color={theme.colors.primary}
+                      />
+                      <Text className="shrink text-xs leading-4.25 text-text-secondary">
+                        {item[0]}
+                      </Text>
+                    </View>
+                    <Text className="mt-1.75 text-lg font-semibold leading-6 text-text-primary">
+                      {item[1]}
+                    </Text>
+                  </View>
+                )}
+              />
+              <Text className="mt-5.75 mb-2.75 text-lg font-semibold leading-6 text-text-primary">
+                {t("inventory.quickActions")}
+              </Text>
+              <View className="flex-row flex-wrap gap-2.25">
+                {quickActions.map((action) => (
+                  <Pressable
+                    key={action.path}
+                    onPress={() => router.push(action.path)}
+                    className="min-h-20.5 w-[31.5%] items-center justify-center gap-1.5 rounded-[13px] border border-border bg-white p-2.25"
+                  >
+                    <MaterialCommunityIcons
+                      name={action.icon}
+                      size={22}
+                      color={theme.colors.primary}
+                    />
+                    <Text className="text-center text-xs leading-4.25 text-text-primary">
+                      {action.label}
+                    </Text>
+                  </Pressable>
+                ))}
+              </View>
+              <Text className="mt-5.75 mb-2.75 text-lg font-semibold leading-6 text-text-primary">
+                {t("inventory.products")}
+              </Text>
+              <View className="h-12 flex-row items-center gap-2 rounded-[11px] border border-border bg-white px-3">
+                <MaterialCommunityIcons
+                  name="magnify"
+                  size={21}
+                  color={theme.colors.muted}
+                />
+                <TextInput
+                  value={search}
+                  onChangeText={setSearch}
+                  placeholder={t("inventory.searchPlaceholder")}
+                  placeholderTextColor={theme.colors.muted}
+                  className="min-w-0 flex-1 py-0 text-sm text-text-primary"
+                  returnKeyType="search"
+                />
+              </View>
+              <FlatList
+                horizontal
+                data={filters}
+                keyExtractor={(item) => item}
+                showsHorizontalScrollIndicator={false}
+                contentContainerClassName="gap-2 py-3"
                 renderItem={({ item }) => (
                   <Pressable
-                    onPress={() => setCategoryId(item.id)}
-                    style={[
-                      styles.filterChip,
-                      categoryId === item.id && styles.filterSelected,
-                    ]}
+                    onPress={() => {
+                      setStatus(item);
+                      setPage(1);
+                    }}
+                    className={
+                      status === item
+                        ? "min-h-9 justify-center rounded-lg bg-primary px-3.25"
+                        : "min-h-9 justify-center rounded-lg bg-surface-subtle px-3.25"
+                    }
                   >
                     <Text
-                      style={[
-                        styles.filterText,
-                        categoryId === item.id && styles.filterTextSelected,
-                      ]}
+                      className={
+                        status === item
+                          ? "text-xs leading-4.25 text-white"
+                          : "text-xs leading-4.25 text-text-secondary"
+                      }
                     >
-                      {item.name}{" "}
-                      {item.productCount != null ? item.productCount : ""}
+                      {t(`inventory.filter.${item}`)}
                     </Text>
                   </Pressable>
                 )}
               />
-            ) : null}
-            {error ? (
-              <Pressable onPress={() => load(1)} style={styles.errorBox}>
-                <Text style={styles.errorText}>
-                  {error} · {t("common.retry")}
+              {categories.length > 0 ? (
+                <FlatList
+                  horizontal
+                  data={[
+                    {
+                      id: "",
+                      name: t("inventory.allCategories"),
+                      productCount: summary?.totalProducts || 0,
+                    },
+                    ...categories,
+                  ]}
+                  keyExtractor={(item) => item.id || "all"}
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerClassName="gap-2 py-3"
+                  renderItem={({ item }) => (
+                    <Pressable
+                      onPress={() => setCategoryId(item.id)}
+                      className={
+                        categoryId === item.id
+                          ? "min-h-9 justify-center rounded-lg bg-primary px-3.25"
+                          : "min-h-9 justify-center rounded-lg bg-surface-subtle px-3.25"
+                      }
+                    >
+                      <Text
+                        className={
+                          categoryId === item.id
+                            ? "text-xs leading-4.25 text-white"
+                            : "text-xs leading-4.25 text-text-secondary"
+                        }
+                      >
+                        {item.name}{" "}
+                        {item.productCount != null ? item.productCount : ""}
+                      </Text>
+                    </Pressable>
+                  )}
+                />
+              ) : null}
+              {error ? (
+                <Pressable
+                  onPress={() => load(1)}
+                  className="rounded-[10px] bg-error-bg p-3"
+                >
+                  <Text className="text-xs leading-4.25 text-error">
+                    {error} · {t("common.retry")}
+                  </Text>
+                </Pressable>
+              ) : null}
+            </>
+          }
+          ListEmptyComponent={
+            !loading ? (
+              <View className="items-center gap-2 py-8.75">
+                <MaterialCommunityIcons
+                  name="package-variant"
+                  size={34}
+                  color={theme.colors.muted}
+                />
+                <Text className="text-lg font-semibold leading-6 text-text-primary">
+                  {t("inventory.emptyTitle")}
                 </Text>
-              </Pressable>
-            ) : null}
-          </>
-        }
-        ListEmptyComponent={
-          !loading ? (
-            <View style={styles.empty}>
-              <MaterialCommunityIcons
-                name="package-variant"
-                size={34}
-                color={theme.colors.muted}
-              />
-              <Text style={styles.emptyTitle}>{t("inventory.emptyTitle")}</Text>
-              <Text style={styles.muted}>{t("inventory.emptyBody")}</Text>
+                <Text className="mt-0.75 text-xs leading-4.25 text-text-secondary">
+                  {t("inventory.emptyBody")}
+                </Text>
+                <Pressable
+                  onPress={() => router.push("/products/new")}
+                  className="mt-2 min-h-12 justify-center rounded-xl bg-primary px-5"
+                >
+                  <Text className="font-bold text-white">
+                    {t("inventory.addProduct")}
+                  </Text>
+                </Pressable>
+              </View>
+            ) : null
+          }
+          ListFooterComponent={
+            page < pages ? (
               <Pressable
-                onPress={() => router.push("/products/new")}
-                style={styles.primaryButton}
+                className="items-center p-3.75"
+                onPress={() => load(page + 1, true)}
               >
-                <Text style={styles.primaryText}>
-                  {t("inventory.addProduct")}
+                <Text className="font-bold text-primary">
+                  {t("inventory.loadMore")}
                 </Text>
               </Pressable>
-            </View>
-          ) : null
-        }
-        ListFooterComponent={
-          page < pages ? (
-            <Pressable
-              style={styles.loadMore}
-              onPress={() => load(page + 1, true)}
-            >
-              <Text style={styles.link}>{t("inventory.loadMore")}</Text>
-            </Pressable>
-          ) : (
-            <View style={{ height: 24 }} />
-          )
-        }
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={refresh}
-            tintColor={theme.colors.primary}
-          />
-        }
-      />
+            ) : (
+              <View className="h-6" />
+            )
+          }
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={refresh}
+              tintColor={theme.colors.primary}
+            />
+          }
+        />
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  page: { flex: 1, backgroundColor: theme.colors.background },
-  listContent: { paddingHorizontal: 16, paddingBottom: 20 },
-  header: {
-    paddingTop: 10,
-    paddingBottom: 14,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  title: { ...theme.typography.headline, color: theme.colors.textPrimary },
-  muted: {
-    ...theme.typography.small,
-    color: theme.colors.textSecondary,
-    marginTop: 3,
-  },
-  alertButton: {
-    width: 46,
-    height: 46,
-    borderRadius: 14,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-  },
-  alertDot: {
-    position: "absolute",
-    top: 10,
-    right: 11,
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: theme.colors.error,
-  },
-  metricRail: { gap: 10, paddingBottom: 7 },
-  metricCard: {
-    width: 155,
-    minHeight: 84,
-    borderRadius: 14,
-    padding: 12,
-    backgroundColor: "#fff",
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-    justifyContent: "space-between",
-  },
-  metricLabelRow: { flexDirection: "row", alignItems: "center", gap: 6 },
-  metricLabel: {
-    ...theme.typography.small,
-    color: theme.colors.textSecondary,
-    flexShrink: 1,
-  },
-  metricValue: {
-    ...theme.typography.title,
-    color: theme.colors.textPrimary,
-    marginTop: 7,
-  },
-  sectionTitle: {
-    ...theme.typography.title,
-    color: theme.colors.textPrimary,
-    marginTop: 23,
-    marginBottom: 11,
-  },
-  actions: { flexDirection: "row", flexWrap: "wrap", gap: 9 },
-  actionCard: {
-    width: "31.5%",
-    minHeight: 82,
-    padding: 9,
-    borderRadius: 13,
-    backgroundColor: "#fff",
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 6,
-  },
-  actionText: {
-    ...theme.typography.small,
-    color: theme.colors.textPrimary,
-    textAlign: "center",
-  },
-  searchBox: {
-    height: 48,
-    paddingHorizontal: 12,
-    borderRadius: 11,
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-    backgroundColor: "#fff",
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-  },
-  searchInput: {
-    flex: 1,
-    fontSize: 14,
-    color: theme.colors.textPrimary,
-    paddingVertical: 0,
-  },
-  filterRail: { gap: 8, paddingVertical: 12 },
-  filterChip: {
-    minHeight: 36,
-    justifyContent: "center",
-    paddingHorizontal: 13,
-    borderRadius: 8,
-    backgroundColor: theme.colors.surfaceSubtle,
-  },
-  filterSelected: { backgroundColor: theme.colors.primary },
-  filterText: { ...theme.typography.small, color: theme.colors.textSecondary },
-  filterTextSelected: { color: "#fff" },
-  productCard: {
-    minHeight: 94,
-    backgroundColor: "#fff",
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-    borderRadius: 14,
-    padding: 11,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-    marginBottom: 9,
-  },
-  productIcon: {
-    width: 54,
-    height: 54,
-    borderRadius: 11,
-    backgroundColor: theme.colors.surfaceTint,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  productInfo: { flex: 1, minWidth: 0 },
-  productName: { ...theme.typography.label, color: theme.colors.textPrimary },
-  productMeta: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 5,
-  },
-  quantity: {
-    ...theme.typography.small,
-    color: theme.colors.textPrimary,
-    fontWeight: "600",
-  },
-  price: {
-    ...theme.typography.small,
-    color: theme.colors.primary,
-    fontWeight: "700",
-  },
-  badge: { borderRadius: 7, paddingHorizontal: 7, paddingVertical: 5 },
-  badgeText: { fontSize: 10, fontWeight: "700" },
-  successBadge: { backgroundColor: "#E8F5EC" },
-  successText: { color: theme.colors.primary },
-  warningBadge: { backgroundColor: "#FFF5E5" },
-  warningText: { color: "#B45309" },
-  dangerBadge: { backgroundColor: "#FEECEC" },
-  dangerText: { color: theme.colors.error },
-  empty: { alignItems: "center", paddingVertical: 35, gap: 8 },
-  emptyTitle: { ...theme.typography.title, color: theme.colors.textPrimary },
-  primaryButton: {
-    minHeight: 48,
-    paddingHorizontal: 20,
-    justifyContent: "center",
-    borderRadius: 12,
-    backgroundColor: theme.colors.primary,
-    marginTop: 8,
-  },
-  primaryText: { color: "#fff", fontWeight: "700" },
-  errorBox: {
-    padding: 12,
-    borderRadius: 10,
-    backgroundColor: theme.colors.errorBackground,
-  },
-  errorText: { color: theme.colors.error, ...theme.typography.small },
-  loadMore: { alignItems: "center", padding: 15 },
-  link: { color: theme.colors.primary, fontWeight: "700" },
-});

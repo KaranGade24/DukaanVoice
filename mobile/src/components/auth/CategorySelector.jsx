@@ -1,6 +1,7 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
+import { clsx } from "clsx";
 import theme from "../../constants/theme";
 
 const items = [
@@ -14,9 +15,9 @@ export default function CategorySelector({ value, onChange, error }) {
   const { t } = useTranslation();
 
   return (
-    <View style={styles.wrapper}>
-      {<Text style={styles.label}>{t("auth.businessType")}</Text>}
-      <View style={styles.grid}>
+    <View className="gap-2">
+      {<Text className="text-[15px] leading-[21px] font-semibold text-text-primary">{t("auth.businessType")}</Text>}
+      <View className="flex-row flex-wrap gap-2.5">
         {items.map((item) => {
           const selected = value === item.key;
 
@@ -24,11 +25,14 @@ export default function CategorySelector({ value, onChange, error }) {
             <Pressable
               key={item.key}
               onPress={() => onChange(item.key)}
-              style={[styles.item, selected && styles.selected]}
+              className={clsx(
+                "min-h-[94px] w-[48%] justify-between rounded-card bg-surface-subtle p-3.5",
+                selected && "bg-primary",
+              )}
               accessibilityRole="radio"
               accessibilityState={{ selected }}
             >
-              <View style={styles.iconRow}>
+              <View className="flex-row justify-between">
                 <MaterialCommunityIcons
                   name={item.icon}
                   size={25}
@@ -44,32 +48,17 @@ export default function CategorySelector({ value, onChange, error }) {
                   />
                 )}
               </View>
-              <Text style={[styles.itemText, selected && styles.selectedText]}>
+              <Text className={clsx(
+                "text-[15px] leading-[21px] font-semibold text-text-primary",
+                selected && "text-on-primary",
+              )}>
                 {t(`categories.${item.key}`)}
               </Text>
             </Pressable>
           );
         })}
       </View>
-      {error ? <Text style={styles.error}>{error}</Text> : null}
+      {error ? <Text className="text-xs leading-[17px] text-error">{error}</Text> : null}
     </View>
   );
 }
-const styles = StyleSheet.create({
-  wrapper: { gap: 8 },
-  label: { ...theme.typography.label, color: theme.colors.textPrimary },
-  grid: { flexDirection: "row", flexWrap: "wrap", gap: 10 },
-  item: {
-    width: "48%",
-    minHeight: 94,
-    borderRadius: theme.radii.card,
-    backgroundColor: theme.colors.surfaceSubtle,
-    padding: 14,
-    justifyContent: "space-between",
-  },
-  selected: { backgroundColor: theme.colors.primary },
-  iconRow: { flexDirection: "row", justifyContent: "space-between" },
-  itemText: { ...theme.typography.label, color: theme.colors.textPrimary },
-  selectedText: { color: theme.colors.onPrimary },
-  error: { ...theme.typography.small, color: theme.colors.error },
-});

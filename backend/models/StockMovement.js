@@ -2,13 +2,38 @@ import mongoose from "mongoose";
 
 const stockMovementSchema = new mongoose.Schema(
   {
-    shopId: { type: mongoose.Schema.Types.ObjectId, ref: "Shop", required: true, index: true },
-    productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product", required: true, index: true },
-    purchaseId: { type: mongoose.Schema.Types.ObjectId, ref: "Purchase", default: null, index: true },
+    shopId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Shop",
+      required: true,
+      index: true,
+    },
+    productId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product",
+      required: true,
+      index: true,
+    },
+    purchaseId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Purchase",
+      default: null,
+      index: true,
+    },
     unit: { type: String, trim: true, maxlength: 24, default: "" },
     type: {
       type: String,
-      enum: ["OPENING_STOCK", "STOCK_IN", "STOCK_OUT", "STOCK_ADJUSTMENT", "PURCHASE", "SALE", "RETURN", "DAMAGE", "EXPIRED"],
+      enum: [
+        "OPENING_STOCK",
+        "STOCK_IN",
+        "STOCK_OUT",
+        "STOCK_ADJUSTMENT",
+        "PURCHASE",
+        "SALE",
+        "RETURN",
+        "DAMAGE",
+        "EXPIRED",
+      ],
       required: true,
     },
     previousQuantity: { type: Number, required: true, min: 0 },
@@ -18,7 +43,11 @@ const stockMovementSchema = new mongoose.Schema(
     reference: { type: String, trim: true, maxlength: 120, default: "" },
     notes: { type: String, trim: true, maxlength: 500, default: "" },
     purchaseCost: { type: Number, min: 0, default: null },
-    performedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    performedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   { timestamps: true, versionKey: false },
 );

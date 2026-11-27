@@ -1,0 +1,62 @@
+openapi: 3.0.3
+info:
+  title: DukaanVoice Customers API
+  version: 1.0.0
+paths:
+  /api/customers:
+    get:
+      summary: Search this shop's customer directory
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: query, name: search, schema: { type: string, maxLength: 100 } }
+        - {
+            in: query,
+            name: page,
+            schema: { type: integer, minimum: 1, default: 1 },
+          }
+        - {
+            in: query,
+            name: limit,
+            schema: { type: integer, minimum: 1, maximum: 100, default: 20 },
+          }
+      responses:
+        "200":
+          { description: Customer results with credit balances and pagination }
+        "401": { description: Authentication required }
+        "403": { description: No active shop for the authenticated user }
+    post:
+      summary: Create a shop customer
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name: { type: string, minLength: 1, maxLength: 120 }
+                phone: { type: string, maxLength: 30 }
+      responses:
+        "201": { description: Customer created }
+        "409": { description: Duplicate phone number }
+  /api/customers/{customerId}:
+    get:
+      summary: Get a shop customer and recent purchase summaries
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - {
+            in: path,
+            name: customerId,
+            required: true,
+            schema: { type: string, pattern: "^[a-fA-F0-9]{24}$" },
+          }
+      responses:
+        "200":
+          {
+            description: Customer details and current outstanding credit balance,
+          }
+        "404": { description: Customer not found in this shop }
+components:
+  securitySchemes:
+    bearerAuth: { type: http, scheme: bearer, bearerFormat: JWT }

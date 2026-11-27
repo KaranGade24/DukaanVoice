@@ -4,8 +4,8 @@ import {
   Platform,
   Pressable,
   ScrollView,
-  StyleSheet,
   Text,
+  useWindowDimensions,
   View,
 } from "react-native";
 import { useRouter } from "expo-router";
@@ -24,6 +24,7 @@ import { validateLogin, normalizeEmail } from "../../utils/authValidation";
 import theme from "../../constants/theme";
 
 export default function LoginScreen() {
+  const { height } = useWindowDimensions();
   const { t } = useTranslation();
   const router = useRouter();
   const { login } = useAuth();
@@ -69,53 +70,65 @@ export default function LoginScreen() {
   };
   return (
     <KeyboardAvoidingView
-      style={styles.page}
+      style={{ height: height - 56 }}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 20}
     >
       <AuthHeader title={t("auth.loginTitle")} />
       <ScrollView
-        contentContainerStyle={styles.content}
+        contentContainerClassName="flex-grow gap-4 px-4 pt-4 pb-6"
         keyboardShouldPersistTaps="handled"
       >
-        <View style={styles.topRow}>
-          <View style={styles.badge}>
+        <View className="flex-row flex-wrap items-center justify-between gap-3">
+          <View className="flex-row items-center gap-1.75 rounded-full bg-surface-tint px-3.5 py-2.25">
             <MaterialCommunityIcons
               name="account-voice"
               size={18}
               color={theme.colors.primary}
             />
-            <Text style={styles.badgeText}>{t("auth.welcomeBadge")}</Text>
+            <Text className="text-sm leading-5 font-semibold text-primary">
+              {t("auth.welcomeBadge")}
+            </Text>
           </View>
           <LanguageSelector />
         </View>
-        <View style={styles.brandRow}>
-          <View style={styles.brandIcon}>
+        <View className="flex-row items-center gap-4">
+          <View className="h-25.5 w-25.5 items-center justify-center rounded-3xl bg-accent">
             <MaterialCommunityIcons
               name="storefront-outline"
               size={38}
               color={theme.colors.primary}
             />
           </View>
-          <View style={styles.brandCopy}>
-            <Text style={styles.brand}>{t("auth.welcomeBadge")}</Text>
-            <Text style={styles.heading}>{t("auth.welcome")}</Text>
-            <Text style={styles.subheading}>{t("auth.welcomeSub")}</Text>
+          <View className="flex-1 gap-1">
+            <Text className="text-lg font-semibold leading-6 tracking-[1.2px] text-primary">
+              {t("auth.welcomeBadge")}
+            </Text>
+            <Text className="text-2xl font-bold leading-8 text-text-primary">
+              {t("auth.welcome")}
+            </Text>
+            <Text className="text-sm leading-5 text-text-secondary">
+              {t("auth.welcomeSub")}
+            </Text>
           </View>
         </View>
-        <View style={styles.voiceCard}>
-          <View style={styles.voiceIcon}>
+        <View className="flex-row items-center gap-3 rounded-card border border-border-primary bg-surface-mint p-3.5">
+          <View className="h-11.5 w-11.5 items-center justify-center rounded-xl bg-white">
             <MaterialCommunityIcons
               name="microphone-outline"
               size={24}
               color={theme.colors.primary}
             />
           </View>
-          <View style={styles.voiceCopy}>
-            <Text style={styles.voiceTitle}>{t("auth.voiceHint")}</Text>
-            <Text style={styles.voiceExample}>{t("auth.voiceExample")}</Text>
+          <View className="min-w-0 flex-1 gap-0.75">
+            <Text className="text-[15px] leading-5.25 font-semibold text-primary">
+              {t("auth.voiceHint")}
+            </Text>
+            <Text className="text-sm leading-5 text-text-secondary">
+              {t("auth.voiceExample")}
+            </Text>
           </View>
-          <View style={styles.wave}>
+          <View className="h-11 w-11 items-center justify-center rounded-full bg-accent">
             <MaterialCommunityIcons
               name="waveform"
               size={23}
@@ -123,7 +136,7 @@ export default function LoginScreen() {
             />
           </View>
         </View>
-        <View style={styles.formCard}>
+        <View className="gap-4.5 rounded-card border border-border bg-white p-4 shadow-sm">
           <FormField
             label={t("auth.email")}
             placeholder={t("auth.emailPlaceholder")}
@@ -150,17 +163,22 @@ export default function LoginScreen() {
             importantForAutofill="yes"
           />
           {generalError ? (
-            <Text style={styles.generalError} accessibilityRole="alert">
+            <Text
+              className="text-center text-sm leading-5 text-error"
+              accessibilityRole="alert"
+            >
               {generalError}
             </Text>
           ) : null}
-          <View style={styles.secureNote}>
+          <View className="min-h-13 flex-row items-center gap-2.5 rounded-card bg-surface-mint px-3.5">
             <MaterialCommunityIcons
               name="shield-lock-outline"
               size={20}
               color={theme.colors.primary}
             />
-            <Text style={styles.secureText}>{t("auth.secureNote")}</Text>
+            <Text className="min-w-0 flex-1 text-sm leading-5 text-primary">
+              {t("auth.secureNote")}
+            </Text>
           </View>
           <PrimaryButton
             label={submitting ? t("auth.loggingIn") : t("auth.login")}
@@ -171,19 +189,21 @@ export default function LoginScreen() {
         </View>
         <Pressable
           onPress={() => router.replace("/(auth)/signup")}
-          style={styles.switchCard}
+          className="flex-row items-center gap-3 rounded-card border border-border-primary bg-surface-tint p-3.5"
           accessibilityRole="button"
         >
-          <View style={styles.switchIcon}>
+          <View className="h-12 w-12 items-center justify-center rounded-card bg-white">
             <MaterialCommunityIcons
               name="store-plus-outline"
               size={24}
               color={theme.colors.primary}
             />
           </View>
-          <View style={styles.switchCopy}>
-            <Text style={styles.switchTitle}>{t("auth.noAccount")}</Text>
-            <Text style={styles.switchAction}>
+          <View className="flex-1 gap-0.75">
+            <Text className="text-lg font-semibold leading-6 text-text-primary">
+              {t("auth.noAccount")}
+            </Text>
+            <Text className="text-sm leading-5 font-bold text-primary">
               {t("auth.signup")}{" "}
               <MaterialCommunityIcons
                 name="arrow-right"
@@ -203,137 +223,3 @@ export default function LoginScreen() {
     </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({
-  page: { flex: 1, backgroundColor: theme.colors.background },
-  content: {
-    flexGrow: 1,
-    paddingHorizontal: 16,
-    paddingTop: 16,
-    gap: 16,
-    paddingBottom: 24,
-  },
-  topRow: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "center",
-    justifyContent: "space-between",
-    gap: 12,
-  },
-  badge: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 7,
-    paddingHorizontal: 14,
-    paddingVertical: 9,
-    borderRadius: theme.radii.pill,
-    backgroundColor: theme.colors.surfaceTint,
-  },
-  badgeText: {
-    ...theme.typography.body,
-    color: theme.colors.primary,
-    fontWeight: "600",
-  },
-  brandRow: { flexDirection: "row", gap: 16, alignItems: "center" },
-  brandIcon: {
-    width: 102,
-    height: 102,
-    borderRadius: 24,
-    backgroundColor: theme.colors.accent,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  brandCopy: { flex: 1, gap: 4 },
-  brand: {
-    ...theme.typography.title,
-    color: theme.colors.primary,
-    letterSpacing: 1.2,
-  },
-  heading: { ...theme.typography.headline, color: theme.colors.textPrimary },
-  subheading: { ...theme.typography.body, color: theme.colors.textSecondary },
-  voiceCard: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-    padding: 14,
-    borderRadius: theme.radii.card,
-    backgroundColor: theme.colors.surfaceMint,
-    borderWidth: 1,
-    borderColor: theme.colors.borderPrimary,
-  },
-  voiceIcon: {
-    width: 46,
-    height: 46,
-    borderRadius: 12,
-    backgroundColor: theme.colors.surface,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  voiceCopy: { flex: 1, gap: 3 },
-  voiceTitle: { ...theme.typography.label, color: theme.colors.primary },
-  voiceExample: { ...theme.typography.body, color: theme.colors.textSecondary },
-  wave: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    backgroundColor: theme.colors.accent,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  formCard: {
-    gap: 18,
-    padding: 16,
-    borderRadius: theme.radii.card,
-    backgroundColor: theme.colors.surface,
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-    shadowColor: "#000",
-    shadowOpacity: 0.06,
-    shadowRadius: 8,
-    elevation: 2,
-  },
-  secureNote: {
-    minHeight: 52,
-    paddingHorizontal: 14,
-    borderRadius: 14,
-    backgroundColor: theme.colors.surfaceMint,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-  },
-  secureText: {
-    flex: 1,
-    ...theme.typography.body,
-    color: theme.colors.primary,
-  },
-  generalError: {
-    ...theme.typography.body,
-    color: theme.colors.error,
-    textAlign: "center",
-  },
-  switchCard: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-    padding: 14,
-    borderRadius: theme.radii.card,
-    backgroundColor: theme.colors.surfaceTint,
-    borderWidth: 1,
-    borderColor: theme.colors.borderPrimary,
-  },
-  switchIcon: {
-    width: 48,
-    height: 48,
-    borderRadius: 14,
-    backgroundColor: theme.colors.surface,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  switchCopy: { flex: 1, gap: 3 },
-  switchTitle: { ...theme.typography.title, color: theme.colors.textPrimary },
-  switchAction: {
-    ...theme.typography.body,
-    color: theme.colors.primary,
-    fontWeight: "700",
-  },
-});

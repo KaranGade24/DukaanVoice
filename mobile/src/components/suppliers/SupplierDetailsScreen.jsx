@@ -17,7 +17,6 @@ import {
   date,
   errorText,
   money,
-  styles,
 } from "../purchase-management/PurchaseManagementUI";
 
 export function SupplierDetailsScreen() {
@@ -52,7 +51,7 @@ export function SupplierDetailsScreen() {
   if (state.loading)
     return (
       <Page title={t("supplierPurchase.supplierDetails")}>
-        <ActivityIndicator style={styles.center} color={theme.colors.primary} />
+        <ActivityIndicator className="mt-[60px]" color={theme.colors.primary} />
       </Page>
     );
   if (state.error || !supplier)
@@ -64,14 +63,14 @@ export function SupplierDetailsScreen() {
   return (
     <ScrollPage title={supplier.supplierName}>
       <Card>
-        <Text style={styles.cardTitle}>
+        <Text className="text-[15px] leading-[21px] font-semibold text-text-primary">
           {supplier.businessName || supplier.supplierName}
         </Text>
-        <Text style={styles.muted}>
+        <Text className="text-xs leading-[17px] text-text-secondary">
           {supplier.phoneNumber}
           {supplier.email ? ` · ${supplier.email}` : ""}
         </Text>
-        <View style={styles.stats}>
+        <View className="mt-3 flex-row gap-2">
           <Stat
             label={t("supplierPurchase.purchasesTotal")}
             value={money(supplier.totalPurchases)}
@@ -86,7 +85,7 @@ export function SupplierDetailsScreen() {
           />
         </View>
       </Card>
-      <View style={styles.actions}>
+      <View className="gap-2 mb-2.5">
         <Button
           title={t("supplierPurchase.newPurchase")}
           onPress={() =>
@@ -124,7 +123,7 @@ export function SupplierDetailsScreen() {
           onPress={archive}
         />
       )}
-      <Text style={styles.sectionTitle}>
+      <Text className="mt-2 mb-1 text-lg leading-6 font-semibold text-text-primary">
         {t("supplierPurchase.recentPurchases")}
       </Text>
       {(supplier.recentPurchases || []).map((purchase) => (
@@ -132,11 +131,11 @@ export function SupplierDetailsScreen() {
           key={purchase.id}
           onPress={() => router.push(`/purchases/${purchase.id}`)}
         >
-          <View style={styles.rowBetween}>
-            <Text style={styles.cardTitle}>{purchase.purchaseReference}</Text>
+          <View className="flex-row items-center justify-between gap-2">
+            <Text className="text-[15px] leading-[21px] font-semibold text-text-primary">{purchase.purchaseReference}</Text>
             <Status value={purchase.paymentStatus} />
           </View>
-          <Text style={styles.muted}>
+          <Text className="text-xs leading-[17px] text-text-secondary">
             {date(purchase.purchaseDate)} · {money(purchase.grandTotal)}
           </Text>
         </Card>
